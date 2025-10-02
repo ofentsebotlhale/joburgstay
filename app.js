@@ -155,7 +155,7 @@ function updateModalSummary() {
 }
 
 // Enhanced booking system with email notifications (Netlify optimized)
-const API_BASE_URL = 'https://joburgstay.netlify.app/api';
+const API_BASE_URL = "https://joburgstay.netlify.app/api";
 
 async function getBookings() {
   // For static hosting (Netlify), use localStorage only
@@ -169,21 +169,23 @@ async function addBooking(booking) {
     ...booking,
     id: generateBookingId(),
     timestamp: new Date().toISOString(),
-    status: 'pending',
-    confirmationCode: generateConfirmationCode()
+    status: "pending",
+    confirmationCode: generateConfirmationCode(),
   };
-  
+
   bookings.push(enhancedBooking);
   localStorage.setItem("bookings", JSON.stringify(bookings));
-  
+
   // Send email notifications
   sendBookingNotifications(enhancedBooking);
-  
+
   return enhancedBooking;
 }
 
 function generateBookingId() {
-  return 'BK' + Date.now() + Math.random().toString(36).substr(2, 5).toUpperCase();
+  return (
+    "BK" + Date.now() + Math.random().toString(36).substr(2, 5).toUpperCase()
+  );
 }
 
 function generateConfirmationCode() {
@@ -193,7 +195,7 @@ function generateConfirmationCode() {
 async function sendBookingNotifications(booking) {
   try {
     // Send notification to property owner
-    await emailjs.send('service_2mja4zm', 'template_owner_notification', {
+      await emailjs.send("service_2mja4zm", "owner_alert", {
       booking_id: booking.id,
       guest_name: booking.name,
       guest_email: booking.email,
@@ -202,23 +204,23 @@ async function sendBookingNotifications(booking) {
       check_out: booking.checkOut,
       guests: booking.guests,
       total: booking.total,
-      special_requests: booking.specialRequests || 'None',
-      confirmation_code: booking.confirmationCode
+      special_requests: booking.specialRequests || "None",
+      confirmation_code: booking.confirmationCode,
     });
-    
+
     // Send confirmation to guest
-    await emailjs.send('service_2mja4zm', 'template_guest_confirmation', {
+      await emailjs.send("service_2mja4zm", "guest_confirm", {
       guest_name: booking.name,
       confirmation_code: booking.confirmationCode,
       check_in: booking.checkIn,
       check_out: booking.checkOut,
       total: booking.total,
-      property_name: 'Modern Johannesburg Apartment'
+      property_name: "Modern Johannesburg Apartment",
     });
-    
-    console.log('Email notifications sent successfully');
+
+    console.log("Email notifications sent successfully");
   } catch (error) {
-    console.error('Failed to send email notifications:', error);
+    console.error("Failed to send email notifications:", error);
     // Still show success to user, but log the error
   }
 }
@@ -228,7 +230,7 @@ async function getBlockedDates() {
   const all = await getBookings();
   const set = new Set();
   for (const b of all) {
-    if (b.status === 'confirmed') {
+    if (b.status === "confirmed") {
       let d = new Date(b.checkIn);
       const end = new Date(b.checkOut);
       while (d < end) {

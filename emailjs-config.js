@@ -10,8 +10,8 @@ const EMAILJS_CONFIG = {
 
   // Your Email Templates
   TEMPLATES: {
-    OWNER_NOTIFICATION: "template_owner_notification",
-    GUEST_CONFIRMATION: "template_guest_confirmation",
+    OWNER_NOTIFICATION: "owner_alert",
+    GUEST_CONFIRMATION: "guest_confirm",
   },
 
   // Email addresses

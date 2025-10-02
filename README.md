@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # 🏠 Modern Johannesburg Apartment Booking System
 
 A modern, responsive booking system for a Johannesburg Airbnb property featuring real-time availability, email notifications, and a professional booking experience.
@@ -174,3 +175,6 @@ MIT License - Feel free to use and modify for your property.
 ---
 
 **Ready to go live!** 🎉 Your Johannesburg apartment booking system is production-ready with professional features and reliable data handling.
+=======
+# joburgstay
+>>>>>>> bc3bf1966f67669efe7e842ed2e4fbed728f69a3

@@ -362,19 +362,19 @@ function showNotification(message, type = "success", duration = 4000) {
 }
 
 // Convenience functions for different notification types
-function showSuccessMessage(message, duration = 4000) {
+function showSuccessMessage(message, duration = 10000) {
   showNotification(message, "success", duration);
 }
 
-function showErrorMessage(message, duration = 5000) {
+function showErrorMessage(message, duration = 10000) {
   showNotification(message, "error", duration);
 }
 
-function showWarningMessage(message, duration = 4000) {
+function showWarningMessage(message, duration = 10000) {
   showNotification(message, "warning", duration);
 }
 
-function showInfoMessage(message, duration = 4000) {
+function showInfoMessage(message, duration = 10000) {
   showNotification(message, "info", duration);
 }
 
@@ -397,19 +397,23 @@ function testNotifications() {
 
 // Test function for booking success notification
 function testBookingSuccess() {
-  console.log("🧪 Testing booking success notification...");
-  showSuccessMessage(
-    "🎉 Booking confirmed! Confirmation code: TEST123. Please check your email for booking details and confirmation.",
-    6000
-  );
+  console.log("🧪 Testing booking success notification in 1 second...");
+  
+  // Show success message after 1 second delay (like real booking)
+  setTimeout(() => {
+    showSuccessMessage(
+      "🎉 Booking confirmed! Confirmation code: TEST123. Please check your email for booking details and confirmation."
+    );
+    console.log("🧪 Success notification shown");
+  }, 1000);
 
+  // Show email reminder after 4 seconds total
   setTimeout(() => {
     console.log("🧪 Testing email reminder notification...");
     showInfoMessage(
-      "📧 Don't forget to check your email (including spam folder) for your booking confirmation and check-in instructions.",
-      5000
+      "📧 Don't forget to check your email (including spam folder) for your booking confirmation and check-in instructions."
     );
-  }, 3000);
+  }, 4000);
 }
 // Returns a set of all booked-in dates (YYYY-MM-DD)
 async function getBlockedDates() {
@@ -418,11 +422,11 @@ async function getBlockedDates() {
   const set = new Set();
   for (const b of all) {
     if (b.status === "confirmed") {
-      let d = new Date(b.checkIn);
-      const end = new Date(b.checkOut);
-      while (d < end) {
-        set.add(d.toISOString().split("T")[0]);
-        d.setDate(d.getDate() + 1);
+    let d = new Date(b.checkIn);
+    const end = new Date(b.checkOut);
+    while (d < end) {
+      set.add(d.toISOString().split("T")[0]);
+      d.setDate(d.getDate() + 1);
       }
     }
   }
@@ -746,24 +750,23 @@ if (bookingModalForm) {
       renderCalendar();
       updateSummary();
 
-      console.log("🎉 About to show success message...");
+      console.log("🎉 About to show success message in 1 second...");
 
-      // Show success message with booking details
-      showSuccessMessage(
-        `🎉 Booking confirmed! Confirmation code: ${booking.confirmationCode}. Please check your email for booking details and confirmation.`,
-        6000
-      );
+      // Show success message with booking details after 1 second delay
+      setTimeout(() => {
+        showSuccessMessage(
+          `🎉 Booking confirmed! Confirmation code: ${booking.confirmationCode}. Please check your email for booking details and confirmation.`
+        );
+        console.log("✅ Success message should be visible now");
+      }, 1000);
 
-      console.log("✅ Success message should be visible now");
-
-      // Show additional email reminder after a delay
+      // Show additional email reminder after a longer delay (4 seconds total)
       setTimeout(() => {
         console.log("📧 Showing email reminder...");
         showInfoMessage(
-          `📧 Don't forget to check your email (including spam folder) for your booking confirmation and check-in instructions.`,
-          5000
+          `📧 Don't forget to check your email (including spam folder) for your booking confirmation and check-in instructions.`
         );
-      }, 3000);
+      }, 4000);
 
       // Track booking event for analytics
       if (typeof trackBookingEvent === "function") {

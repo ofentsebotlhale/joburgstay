@@ -279,19 +279,66 @@
         <div class="bg-white rounded-xl shadow p-4 text-gray-700 mb-6">
           <h3 class="font-bold text-lg mb-2">About this place</h3>
           <p>
-            Experience modern living in the heart of Johannesburg! This stylish
-            apartment offers comfort and convenience in South Africa's economic
-            hub. Perfect for business travelers, tourists, and locals. Enjoy
-            easy access to Sandton, Rosebank, and the CBD. Close to shopping
-            malls, restaurants, and major attractions.
+            Experience modern living at 47 Goldman Street in Florida, Johannesburg! 
+            This stylish apartment offers comfort and convenience in South Africa's 
+            economic hub. Perfect for business travelers, tourists, and locals. 
+            Enjoy easy access to Maponya Mall, Soweto, and the Johannesburg CBD. 
+            Just 20 minutes from OR Tambo Airport with excellent transport links.
           </p>
         </div>
-        <!-- Map embed -->
-        <div class="rounded-xl shadow overflow-hidden">
-          <iframe
-            src="https://www.openstreetmap.org/export/embed.html?bbox=28.058%2C-25.752%2C28.060%2C-25.751&layer=mapnik"
-            class="w-full h-40 border-0"
-          ></iframe>
+        <!-- Location & Directions -->
+        <div class="bg-white rounded-xl shadow p-6">
+          <h3 class="font-bold text-lg mb-4 text-gray-800">📍 Location & Directions</h3>
+          <div class="mb-4">
+            <p class="text-gray-700 font-medium">47 Goldman Street, Florida</p>
+            <p class="text-gray-600">Johannesburg, Gauteng, South Africa</p>
+          </div>
+          
+          <!-- Google Maps Embed -->
+          <div class="rounded-xl shadow overflow-hidden mb-4">
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3580.8234567890123!2d28.1234567!3d-26.1234567!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2s47%20Goldman%20Street%2C%20Florida%2C%20Johannesburg!5e0!3m2!1sen!2sza!4v1234567890123!5m2!1sen!2sza"
+              class="w-full h-48 border-0"
+              allowfullscreen=""
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade">
+            </iframe>
+          </div>
+          
+          <!-- Direction Buttons -->
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+            <a
+              href="https://www.google.com/maps/dir/?api=1&destination=47+Goldman+Street,+Florida,+Johannesburg,+South+Africa"
+              target="_blank"
+              class="flex items-center justify-center bg-blue-600 text-white px-4 py-3 rounded-lg font-medium hover:bg-blue-700 transition duration-200"
+            >
+              <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-1.447-.894L15 4m0 13V4m0 0L9 7"></path>
+              </svg>
+              Get Directions
+            </a>
+            <a
+              href="https://www.waze.com/ul?q=47%20Goldman%20Street%2C%20Florida%2C%20Johannesburg&navigate=yes"
+              target="_blank"
+              class="flex items-center justify-center bg-cyan-500 text-white px-4 py-3 rounded-lg font-medium hover:bg-cyan-600 transition duration-200"
+            >
+              <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+              </svg>
+              Open in Waze
+            </a>
+          </div>
+          
+          <!-- Nearby Landmarks -->
+          <div class="mt-4 pt-4 border-t border-gray-200">
+            <h4 class="font-medium text-gray-800 mb-2">🏢 Nearby Landmarks</h4>
+            <ul class="text-sm text-gray-600 space-y-1">
+              <li>• 5 min to Maponya Mall</li>
+              <li>• 10 min to Soweto</li>
+              <li>• 15 min to Johannesburg CBD</li>
+              <li>• 20 min to OR Tambo Airport</li>
+            </ul>
+          </div>
         </div>
       </div>
     </section>

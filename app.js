@@ -190,9 +190,10 @@ async function addBooking(booking) {
   bookings.push(enhancedBooking);
   localStorage.setItem("bookings", JSON.stringify(bookings));
 
-  // Send email notifications
+  // Send email notifications (non-blocking)
   sendBookingNotifications(enhancedBooking);
 
+  console.log("📝 Booking saved to localStorage:", enhancedBooking);
   return enhancedBooking;
 }
 
@@ -207,37 +208,49 @@ function generateConfirmationCode() {
 }
 
 async function sendBookingNotifications(booking) {
-  try {
-    // Send notification to property owner
-    await emailjs.send("service_2mja4zm", "owner_alert", {
-      booking_id: booking.id,
-      guest_name: booking.name,
-      guest_email: booking.email,
-      guest_phone: booking.phone,
-      check_in: booking.checkIn,
-      check_out: booking.checkOut,
-      guests: booking.guests,
-      total: booking.total,
-      special_requests: booking.specialRequests || "None",
-      confirmation_code: booking.confirmationCode,
-    });
+  // Don't await email sending - let it happen in background
+  // This prevents email errors from blocking the booking success
+  setTimeout(async () => {
+    try {
+      console.log("📧 Attempting to send email notifications...");
+      
+      // Check if EmailJS is available
+      if (typeof emailjs === 'undefined') {
+        console.warn("EmailJS not available - emails will not be sent");
+        return;
+      }
 
-    // Send confirmation to guest
-    await emailjs.send("service_2mja4zm", "guest_confirm", {
-      guest_name: booking.name,
-      guest_email: booking.email,
-      confirmation_code: booking.confirmationCode,
-      check_in: booking.checkIn,
-      check_out: booking.checkOut,
-      total: booking.total,
-      property_name: "Modern Johannesburg Apartment",
-    });
+      // Send notification to property owner
+      await emailjs.send("service_2mja4zm", "owner_alert", {
+        booking_id: booking.id,
+        guest_name: booking.name,
+        guest_email: booking.email,
+        guest_phone: booking.phone,
+        check_in: booking.checkIn,
+        check_out: booking.checkOut,
+        guests: booking.guests,
+        total: booking.total,
+        special_requests: booking.specialRequests || "None",
+        confirmation_code: booking.confirmationCode,
+      });
 
-    console.log("Email notifications sent successfully");
-  } catch (error) {
-    console.error("Failed to send email notifications:", error);
-    // Still show success to user, but log the error
-  }
+      // Send confirmation to guest
+      await emailjs.send("service_2mja4zm", "guest_confirm", {
+        guest_name: booking.name,
+        guest_email: booking.email,
+        confirmation_code: booking.confirmationCode,
+        check_in: booking.checkIn,
+        check_out: booking.checkOut,
+        total: booking.total,
+        property_name: "Modern Johannesburg Apartment",
+      });
+
+      console.log("✅ Email notifications sent successfully");
+    } catch (error) {
+      console.warn("⚠️ Failed to send email notifications:", error);
+      // Email failure doesn't affect booking success
+    }
+  }, 100); // Small delay to ensure booking is saved first
 }
 
 // Enhanced loading and success functions
@@ -395,6 +408,23 @@ function testNotifications() {
     () => showInfoMessage("ℹ️ Info! Your session will expire in 10 minutes."),
     3000
   );
+}
+
+// Test function for booking success notification
+function testBookingSuccess() {
+  console.log("🧪 Testing booking success notification...");
+  showSuccessMessage(
+    "🎉 Booking confirmed! Confirmation code: TEST123. Please check your email for booking details and confirmation.",
+    6000
+  );
+  
+  setTimeout(() => {
+    console.log("🧪 Testing email reminder notification...");
+    showInfoMessage(
+      "📧 Don't forget to check your email (including spam folder) for your booking confirmation and check-in instructions.",
+      5000
+    );
+  }, 3000);
 }
 // Returns a set of all booked-in dates (YYYY-MM-DD)
 async function getBlockedDates() {
@@ -693,6 +723,8 @@ if (bookingModalForm) {
     showLoadingSpinner(submitButton.id || "modal-submit-btn");
 
     try {
+      console.log("🚀 Starting booking process...");
+      
       // Calculate total for booking
       const nights =
         selectedCheckIn && selectedCheckOut
@@ -702,6 +734,8 @@ if (bookingModalForm) {
       const discount = nights >= 7 ? 0.9 : 1;
       const baseTotal = nights * PRICE_PER_NIGHT * discount;
       const total = nights > 0 ? baseTotal + cleaningFee : 0;
+
+      console.log("💰 Calculated total:", total);
 
       // Save booking
       const booking = await addBooking({
@@ -715,6 +749,8 @@ if (bookingModalForm) {
         total: `R${total.toFixed(2)}`,
       });
 
+      console.log("✅ Booking saved:", booking);
+
       // Reset form and close modal
       bookingModalForm.reset();
       selectedCheckIn = null;
@@ -725,14 +761,19 @@ if (bookingModalForm) {
       renderCalendar();
       updateSummary();
 
+      console.log("🎉 About to show success message...");
+
       // Show success message with booking details
       showSuccessMessage(
         `🎉 Booking confirmed! Confirmation code: ${booking.confirmationCode}. Please check your email for booking details and confirmation.`,
         6000
       );
 
+      console.log("✅ Success message should be visible now");
+
       // Show additional email reminder after a delay
       setTimeout(() => {
+        console.log("📧 Showing email reminder...");
         showInfoMessage(
           `📧 Don't forget to check your email (including spam folder) for your booking confirmation and check-in instructions.`,
           5000
@@ -744,7 +785,7 @@ if (bookingModalForm) {
         trackBookingEvent("booking_completed", booking.total);
       }
     } catch (error) {
-      console.error("Booking error:", error);
+      console.error("❌ Booking error:", error);
       showErrorMessage(
         "❌ Booking failed. Please check your details and try again."
       );

@@ -213,9 +213,9 @@ async function sendBookingNotifications(booking) {
   setTimeout(async () => {
     try {
       console.log("📧 Attempting to send email notifications...");
-      
+
       // Check if EmailJS is available
-      if (typeof emailjs === 'undefined') {
+      if (typeof emailjs === "undefined") {
         console.warn("EmailJS not available - emails will not be sent");
         return;
       }
@@ -285,7 +285,8 @@ function safeRemoveNotification(notificationElement) {
   notificationElement.dataset.removing = "true";
 
   try {
-    notificationElement.classList.add("translate-x-full");
+    // Remove the show class to trigger slide-out animation
+    notificationElement.classList.remove("show");
     setTimeout(() => {
       try {
         if (
@@ -311,63 +312,47 @@ function showNotification(message, type = "success", duration = 4000) {
   if (!container) {
     container = document.createElement("div");
     container.id = "notification-container";
-    container.className = "fixed top-4 right-4 z-50 space-y-2";
+    container.className = "notification-container";
     document.body.appendChild(container);
   }
 
   const notificationDiv = document.createElement("div");
 
-  // Define notification styles based on type
-  const styles = {
-    success: {
-      bg: "bg-green-500",
-      icon: `<svg class="w-5 h-5 mr-3" fill="currentColor" viewBox="0 0 20 20">
-        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
-      </svg>`,
-    },
-    error: {
-      bg: "bg-red-500",
-      icon: `<svg class="w-5 h-5 mr-3" fill="currentColor" viewBox="0 0 20 20">
-        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd"></path>
-      </svg>`,
-    },
-    warning: {
-      bg: "bg-yellow-500",
-      icon: `<svg class="w-5 h-5 mr-3" fill="currentColor" viewBox="0 0 20 20">
-        <path fill-rule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clip-rule="evenodd"></path>
-      </svg>`,
-    },
-    info: {
-      bg: "bg-blue-500",
-      icon: `<svg class="w-5 h-5 mr-3" fill="currentColor" viewBox="0 0 20 20">
-        <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path>
-      </svg>`,
-    },
+  // Define notification icons based on type
+  const icons = {
+    success: `<svg class="notification-icon" fill="currentColor" viewBox="0 0 20 20">
+      <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+    </svg>`,
+    error: `<svg class="notification-icon" fill="currentColor" viewBox="0 0 20 20">
+      <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd"></path>
+    </svg>`,
+    warning: `<svg class="notification-icon" fill="currentColor" viewBox="0 0 20 20">
+      <path fill-rule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clip-rule="evenodd"></path>
+    </svg>`,
+    info: `<svg class="notification-icon" fill="currentColor" viewBox="0 0 20 20">
+      <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path>
+    </svg>`,
   };
 
-  const style = styles[type] || styles.success;
+  const icon = icons[type] || icons.success;
 
-  notificationDiv.className = `${style.bg} text-white px-6 py-4 rounded-xl shadow-2xl transform translate-x-full transition-all duration-300 max-w-md`;
+  // Set base notification class and add type-specific class
+  notificationDiv.className = `notification ${type}`;
   notificationDiv.innerHTML = `
-    <div class="flex items-start">
-      ${style.icon}
-      <div class="flex-1">
-        <div class="text-sm font-medium leading-relaxed">${message}</div>
-      </div>
-      <button class="ml-4 text-white hover:text-gray-200 transition-colors" onclick="safeRemoveNotification(this.parentElement.parentElement)">
-        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-          <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path>
-        </svg>
-      </button>
-    </div>
+    ${icon}
+    <div class="notification-content">${message}</div>
+    <button class="notification-close" onclick="safeRemoveNotification(this.parentElement)">
+      <svg fill="currentColor" viewBox="0 0 20 20">
+        <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+      </svg>
+    </button>
   `;
 
   container.appendChild(notificationDiv);
 
   // Animate in
   setTimeout(() => {
-    notificationDiv.classList.remove("translate-x-full");
-    notificationDiv.classList.add("translate-x-0");
+    notificationDiv.classList.add("show");
   }, 100);
 
   // Auto-remove after duration
@@ -417,7 +402,7 @@ function testBookingSuccess() {
     "🎉 Booking confirmed! Confirmation code: TEST123. Please check your email for booking details and confirmation.",
     6000
   );
-  
+
   setTimeout(() => {
     console.log("🧪 Testing email reminder notification...");
     showInfoMessage(
@@ -724,7 +709,7 @@ if (bookingModalForm) {
 
     try {
       console.log("🚀 Starting booking process...");
-      
+
       // Calculate total for booking
       const nights =
         selectedCheckIn && selectedCheckOut

@@ -266,16 +266,20 @@ function resetButton(buttonId, originalText) {
 // Safe notification removal function
 function safeRemoveNotification(notificationElement) {
   if (!notificationElement) return;
-  
+
   // Mark as being removed to prevent double removal
-  if (notificationElement.dataset.removing === 'true') return;
-  notificationElement.dataset.removing = 'true';
-  
+  if (notificationElement.dataset.removing === "true") return;
+  notificationElement.dataset.removing = "true";
+
   try {
     notificationElement.classList.add("translate-x-full");
     setTimeout(() => {
       try {
-        if (notificationElement && notificationElement.parentNode && notificationElement.dataset.removing === 'true') {
+        if (
+          notificationElement &&
+          notificationElement.parentNode &&
+          notificationElement.dataset.removing === "true"
+        ) {
           notificationElement.parentNode.removeChild(notificationElement);
         }
       } catch (error) {
@@ -614,7 +618,8 @@ if (bookingForm) {
 
     // Show success message
     showSuccessMessage(
-      "🎉 Booking successful! We'll contact you soon to confirm your stay."
+      "🎉 Booking successful! Please check your email for confirmation details and check-in instructions.",
+      6000
     );
   };
 }
@@ -689,12 +694,15 @@ if (bookingModalForm) {
 
     try {
       // Calculate total for booking
-      const nights = selectedCheckIn && selectedCheckOut ? daysBetween(selectedCheckIn, selectedCheckOut) : 0;
+      const nights =
+        selectedCheckIn && selectedCheckOut
+          ? daysBetween(selectedCheckIn, selectedCheckOut)
+          : 0;
       const cleaningFee = nights > 0 ? 150 : 0;
       const discount = nights >= 7 ? 0.9 : 1;
       const baseTotal = nights * PRICE_PER_NIGHT * discount;
       const total = nights > 0 ? baseTotal + cleaningFee : 0;
-      
+
       // Save booking
       const booking = await addBooking({
         name: name,
@@ -719,8 +727,17 @@ if (bookingModalForm) {
 
       // Show success message with booking details
       showSuccessMessage(
-        `🎉 Booking confirmed! Confirmation code: ${booking.confirmationCode}`
+        `🎉 Booking confirmed! Confirmation code: ${booking.confirmationCode}. Please check your email for booking details and confirmation.`,
+        6000
       );
+
+      // Show additional email reminder after a delay
+      setTimeout(() => {
+        showInfoMessage(
+          `📧 Don't forget to check your email (including spam folder) for your booking confirmation and check-in instructions.`,
+          5000
+        );
+      }, 3000);
 
       // Track booking event for analytics
       if (typeof trackBookingEvent === "function") {

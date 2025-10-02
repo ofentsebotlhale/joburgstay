@@ -195,7 +195,7 @@ function generateConfirmationCode() {
 async function sendBookingNotifications(booking) {
   try {
     // Send notification to property owner
-      await emailjs.send("service_2mja4zm", "owner_alert", {
+    await emailjs.send("service_2mja4zm", "owner_alert", {
       booking_id: booking.id,
       guest_name: booking.name,
       guest_email: booking.email,
@@ -209,8 +209,9 @@ async function sendBookingNotifications(booking) {
     });
 
     // Send confirmation to guest
-      await emailjs.send("service_2mja4zm", "guest_confirm", {
+    await emailjs.send("service_2mja4zm", "guest_confirm", {
       guest_name: booking.name,
+      guest_email: booking.email,
       confirmation_code: booking.confirmationCode,
       check_in: booking.checkIn,
       check_out: booking.checkOut,

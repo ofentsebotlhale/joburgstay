@@ -28,6 +28,7 @@ export async function sendBookingNotifications(booking: Booking): Promise<void> 
         nights: booking.nights,
         guests: booking.guests,
         total_amount: booking.total,
+        // Note: guest_email should be configured in EmailJS template settings, not passed as parameter
       });
       console.log('Guest confirmation email sent successfully');
     } catch (guestError) {
@@ -50,6 +51,7 @@ export async function sendBookingNotifications(booking: Booking): Promise<void> 
         total_amount: booking.total,
         booking_date: new Date().toLocaleDateString(),
         special_requests: booking.specialRequests || 'None',
+        // Note: owner email should be configured in EmailJS template settings
       });
       console.log('Owner notification email sent successfully');
     } catch (ownerError) {

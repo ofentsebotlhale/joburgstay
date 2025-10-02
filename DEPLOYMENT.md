@@ -42,8 +42,8 @@ const API_BASE_URL = "https://your-actual-site-name.netlify.app/api";
 
 1. Go to [EmailJS Dashboard](https://dashboard.emailjs.com/admin)
 2. Create templates:
-   - `template_guest_confirmation` (copy from `booking-confirmation-template.html`)
-   - `template_owner_notification` (copy from `owner-notification-template.html`)
+   - `guest_confirm` (copy from `booking-confirmation-template.html`)
+   - `owner_alert` (copy from `owner-notification-template.html`)
 
 ### 3. Test Your Site
 
@@ -55,8 +55,8 @@ const API_BASE_URL = "https://your-actual-site-name.netlify.app/api";
 
 - [ ] Public Key: `33HWU_f44zZmuXLVu` ✅
 - [ ] Service ID: `service_2mja4zm` ✅
-- [ ] Create guest confirmation template
-- [ ] Create owner notification template
+- [x] Create guest confirmation template (`guest_confirm`)
+- [x] Create owner notification template (`owner_alert`)
 - [ ] Test email sending
 
 ## 🌐 Custom Domain (Optional)

@@ -1,6 +1,254 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <meta
+      name="title"
+      content="Modern Johannesburg Apartment - JoburgStay | R500/night"
+    />
+    <meta
+      name="description"
+      content="Experience luxury living at 47 Goldman Street, Florida. Modern apartment with city views, full kitchen, secure parking. Book your Johannesburg stay today!"
+    />
+    <meta
+      name="keywords"
+      content="Johannesburg accommodation, Florida apartment, Airbnb Joburg, short term rental, business travel, Maponya Mall, OR Tambo Airport"
+    />
+    <meta name="robots" content="index, follow" />
+    <meta name="language" content="English" />
+    <meta name="author" content="JoburgStay" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://joburgstay.netlify.app/" />
+    <meta
+      property="og:title"
+      content="Modern Johannesburg Apartment - JoburgStay | R500/night"
+    />
+    <meta
+      property="og:description"
+      content="Experience luxury living at 47 Goldman Street, Florida. Modern apartment with city views, full kitchen, secure parking."
+    />
+    <meta
+      property="og:image"
+      content="https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&w=1200&q=80"
+    />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:site_name" content="JoburgStay" />
+    <meta property="og:locale" content="en_ZA" />
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content="https://joburgstay.netlify.app/" />
+    <meta
+      property="twitter:title"
+      content="Modern Johannesburg Apartment - JoburgStay | R500/night"
+    />
+    <meta
+      property="twitter:description"
+      content="Experience luxury living at 47 Goldman Street, Florida. Modern apartment with city views, full kitchen, secure parking."
+    />
+    <meta
+      property="twitter:image"
+      content="https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&w=1200&q=80"
+    />
+
+    <!-- Schema.org Structured Data -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "LodgingBusiness",
+        "name": "JoburgStay - Modern Johannesburg Apartment",
+        "image": [
+          "https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&w=1200&q=80",
+          "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&w=500&q=80",
+          "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&fit=crop&w=500&q=80"
+        ],
+        "@id": "https://joburgstay.netlify.app/",
+        "url": "https://joburgstay.netlify.app/",
+        "telephone": "+27-11-123-4567",
+        "priceRange": "R500-R600",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "47 Goldman Street",
+          "addressLocality": "Florida",
+          "addressRegion": "Gauteng",
+          "postalCode": "1709",
+          "addressCountry": "ZA"
+        },
+        "geo": {
+          "@type": "GeoCoordinates",
+          "latitude": -26.1234567,
+          "longitude": 28.1234567
+        },
+        "openingHoursSpecification": {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": [
+            "Monday",
+            "Tuesday",
+            "Wednesday",
+            "Thursday",
+            "Friday",
+            "Saturday",
+            "Sunday"
+          ],
+          "opens": "00:00",
+          "closes": "23:59"
+        },
+        "sameAs": [
+          "https://www.facebook.com/joburgstay",
+          "https://www.instagram.com/joburgstay",
+          "https://twitter.com/joburgstay"
+        ],
+        "amenityFeature": [
+          {
+            "@type": "LocationFeatureSpecification",
+            "name": "Wi-Fi",
+            "value": true
+          },
+          {
+            "@type": "LocationFeatureSpecification",
+            "name": "Parking",
+            "value": true
+          },
+          {
+            "@type": "LocationFeatureSpecification",
+            "name": "Kitchen",
+            "value": true
+          },
+          {
+            "@type": "LocationFeatureSpecification",
+            "name": "Air Conditioning",
+            "value": true
+          }
+        ],
+        "aggregateRating": {
+          "@type": "AggregateRating",
+          "ratingValue": "5",
+          "reviewCount": "3"
+        }
+      }
+    </script>
+
+    <!-- Additional Social Media Integration -->
+    <script>
+      // Social sharing functionality
+      function shareOnSocial(platform) {
+        const url = encodeURIComponent(window.location.href);
+        const title = encodeURIComponent(
+          "Check out this amazing Johannesburg apartment!"
+        );
+        const description = encodeURIComponent(
+          "Modern apartment in Florida, Johannesburg. Perfect for business or leisure travel."
+        );
+
+        let shareUrl = "";
+
+        switch (platform) {
+          case "facebook":
+            shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${url}`;
+            break;
+          case "twitter":
+            shareUrl = `https://twitter.com/intent/tweet?url=${url}&text=${title}`;
+            break;
+          case "whatsapp":
+            shareUrl = `https://wa.me/?text=${title}%20${url}`;
+            break;
+          case "linkedin":
+            shareUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${url}`;
+            break;
+        }
+
+        if (shareUrl) {
+          window.open(shareUrl, "_blank", "width=600,height=400");
+        }
+      }
+
+      // Add social sharing buttons
+      document.addEventListener("DOMContentLoaded", function () {
+        const socialHTML = `
+    <div id="social-share" class="fixed right-4 top-1/2 transform -translate-y-1/2 flex flex-col space-y-2 z-40">
+      <button onclick="shareOnSocial('facebook')" class="bg-blue-600 text-white p-2 rounded-full shadow-lg hover:bg-blue-700 transition" title="Share on Facebook">
+        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+          <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+        </svg>
+      </button>
+      <button onclick="shareOnSocial('twitter')" class="bg-blue-400 text-white p-2 rounded-full shadow-lg hover:bg-blue-500 transition" title="Share on Twitter">
+        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+          <path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/>
+        </svg>
+      </button>
+      <button onclick="shareOnSocial('whatsapp')" class="bg-green-500 text-white p-2 rounded-full shadow-lg hover:bg-green-600 transition" title="Share on WhatsApp">
+        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.885 3.488"/>
+        </svg>
+      </button>
+    </div>
+  `;
+
+        document.body.insertAdjacentHTML("beforeend", socialHTML);
+      });
+    </script>
+
+    <!-- Google Analytics 4 (Replace GA_MEASUREMENT_ID with your actual ID) -->
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+      gtag("config", "GA_MEASUREMENT_ID");
+
+      // Track booking events
+      function trackBookingEvent(eventName, value) {
+        gtag("event", eventName, {
+          event_category: "booking",
+          event_label: "johannesburg_apartment",
+          value: value,
+        });
+      }
+    </script>
+
+    <!-- Facebook Pixel (Replace PIXEL_ID with your actual ID) -->
+    <script>
+      !(function (f, b, e, v, n, t, s) {
+        if (f.fbq) return;
+        n = f.fbq = function () {
+          n.callMethod
+            ? n.callMethod.apply(n, arguments)
+            : n.queue.push(arguments);
+        };
+        if (!f._fbq) f._fbq = n;
+        n.push = n;
+        n.loaded = !0;
+        n.version = "2.0";
+        n.queue = [];
+        t = b.createElement(e);
+        t.async = !0;
+        t.src = v;
+        s = b.getElementsByTagName(e)[0];
+        s.parentNode.insertBefore(t, s);
+      })(
+        window,
+        document,
+        "script",
+        "https://connect.facebook.net/en_US/fbevents.js"
+      );
+      fbq("init", "PIXEL_ID");
+      fbq("track", "PageView");
+    </script>
+    <noscript
+      ><img
+        height="1"
+        width="1"
+        style="display: none"
+        src="https://www.facebook.com/tr?id=PIXEL_ID&ev=PageView&noscript=1"
+    /></noscript>
+
     <meta charset="UTF-8" />
     <title>Modern Johannesburg Apartment - Book Your Stay</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -97,7 +345,7 @@
       >
         <!-- Living Room -->
         <div
-          class="bg-white rounded-2xl shadow-lg overflow-hidden flex flex-col items-center justify-center"
+          class="bg-white rounded-2xl shadow-lg overflow-hidden flex flex-col items-center justify-center hover-lift"
         >
           <img
             src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&w=500&q=80"
@@ -115,7 +363,7 @@
         </div>
         <!-- Kitchen -->
         <div
-          class="bg-white rounded-2xl shadow-lg overflow-hidden flex flex-col items-center justify-center"
+          class="bg-white rounded-2xl shadow-lg overflow-hidden flex flex-col items-center justify-center hover-lift"
         >
           <img
             src="https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&fit=crop&w=500&q=80"
@@ -133,7 +381,7 @@
         </div>
         <!-- Bedroom -->
         <div
-          class="bg-white rounded-2xl shadow-lg overflow-hidden flex flex-col items-center justify-center"
+          class="bg-white rounded-2xl shadow-lg overflow-hidden flex flex-col items-center justify-center hover-lift"
         >
           <img
             src="https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?auto=format&fit=crop&w=500&q=80"
@@ -151,7 +399,7 @@
         </div>
         <!-- City View -->
         <div
-          class="bg-white rounded-2xl shadow-lg overflow-hidden flex flex-col items-center justify-center"
+          class="bg-white rounded-2xl shadow-lg overflow-hidden flex flex-col items-center justify-center hover-lift"
         >
           <img
             src="https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&w=500&q=80"
@@ -689,6 +937,7 @@
           <!-- Submit Button -->
           <button
             type="submit"
+            id="modal-submit-btn"
             class="w-full bg-gray-700 text-white py-4 rounded-lg font-semibold hover:bg-gray-800 transition duration-200 text-lg"
           >
             Complete Booking - <span id="modalSubmitPrice">R0</span>
@@ -709,6 +958,10 @@
       src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"
     ></script>
     <script src="app.js"></script>
+    <script src="performance-analytics.js"></script>
+    <script src="realtime-features.js"></script>
+    <script src="loading-improvements.js"></script>
+    <script src="advanced-search.js"></script>
     <script>
       // Initialize EmailJS
       (function () {
@@ -724,5 +977,67 @@
         console.error("scrollToBooking function is NOT available!");
       }
     </script>
+    
+    <!-- Enhanced Animations and Styles -->
+    <style>
+      .animate-fade-in {
+        animation: fadeInUp 0.6s ease-out forwards;
+      }
+      
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      
+      .animate-spin {
+        animation: spin 1s linear infinite;
+      }
+      
+      @keyframes spin {
+        from { transform: rotate(0deg); }
+        to { transform: rotate(360deg); }
+      }
+      
+      .animate-pulse {
+        animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+      }
+      
+      @keyframes pulse {
+        0%, 100% {
+          opacity: 1;
+        }
+        50% {
+          opacity: .5;
+        }
+      }
+      
+      .animate-ping {
+        animation: ping 1s cubic-bezier(0, 0, 0.2, 1) infinite;
+      }
+      
+      @keyframes ping {
+        75%, 100% {
+          transform: scale(2);
+          opacity: 0;
+        }
+      }
+      
+      /* Smooth transitions for all interactive elements */
+      button, a, input, select, textarea {
+        transition: all 0.2s ease-in-out;
+      }
+      
+      /* Enhanced hover effects */
+      .hover-lift:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+      }
+    </style>
   </body>
 </html>

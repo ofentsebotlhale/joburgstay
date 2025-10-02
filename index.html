@@ -443,333 +443,387 @@
       </div>
     </section>
 
-    <!-- Gallery -->
-    <section id="gallery" class="py-12 md:py-16 px-4 max-w-6xl mx-auto">
-      <!-- Section Header -->
-      <div class="text-center mb-12">
-        <div class="inline-flex items-center bg-gradient-to-r from-blue-100 to-blue-200 text-blue-800 px-3 py-1.5 rounded-full text-xs font-semibold mb-4">
-          <svg class="w-3 h-3 mr-1.5" fill="currentColor" viewBox="0 0 20 20">
-            <path fill-rule="evenodd" d="M4 3a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V5a2 2 0 00-2-2H4zm12 12H4l4-8 3 6 2-4 3 6z" clip-rule="evenodd"></path>
-          </svg>
-          LUXURY LIVING SPACES
-        </div>
-        <h2 class="text-2xl md:text-3xl font-bold text-gray-900 mb-4">
-          <span class="bg-gradient-to-r from-blue-600 to-blue-800 bg-clip-text text-transparent">
-            Blue Haven
-          </span>
-          <span class="text-gray-700">Gallery</span>
-        </h2>
-        <p class="text-base text-gray-600 max-w-2xl mx-auto leading-relaxed">
-          Discover the sophisticated elegance of our luxury apartment, where every detail has been carefully curated for your comfort and pleasure.
-        </p>
+    <!-- Futuristic Gallery Section -->
+    <section id="gallery" class="relative py-20 md:py-32 overflow-hidden">
+      <!-- Background Effects -->
+      <div class="absolute inset-0 z-0">
+        <div class="absolute inset-0 bg-gradient-to-br from-slate-800/50 via-transparent to-gray-900/50"></div>
+        <div class="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-blue-500/50 to-transparent"></div>
       </div>
 
-      <!-- Main Gallery Grid -->
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
-        <!-- Living Room - Featured -->
-        <div class="lg:col-span-2 group cursor-pointer">
-          <div class="relative overflow-hidden rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-500 transform group-hover:scale-105">
-            <img
-              src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&w=1200&q=80"
-              alt="Luxury Living Room"
-              class="w-full h-64 md:h-80 object-cover group-hover:scale-110 transition-transform duration-700"
-              loading="lazy"
-              decoding="async"
-            />
-            <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
-            <div class="absolute bottom-4 left-4 text-white">
-              <div class="flex items-center mb-1">
-                <svg class="w-4 h-4 mr-1.5 text-blue-400" fill="currentColor" viewBox="0 0 20 20">
-                  <path fill-rule="evenodd" d="M3 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clip-rule="evenodd"></path>
-                </svg>
-                <span class="text-xs font-medium text-blue-300">MAIN LIVING SPACE</span>
+      <div class="relative z-10 max-w-7xl mx-auto px-6">
+        <!-- Section Header -->
+        <div class="text-center mb-20 fade-in-up">
+          <div class="inline-flex items-center bg-gradient-to-r from-blue-500/20 to-purple-500/20 backdrop-blur-xl border border-white/20 rounded-full px-6 py-3 mb-8">
+            <svg class="w-5 h-5 mr-3 text-blue-400" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M4 3a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V5a2 2 0 00-2-2H4zm12 12H4l4-8 3 6 2-4 3 6z" clip-rule="evenodd"></path>
+            </svg>
+            <span class="text-sm font-semibold text-white">IMMERSIVE EXPERIENCE</span>
+          </div>
+          
+          <h2 class="text-5xl md:text-7xl font-black mb-8 leading-tight">
+            <span class="bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500 bg-clip-text text-transparent animate-gradient-x">
+              VISUAL
+            </span>
+            <span class="block text-3xl md:text-5xl font-light text-gray-300 mt-4">
+              Gallery
+            </span>
+          </h2>
+          
+          <p class="text-xl text-gray-400 max-w-3xl mx-auto leading-relaxed">
+            Step into the future of luxury living. Every space has been meticulously designed with cutting-edge technology and unparalleled elegance.
+          </p>
+        </div>
+
+        <!-- Main Gallery Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
+          <!-- Living Room - Featured -->
+          <div class="lg:col-span-2 group cursor-pointer fade-in-up">
+            <div class="relative overflow-hidden rounded-3xl shadow-2xl hover:shadow-blue-500/25 transition-all duration-700 transform group-hover:scale-105 group-hover:-rotate-1">
+              <div class="absolute inset-0 bg-gradient-to-br from-blue-500/20 to-purple-500/20 z-10 group-hover:opacity-0 transition-opacity duration-500"></div>
+              <img
+                src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&w=1200&q=80"
+                alt="Futuristic Living Room"
+                class="w-full h-80 md:h-96 object-cover group-hover:scale-110 transition-transform duration-700"
+                loading="lazy"
+                decoding="async"
+              />
+              <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent z-20"></div>
+              <div class="absolute bottom-6 left-6 text-white z-30">
+                <div class="flex items-center mb-3">
+                  <div class="w-2 h-2 bg-blue-400 rounded-full mr-3 animate-pulse"></div>
+                  <span class="text-xs font-medium text-blue-300 tracking-wider">MAIN LIVING SPACE</span>
+                </div>
+                <h3 class="text-2xl font-bold mb-2">Elegant Living Room</h3>
+                <p class="text-gray-300 text-sm leading-relaxed max-w-md">Sophisticated design with panoramic city views and premium furnishings</p>
               </div>
-              <h3 class="text-lg font-bold mb-1">Elegant Living Room</h3>
-              <p class="text-blue-100 text-xs leading-relaxed">Sophisticated design with panoramic city views and premium furnishings</p>
+              <div class="absolute top-6 right-6 z-30">
+                <div class="bg-black/50 backdrop-blur-xl border border-white/20 rounded-full px-4 py-2">
+                  <span class="text-xs font-semibold text-white">360° VIEW</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Kitchen -->
+          <div class="group cursor-pointer fade-in-up">
+            <div class="relative overflow-hidden rounded-3xl shadow-2xl hover:shadow-purple-500/25 transition-all duration-700 transform group-hover:scale-105 group-hover:rotate-1 h-80 md:h-96">
+              <div class="absolute inset-0 bg-gradient-to-br from-purple-500/20 to-pink-500/20 z-10 group-hover:opacity-0 transition-opacity duration-500"></div>
+              <img
+                src="https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&fit=crop&w=800&q=80"
+                alt="Smart Kitchen"
+                class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                loading="lazy"
+                decoding="async"
+              />
+              <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent z-20"></div>
+              <div class="absolute bottom-6 left-6 text-white z-30">
+                <div class="flex items-center mb-3">
+                  <div class="w-2 h-2 bg-purple-400 rounded-full mr-3 animate-pulse"></div>
+                  <span class="text-xs font-medium text-purple-300 tracking-wider">SMART KITCHEN</span>
+                </div>
+                <h3 class="text-xl font-bold mb-2">Gourmet Kitchen</h3>
+                <p class="text-gray-300 text-sm">AI-powered appliances & marble countertops</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Master Suite -->
+          <div class="group cursor-pointer fade-in-up">
+            <div class="relative overflow-hidden rounded-3xl shadow-2xl hover:shadow-pink-500/25 transition-all duration-700 transform group-hover:scale-105 group-hover:-rotate-1 h-80 md:h-96">
+              <div class="absolute inset-0 bg-gradient-to-br from-pink-500/20 to-blue-500/20 z-10 group-hover:opacity-0 transition-opacity duration-500"></div>
+              <img
+                src="https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?auto=format&fit=crop&w=800&q=80"
+                alt="Master Suite"
+                class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                loading="lazy"
+                decoding="async"
+              />
+              <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent z-20"></div>
+              <div class="absolute bottom-6 left-6 text-white z-30">
+                <div class="flex items-center mb-3">
+                  <div class="w-2 h-2 bg-pink-400 rounded-full mr-3 animate-pulse"></div>
+                  <span class="text-xs font-medium text-pink-300 tracking-wider">MASTER SUITE</span>
+                </div>
+                <h3 class="text-xl font-bold mb-2">King Suite</h3>
+                <p class="text-gray-300 text-sm">Luxury linens & panoramic views</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- City Views -->
+          <div class="md:col-span-2 group cursor-pointer fade-in-up">
+            <div class="relative overflow-hidden rounded-3xl shadow-2xl hover:shadow-cyan-500/25 transition-all duration-700 transform group-hover:scale-105 group-hover:rotate-1 h-80 md:h-96">
+              <div class="absolute inset-0 bg-gradient-to-br from-cyan-500/20 to-blue-500/20 z-10 group-hover:opacity-0 transition-opacity duration-500"></div>
+              <img
+                src="https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&w=1200&q=80"
+                alt="Emperor District Views"
+                class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                loading="lazy"
+                decoding="async"
+              />
+              <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent z-20"></div>
+              <div class="absolute bottom-6 left-6 text-white z-30">
+                <div class="flex items-center mb-3">
+                  <div class="w-2 h-2 bg-cyan-400 rounded-full mr-3 animate-pulse"></div>
+                  <span class="text-xs font-medium text-cyan-300 tracking-wider">EMPEROR DISTRICT</span>
+                </div>
+                <h3 class="text-2xl font-bold mb-2">Panoramic Views</h3>
+                <p class="text-gray-300 text-sm leading-relaxed max-w-md">Breathtaking Johannesburg skyline from floor-to-ceiling windows</p>
+              </div>
+              <div class="absolute top-6 right-6 z-30">
+                <div class="bg-black/50 backdrop-blur-xl border border-white/20 rounded-full px-4 py-2">
+                  <span class="text-xs font-semibold text-white">SKYLINE VIEW</span>
+                </div>
+              </div>
             </div>
           </div>
         </div>
 
-        <!-- Kitchen -->
-        <div class="group cursor-pointer">
-          <div class="relative overflow-hidden rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-500 transform group-hover:scale-105 h-64 md:h-80">
-            <img
-              src="https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&fit=crop&w=800&q=80"
-              alt="Gourmet Kitchen"
-              class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
-              loading="lazy"
-              decoding="async"
-            />
-            <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
-            <div class="absolute bottom-4 left-4 text-white">
-              <div class="flex items-center mb-1">
-                <svg class="w-4 h-4 mr-1.5 text-amber-400" fill="currentColor" viewBox="0 0 20 20">
-                  <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                </svg>
-                <span class="text-xs font-medium text-amber-300">GOURMET KITCHEN</span>
+        <!-- Additional Features Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div class="group cursor-pointer fade-in-up">
+            <div class="relative overflow-hidden rounded-2xl shadow-xl hover:shadow-blue-500/25 transition-all duration-500 transform group-hover:scale-105 group-hover:-rotate-1">
+              <img
+                src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&w=600&q=80"
+                alt="Private Balcony"
+                class="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500"
+                loading="lazy"
+                decoding="async"
+              />
+              <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
+              <div class="absolute bottom-4 left-4 text-white">
+                <div class="flex items-center mb-2">
+                  <div class="w-1.5 h-1.5 bg-blue-400 rounded-full mr-2"></div>
+                  <span class="text-xs font-medium text-blue-300 tracking-wider">BALCONY</span>
+                </div>
+                <h4 class="text-lg font-bold">Private Balcony</h4>
               </div>
-              <h3 class="text-base font-bold mb-1">Premium Kitchen</h3>
-              <p class="text-gray-200 text-xs">Marble countertops & premium appliances</p>
             </div>
           </div>
-        </div>
 
-        <!-- Master Suite -->
-        <div class="group cursor-pointer">
-          <div class="relative overflow-hidden rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-500 transform group-hover:scale-105 h-64 md:h-80">
-            <img
-              src="https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?auto=format&fit=crop&w=800&q=80"
-              alt="Master Suite"
-              class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
-              loading="lazy"
-              decoding="async"
-            />
-            <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
-            <div class="absolute bottom-4 left-4 text-white">
-              <div class="flex items-center mb-1">
-                <svg class="w-4 h-4 mr-1.5 text-purple-400" fill="currentColor" viewBox="0 0 20 20">
-                  <path fill-rule="evenodd" d="M3 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clip-rule="evenodd"></path>
-                </svg>
-                <span class="text-xs font-medium text-purple-300">MASTER SUITE</span>
+          <div class="group cursor-pointer fade-in-up">
+            <div class="relative overflow-hidden rounded-2xl shadow-xl hover:shadow-purple-500/25 transition-all duration-500 transform group-hover:scale-105 group-hover:rotate-1">
+              <img
+                src="https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&fit=crop&w=600&q=80"
+                alt="Modern Bathroom"
+                class="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500"
+                loading="lazy"
+                decoding="async"
+              />
+              <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
+              <div class="absolute bottom-4 left-4 text-white">
+                <div class="flex items-center mb-2">
+                  <div class="w-1.5 h-1.5 bg-purple-400 rounded-full mr-2"></div>
+                  <span class="text-xs font-medium text-purple-300 tracking-wider">BATHROOM</span>
+                </div>
+                <h4 class="text-lg font-bold">Spa Bathroom</h4>
               </div>
-              <h3 class="text-base font-bold mb-1">King Suite</h3>
-              <p class="text-gray-200 text-xs">Luxury linens & city views</p>
             </div>
           </div>
-        </div>
 
-        <!-- City Views -->
-        <div class="md:col-span-2 group cursor-pointer">
-          <div class="relative overflow-hidden rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-500 transform group-hover:scale-105 h-64 md:h-80">
-            <img
-              src="https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&w=1200&q=80"
-              alt="Emperor District Views"
-              class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
-              loading="lazy"
-              decoding="async"
-            />
-            <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
-            <div class="absolute bottom-4 left-4 text-white">
-              <div class="flex items-center mb-1">
-                <svg class="w-4 h-4 mr-1.5 text-emerald-400" fill="currentColor" viewBox="0 0 20 20">
-                  <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"></path>
-                </svg>
-                <span class="text-xs font-medium text-emerald-300">EMPEROR DISTRICT</span>
+          <div class="group cursor-pointer fade-in-up">
+            <div class="relative overflow-hidden rounded-2xl shadow-xl hover:shadow-pink-500/25 transition-all duration-500 transform group-hover:scale-105 group-hover:-rotate-1">
+              <img
+                src="https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?auto=format&fit=crop&w=600&q=80"
+                alt="Work Space"
+                class="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500"
+                loading="lazy"
+                decoding="async"
+              />
+              <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
+              <div class="absolute bottom-4 left-4 text-white">
+                <div class="flex items-center mb-2">
+                  <div class="w-1.5 h-1.5 bg-pink-400 rounded-full mr-2"></div>
+                  <span class="text-xs font-medium text-pink-300 tracking-wider">WORKSPACE</span>
+                </div>
+                <h4 class="text-lg font-bold">Executive Office</h4>
               </div>
-              <h3 class="text-base font-bold mb-1">Panoramic Views</h3>
-              <p class="text-gray-200 text-xs">Breathtaking Johannesburg skyline</p>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Additional Features Grid -->
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <div class="group cursor-pointer">
-          <div class="relative overflow-hidden rounded-xl shadow-lg hover:shadow-xl transition-all duration-500 transform group-hover:scale-105">
-            <img
-              src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&w=600&q=80"
-              alt="Private Balcony"
-              class="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-700"
-              loading="lazy"
-              decoding="async"
-            />
-            <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
-            <div class="absolute bottom-3 left-3 text-white">
-              <div class="flex items-center mb-1">
-                <svg class="w-3 h-3 mr-1 text-blue-400" fill="currentColor" viewBox="0 0 20 20">
-                  <path fill-rule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clip-rule="evenodd"></path>
-                </svg>
-                <span class="text-xs font-medium text-blue-300">BALCONY</span>
-              </div>
-              <h4 class="text-sm font-semibold">Private Balcony</h4>
-            </div>
-          </div>
-        </div>
-
-        <div class="group cursor-pointer">
-          <div class="relative overflow-hidden rounded-xl shadow-lg hover:shadow-xl transition-all duration-500 transform group-hover:scale-105">
-            <img
-              src="https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&fit=crop&w=600&q=80"
-              alt="Modern Bathroom"
-              class="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-700"
-              loading="lazy"
-              decoding="async"
-            />
-            <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
-            <div class="absolute bottom-3 left-3 text-white">
-              <div class="flex items-center mb-1">
-                <svg class="w-3 h-3 mr-1 text-cyan-400" fill="currentColor" viewBox="0 0 20 20">
-                  <path fill-rule="evenodd" d="M4 3a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V5a2 2 0 00-2-2H4zm12 12H4l4-8 3 6 2-4 3 6z" clip-rule="evenodd"></path>
-                </svg>
-                <span class="text-xs font-medium text-cyan-300">BATHROOM</span>
-              </div>
-              <h4 class="text-sm font-semibold">Spa Bathroom</h4>
-            </div>
-          </div>
-        </div>
-
-        <div class="group cursor-pointer">
-          <div class="relative overflow-hidden rounded-xl shadow-lg hover:shadow-xl transition-all duration-500 transform group-hover:scale-105">
-            <img
-              src="https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?auto=format&fit=crop&w=600&q=80"
-              alt="Work Space"
-              class="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-700"
-              loading="lazy"
-              decoding="async"
-            />
-            <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
-            <div class="absolute bottom-3 left-3 text-white">
-              <div class="flex items-center mb-1">
-                <svg class="w-3 h-3 mr-1 text-indigo-400" fill="currentColor" viewBox="0 0 20 20">
-                  <path fill-rule="evenodd" d="M3 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clip-rule="evenodd"></path>
-                </svg>
-                <span class="text-xs font-medium text-indigo-300">WORKSPACE</span>
-              </div>
-              <h4 class="text-sm font-semibold">Executive Office</h4>
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Amenities -->
-    <section id="amenities" class="py-12 md:py-16 bg-gradient-to-br from-slate-50 to-blue-50">
-      <div class="max-w-6xl mx-auto px-4">
+    <!-- Futuristic Amenities Section -->
+    <section id="amenities" class="relative py-20 md:py-32 overflow-hidden">
+      <!-- Background Effects -->
+      <div class="absolute inset-0 z-0">
+        <div class="absolute inset-0 bg-gradient-to-br from-gray-900/80 via-slate-800/60 to-black/80"></div>
+        <div class="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-purple-500/50 to-transparent"></div>
+        <div class="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-blue-500/50 to-transparent"></div>
+      </div>
+
+      <div class="relative z-10 max-w-7xl mx-auto px-6">
         <!-- Section Header -->
-        <div class="text-center mb-12">
-          <div class="inline-flex items-center bg-gradient-to-r from-blue-100 to-blue-200 text-blue-800 px-3 py-1.5 rounded-full text-xs font-semibold mb-4">
-            <svg class="w-3 h-3 mr-1.5" fill="currentColor" viewBox="0 0 20 20">
+        <div class="text-center mb-20 fade-in-up">
+          <div class="inline-flex items-center bg-gradient-to-r from-purple-500/20 to-pink-500/20 backdrop-blur-xl border border-white/20 rounded-full px-6 py-3 mb-8">
+            <svg class="w-5 h-5 mr-3 text-purple-400" fill="currentColor" viewBox="0 0 20 20">
               <path fill-rule="evenodd" d="M11.3 1.046A1 1 0 0112 2v5h4a1 1 0 01.82 1.573l-7 10A1 1 0 018 18v-5H4a1 1 0 01-.82-1.573l7-10a1 1 0 011.12-.38z" clip-rule="evenodd"></path>
             </svg>
-            PREMIUM AMENITIES
+            <span class="text-sm font-semibold text-white">PREMIUM TECHNOLOGY</span>
           </div>
-          <h2 class="text-2xl md:text-3xl font-bold text-gray-900 mb-4">
-            <span class="bg-gradient-to-r from-blue-600 to-blue-800 bg-clip-text text-transparent">
-              Luxury
+          
+          <h2 class="text-5xl md:text-7xl font-black mb-8 leading-tight">
+            <span class="bg-gradient-to-r from-purple-400 via-pink-500 to-blue-500 bg-clip-text text-transparent animate-gradient-x">
+              SMART
             </span>
-            <span class="text-gray-700">Included</span>
-      </h2>
-          <p class="text-base text-gray-600 max-w-2xl mx-auto leading-relaxed">
-            Every detail has been carefully selected to provide you with an unparalleled luxury experience.
+            <span class="block text-3xl md:text-5xl font-light text-gray-300 mt-4">
+              Amenities
+            </span>
+          </h2>
+          
+          <p class="text-xl text-gray-400 max-w-3xl mx-auto leading-relaxed">
+            Experience the pinnacle of modern living with AI-powered systems, smart home technology, and luxury amenities that anticipate your every need.
           </p>
         </div>
 
-        <!-- Amenities Grid -->
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <!-- Main Amenities Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
           <!-- King Bed -->
-          <div class="group bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-500 transform hover:scale-105 border border-gray-100">
-            <div class="flex items-center justify-center w-12 h-12 bg-gradient-to-br from-blue-500 to-blue-700 rounded-xl mb-4 group-hover:scale-110 transition-transform duration-300">
-              <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 20 20">
-                <path fill-rule="evenodd" d="M3 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clip-rule="evenodd"></path>
-              </svg>
-        </div>
-            <h3 class="text-lg font-bold text-gray-900 mb-2">King-Size Bed</h3>
-            <p class="text-gray-600 leading-relaxed text-sm">Premium mattress with luxury Egyptian cotton linens for ultimate comfort and restful sleep.</p>
-        </div>
-
-          <!-- Emperor Views -->
-          <div class="group bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-500 transform hover:scale-105 border border-gray-100">
-            <div class="flex items-center justify-center w-12 h-12 bg-gradient-to-br from-emerald-500 to-emerald-700 rounded-xl mb-4 group-hover:scale-110 transition-transform duration-300">
-              <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 20 20">
-                <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"></path>
-              </svg>
-        </div>
-            <h3 class="text-lg font-bold text-gray-900 mb-2">Emperor District Views</h3>
-            <p class="text-gray-600 leading-relaxed text-sm">Breathtaking panoramic views of Johannesburg's skyline from floor-to-ceiling windows.</p>
-        </div>
-
-          <!-- Climate Control -->
-          <div class="group bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-500 transform hover:scale-105 border border-gray-100">
-            <div class="flex items-center justify-center w-12 h-12 bg-gradient-to-br from-cyan-500 to-cyan-700 rounded-xl mb-4 group-hover:scale-110 transition-transform duration-300">
-              <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 20 20">
+          <div class="group bg-white/5 backdrop-blur-xl border border-white/10 rounded-3xl p-8 shadow-2xl hover:shadow-purple-500/25 transition-all duration-700 transform hover:scale-105 hover:-rotate-1 fade-in-up">
+            <div class="flex items-center justify-center w-16 h-16 bg-gradient-to-br from-purple-500 to-purple-700 rounded-2xl mb-6 group-hover:scale-110 group-hover:rotate-12 transition-all duration-500">
+              <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 20 20">
                 <path fill-rule="evenodd" d="M3 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clip-rule="evenodd"></path>
               </svg>
             </div>
-            <h3 class="text-lg font-bold text-gray-900 mb-2">Smart Climate Control</h3>
-            <p class="text-gray-600 leading-relaxed text-sm">Advanced HVAC system with individual room controls for perfect temperature year-round.</p>
+            <h3 class="text-2xl font-bold text-white mb-4">King-Size Smart Bed</h3>
+            <p class="text-gray-400 leading-relaxed">Premium mattress with luxury Egyptian cotton linens, sleep tracking, and AI-powered temperature control for ultimate comfort.</p>
+            <div class="mt-4 flex items-center text-purple-400 text-sm font-semibold">
+              <div class="w-2 h-2 bg-purple-400 rounded-full mr-2 animate-pulse"></div>
+              AI-POWERED SLEEP OPTIMIZATION
+            </div>
+          </div>
+
+          <!-- Emperor Views -->
+          <div class="group bg-white/5 backdrop-blur-xl border border-white/10 rounded-3xl p-8 shadow-2xl hover:shadow-blue-500/25 transition-all duration-700 transform hover:scale-105 hover:rotate-1 fade-in-up">
+            <div class="flex items-center justify-center w-16 h-16 bg-gradient-to-br from-blue-500 to-blue-700 rounded-2xl mb-6 group-hover:scale-110 group-hover:rotate-12 transition-all duration-500">
+              <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"></path>
+              </svg>
+            </div>
+            <h3 class="text-2xl font-bold text-white mb-4">Emperor District Views</h3>
+            <p class="text-gray-400 leading-relaxed">Breathtaking panoramic views of Johannesburg's skyline from floor-to-ceiling smart windows with automated tinting.</p>
+            <div class="mt-4 flex items-center text-blue-400 text-sm font-semibold">
+              <div class="w-2 h-2 bg-blue-400 rounded-full mr-2 animate-pulse"></div>
+              SMART WINDOW TECHNOLOGY
+            </div>
+          </div>
+
+          <!-- Climate Control -->
+          <div class="group bg-white/5 backdrop-blur-xl border border-white/10 rounded-3xl p-8 shadow-2xl hover:shadow-cyan-500/25 transition-all duration-700 transform hover:scale-105 hover:-rotate-1 fade-in-up">
+            <div class="flex items-center justify-center w-16 h-16 bg-gradient-to-br from-cyan-500 to-cyan-700 rounded-2xl mb-6 group-hover:scale-110 group-hover:rotate-12 transition-all duration-500">
+              <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M3 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clip-rule="evenodd"></path>
+              </svg>
+            </div>
+            <h3 class="text-2xl font-bold text-white mb-4">AI Climate Control</h3>
+            <p class="text-gray-400 leading-relaxed">Advanced HVAC system with individual room controls, air quality monitoring, and predictive temperature adjustment.</p>
+            <div class="mt-4 flex items-center text-cyan-400 text-sm font-semibold">
+              <div class="w-2 h-2 bg-cyan-400 rounded-full mr-2 animate-pulse"></div>
+              PREDICTIVE COMFORT SYSTEM
+            </div>
           </div>
 
           <!-- Gourmet Kitchen -->
-          <div class="group bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-500 transform hover:scale-105 border border-gray-100">
-            <div class="flex items-center justify-center w-12 h-12 bg-gradient-to-br from-amber-500 to-amber-700 rounded-xl mb-4 group-hover:scale-110 transition-transform duration-300">
-              <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 20 20">
+          <div class="group bg-white/5 backdrop-blur-xl border border-white/10 rounded-3xl p-8 shadow-2xl hover:shadow-amber-500/25 transition-all duration-700 transform hover:scale-105 hover:rotate-1 fade-in-up">
+            <div class="flex items-center justify-center w-16 h-16 bg-gradient-to-br from-amber-500 to-amber-700 rounded-2xl mb-6 group-hover:scale-110 group-hover:rotate-12 transition-all duration-500">
+              <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 20 20">
                 <path fill-rule="evenodd" d="M3 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clip-rule="evenodd"></path>
               </svg>
             </div>
-            <h3 class="text-lg font-bold text-gray-900 mb-2">Gourmet Kitchen</h3>
-            <p class="text-gray-600 leading-relaxed text-sm">Fully equipped with premium appliances, marble countertops, and all cooking essentials.</p>
+            <h3 class="text-2xl font-bold text-white mb-4">Smart Gourmet Kitchen</h3>
+            <p class="text-gray-400 leading-relaxed">Fully equipped with premium appliances, marble countertops, smart fridge, and AI-powered cooking assistance.</p>
+            <div class="mt-4 flex items-center text-amber-400 text-sm font-semibold">
+              <div class="w-2 h-2 bg-amber-400 rounded-full mr-2 animate-pulse"></div>
+              AI COOKING ASSISTANT
+            </div>
           </div>
 
           <!-- Premium Wi-Fi -->
-          <div class="group bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-500 transform hover:scale-105 border border-gray-100">
-            <div class="flex items-center justify-center w-12 h-12 bg-gradient-to-br from-indigo-500 to-indigo-700 rounded-xl mb-4 group-hover:scale-110 transition-transform duration-300">
-              <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 20 20">
+          <div class="group bg-white/5 backdrop-blur-xl border border-white/10 rounded-3xl p-8 shadow-2xl hover:shadow-indigo-500/25 transition-all duration-700 transform hover:scale-105 hover:-rotate-1 fade-in-up">
+            <div class="flex items-center justify-center w-16 h-16 bg-gradient-to-br from-indigo-500 to-indigo-700 rounded-2xl mb-6 group-hover:scale-110 group-hover:rotate-12 transition-all duration-500">
+              <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 20 20">
                 <path fill-rule="evenodd" d="M3 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clip-rule="evenodd"></path>
               </svg>
             </div>
-            <h3 class="text-lg font-bold text-gray-900 mb-2">Premium Wi-Fi</h3>
-            <p class="text-gray-600 leading-relaxed text-sm">Ultra-fast fiber internet with enterprise-grade security for seamless connectivity.</p>
+            <h3 class="text-2xl font-bold text-white mb-4">Quantum Wi-Fi</h3>
+            <p class="text-gray-400 leading-relaxed">Ultra-fast fiber internet with enterprise-grade security, mesh networking, and AI-optimized bandwidth allocation.</p>
+            <div class="mt-4 flex items-center text-indigo-400 text-sm font-semibold">
+              <div class="w-2 h-2 bg-indigo-400 rounded-full mr-2 animate-pulse"></div>
+              QUANTUM-ENCRYPTED CONNECTION
+            </div>
           </div>
 
           <!-- Valet Parking -->
-          <div class="group bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-500 transform hover:scale-105 border border-gray-100">
-            <div class="flex items-center justify-center w-12 h-12 bg-gradient-to-br from-purple-500 to-purple-700 rounded-xl mb-4 group-hover:scale-110 transition-transform duration-300">
-              <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 20 20">
+          <div class="group bg-white/5 backdrop-blur-xl border border-white/10 rounded-3xl p-8 shadow-2xl hover:shadow-pink-500/25 transition-all duration-700 transform hover:scale-105 hover:rotate-1 fade-in-up">
+            <div class="flex items-center justify-center w-16 h-16 bg-gradient-to-br from-pink-500 to-pink-700 rounded-2xl mb-6 group-hover:scale-110 group-hover:rotate-12 transition-all duration-500">
+              <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 20 20">
                 <path fill-rule="evenodd" d="M3 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clip-rule="evenodd"></path>
               </svg>
             </div>
-            <h3 class="text-lg font-bold text-gray-900 mb-2">Valet Parking</h3>
-            <p class="text-gray-600 leading-relaxed text-sm">Secure underground parking with valet service available 24/7 for your convenience.</p>
+            <h3 class="text-2xl font-bold text-white mb-4">AI Valet Service</h3>
+            <p class="text-gray-400 leading-relaxed">Secure underground parking with AI-powered valet service, automated vehicle retrieval, and 24/7 security monitoring.</p>
+            <div class="mt-4 flex items-center text-pink-400 text-sm font-semibold">
+              <div class="w-2 h-2 bg-pink-400 rounded-full mr-2 animate-pulse"></div>
+              AUTOMATED VEHICLE MANAGEMENT
+            </div>
           </div>
         </div>
 
-        <!-- Additional Luxury Features -->
-        <div class="mt-12 bg-gradient-to-r from-blue-600 to-blue-800 rounded-2xl p-6 md:p-8 text-white">
-          <div class="text-center mb-6">
-            <h3 class="text-xl md:text-2xl font-bold mb-3">Exclusive Services</h3>
-            <p class="text-blue-100 text-sm max-w-xl mx-auto">Beyond the apartment, enjoy these premium services that make your stay truly exceptional.</p>
+        <!-- Exclusive Services Section -->
+        <div class="bg-gradient-to-r from-purple-600/20 to-blue-600/20 backdrop-blur-xl border border-white/20 rounded-3xl p-8 md:p-12 text-white fade-in-up">
+          <div class="text-center mb-12">
+            <h3 class="text-4xl md:text-5xl font-black mb-6">
+              <span class="bg-gradient-to-r from-purple-400 to-blue-400 bg-clip-text text-transparent">
+                EXCLUSIVE
+              </span>
+              <span class="block text-2xl md:text-3xl font-light text-gray-300 mt-2">
+                Services
+              </span>
+            </h3>
+            <p class="text-gray-400 text-lg max-w-2xl mx-auto">Beyond the apartment, enjoy these premium AI-powered services that make your stay truly exceptional.</p>
           </div>
           
-          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-            <div class="text-center">
-              <div class="flex items-center justify-center w-10 h-10 bg-white/20 rounded-lg mb-3 mx-auto">
-                <svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 20 20">
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            <div class="text-center group">
+              <div class="flex items-center justify-center w-16 h-16 bg-gradient-to-br from-blue-500/30 to-blue-700/30 rounded-2xl mb-6 mx-auto group-hover:scale-110 group-hover:rotate-12 transition-all duration-500">
+                <svg class="w-8 h-8 text-blue-400" fill="currentColor" viewBox="0 0 20 20">
                   <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path>
                 </svg>
               </div>
-              <h4 class="font-semibold mb-1 text-sm">24/7 Concierge</h4>
-              <p class="text-blue-100 text-xs">Round-the-clock assistance</p>
+              <h4 class="font-bold mb-3 text-xl">AI Concierge</h4>
+              <p class="text-gray-400 text-sm">Round-the-clock AI assistance</p>
             </div>
             
-            <div class="text-center">
-              <div class="flex items-center justify-center w-10 h-10 bg-white/20 rounded-lg mb-3 mx-auto">
-                <svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 20 20">
+            <div class="text-center group">
+              <div class="flex items-center justify-center w-16 h-16 bg-gradient-to-br from-purple-500/30 to-purple-700/30 rounded-2xl mb-6 mx-auto group-hover:scale-110 group-hover:rotate-12 transition-all duration-500">
+                <svg class="w-8 h-8 text-purple-400" fill="currentColor" viewBox="0 0 20 20">
                   <path fill-rule="evenodd" d="M3 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clip-rule="evenodd"></path>
                 </svg>
               </div>
-              <h4 class="font-semibold mb-1 text-sm">Housekeeping</h4>
-              <p class="text-blue-100 text-xs">Daily cleaning service</p>
+              <h4 class="font-bold mb-3 text-xl">Smart Housekeeping</h4>
+              <p class="text-gray-400 text-sm">AI-optimized cleaning service</p>
             </div>
             
-            <div class="text-center">
-              <div class="flex items-center justify-center w-10 h-10 bg-white/20 rounded-lg mb-3 mx-auto">
-                <svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 20 20">
+            <div class="text-center group">
+              <div class="flex items-center justify-center w-16 h-16 bg-gradient-to-br from-pink-500/30 to-pink-700/30 rounded-2xl mb-6 mx-auto group-hover:scale-110 group-hover:rotate-12 transition-all duration-500">
+                <svg class="w-8 h-8 text-pink-400" fill="currentColor" viewBox="0 0 20 20">
                   <path fill-rule="evenodd" d="M3 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clip-rule="evenodd"></path>
                 </svg>
               </div>
-              <h4 class="font-semibold mb-1 text-sm">Room Service</h4>
-              <p class="text-blue-100 text-xs">Gourmet dining options</p>
+              <h4 class="font-bold mb-3 text-xl">Quantum Room Service</h4>
+              <p class="text-gray-400 text-sm">Instant gourmet dining delivery</p>
             </div>
             
-            <div class="text-center">
-              <div class="flex items-center justify-center w-10 h-10 bg-white/20 rounded-lg mb-3 mx-auto">
-                <svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 20 20">
+            <div class="text-center group">
+              <div class="flex items-center justify-center w-16 h-16 bg-gradient-to-br from-cyan-500/30 to-cyan-700/30 rounded-2xl mb-6 mx-auto group-hover:scale-110 group-hover:rotate-12 transition-all duration-500">
+                <svg class="w-8 h-8 text-cyan-400" fill="currentColor" viewBox="0 0 20 20">
                   <path fill-rule="evenodd" d="M3 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clip-rule="evenodd"></path>
                 </svg>
               </div>
-              <h4 class="font-semibold mb-1 text-sm">Spa Access</h4>
-              <p class="text-blue-100 text-xs">Exclusive wellness facilities</p>
+              <h4 class="font-bold mb-3 text-xl">Holographic Spa</h4>
+              <p class="text-gray-400 text-sm">Virtual wellness experiences</p>
             </div>
           </div>
         </div>

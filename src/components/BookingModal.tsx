@@ -123,7 +123,24 @@ export default function BookingModal({ isOpen, onClose, onSuccess, onError, onIn
         }, 2000);
       } catch (error) {
         console.error('Email notification error:', error);
-        onError('Booking created but email notification failed. Please contact us.');
+        // Still show success message even if emails fail
+        setTimeout(() => {
+          onSuccess(
+            `Booking confirmed! Your confirmation code is ${currentBooking.confirmationCode}. Payment processed successfully.`
+          );
+        }, 1000);
+
+        setTimeout(() => {
+          onInfo('Note: Email notifications may not have been sent. Please contact us if you need confirmation details.');
+        }, 3000);
+
+        setTimeout(() => {
+          onClose();
+          setFormData({ name: '', email: '', phone: '', guests: 1, specialRequests: '' });
+          setSelectedCheckIn(null);
+          setSelectedCheckOut(null);
+          setCurrentBooking(null);
+        }, 2000);
       }
     }
   };

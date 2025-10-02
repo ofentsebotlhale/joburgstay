@@ -55,7 +55,7 @@ export function calculatePaymentTotal(amount: number, method: PaymentMethod): nu
     return 0;
   }
   
-  if (!method || !method.processingFee) {
+  if (!method || typeof method.processingFee !== 'number') {
     console.error('Invalid payment method provided:', method);
     return amount;
   }

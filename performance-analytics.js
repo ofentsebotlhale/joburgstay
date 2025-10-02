@@ -23,13 +23,38 @@ class PerformanceAnalytics {
     window.addEventListener("load", () => {
       const loadTime = performance.now();
       this.metrics.pageLoadTime = Math.round(loadTime);
-      console.log(`🚀 Page loaded in ${this.metrics.pageLoadTime}ms`);
+      
+      // Performance status
+      let status = "🚀 Excellent";
+      let color = "green";
+      if (loadTime > 3000) {
+        status = "🐌 Slow";
+        color = "red";
+      } else if (loadTime > 2000) {
+        status = "⚡ Good";
+        color = "orange";
+      }
+      
+      console.log(`%c${status} - Page loaded in ${this.metrics.pageLoadTime}ms`, `color: ${color}; font-weight: bold;`);
 
       // Show performance badge if load time is good
       if (loadTime < 2000) {
         this.showPerformanceBadge();
       }
+      
+      // Show performance summary after 3 seconds
+      setTimeout(() => this.showPerformanceSummary(), 3000);
     });
+  }
+  
+  showPerformanceSummary() {
+    console.group("📊 JoburgStay Performance Summary");
+    console.log(`⏱️ Load Time: ${this.metrics.pageLoadTime}ms`);
+    console.log(`🖱️ User Interactions: ${this.metrics.userInteractions.length}`);
+    console.log(`❌ Errors: ${this.metrics.errors.length}`);
+    console.log(`📱 Device: ${navigator.userAgent.includes('Mobile') ? 'Mobile' : 'Desktop'}`);
+    console.log(`🌐 Connection: ${navigator.connection ? navigator.connection.effectiveType : 'Unknown'}`);
+    console.groupEnd();
   }
 
   trackUserInteractions() {

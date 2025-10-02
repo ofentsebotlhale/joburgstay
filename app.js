@@ -21,6 +21,17 @@ function openBookingModal() {
   }
 }
 
+// Global function for scrolling to booking section
+function scrollToBooking() {
+  const bookingSection = document.getElementById("booking");
+  if (bookingSection) {
+    bookingSection.scrollIntoView({
+      behavior: "smooth",
+      block: "start",
+    });
+  }
+}
+
 function closeBookingModal() {
   console.log("Closing booking modal...");
   if (bookingModal) {
@@ -254,7 +265,8 @@ function resetButton(buttonId, originalText) {
 
 function showSuccessMessage(message) {
   const successDiv = document.createElement("div");
-  successDiv.className = "fixed top-4 right-4 bg-green-500 text-white px-6 py-3 rounded-lg shadow-lg z-50 transform translate-x-full transition-transform duration-300";
+  successDiv.className =
+    "fixed top-4 right-4 bg-green-500 text-white px-6 py-3 rounded-lg shadow-lg z-50 transform translate-x-full transition-transform duration-300";
   successDiv.innerHTML = `
     <div class="flex items-center">
       <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
@@ -263,14 +275,14 @@ function showSuccessMessage(message) {
       ${message}
     </div>
   `;
-  
+
   document.body.appendChild(successDiv);
-  
+
   // Animate in
   setTimeout(() => {
     successDiv.classList.remove("translate-x-full");
   }, 100);
-  
+
   // Animate out after 4 seconds
   setTimeout(() => {
     successDiv.classList.add("translate-x-full");
@@ -562,9 +574,11 @@ if (bookingModalForm) {
     }
 
     // Show loading spinner
-    const submitButton = bookingModalForm.querySelector('button[type="submit"]');
+    const submitButton = bookingModalForm.querySelector(
+      'button[type="submit"]'
+    );
     const originalText = submitButton.innerHTML;
-    showLoadingSpinner(submitButton.id || 'modal-submit-btn');
+    showLoadingSpinner(submitButton.id || "modal-submit-btn");
 
     try {
       // Save booking
@@ -590,19 +604,20 @@ if (bookingModalForm) {
       updateSummary();
 
       // Show success message with booking details
-      showSuccessMessage(`🎉 Booking confirmed! Confirmation code: ${booking.confirmationCode}`);
-      
-      // Track booking event for analytics
-      if (typeof trackBookingEvent === 'function') {
-        trackBookingEvent('booking_completed', booking.total);
-      }
+      showSuccessMessage(
+        `🎉 Booking confirmed! Confirmation code: ${booking.confirmationCode}`
+      );
 
+      // Track booking event for analytics
+      if (typeof trackBookingEvent === "function") {
+        trackBookingEvent("booking_completed", booking.total);
+      }
     } catch (error) {
-      console.error('Booking error:', error);
-      showSuccessMessage('❌ Booking failed. Please try again.');
+      console.error("Booking error:", error);
+      showSuccessMessage("❌ Booking failed. Please try again.");
     } finally {
       // Reset button
-      resetButton(submitButton.id || 'modal-submit-btn', originalText);
+      resetButton(submitButton.id || "modal-submit-btn", originalText);
     }
   };
 }

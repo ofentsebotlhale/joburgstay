@@ -253,6 +253,10 @@
     <title>Modern Johannesburg Apartment - Book Your Stay</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="src/output.css" />
+    <link rel="preconnect" href="https://images.unsplash.com" />
+    <link rel="preconnect" href="https://cdn.jsdelivr.net" />
+    <link rel="dns-prefetch" href="https://www.google.com" />
+    <link rel="dns-prefetch" href="https://maps.googleapis.com" />
   </head>
   <body
     class="bg-gradient-to-br from-gray-50 to-gray-100 min-h-screen overflow-x-hidden"
@@ -351,6 +355,8 @@
             src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&w=500&q=80"
             alt="Modern Living Room"
             class="object-cover w-full h-52 mb-2"
+            loading="lazy"
+            decoding="async"
           />
           <div class="p-4 text-center">
             <span class="font-bold text-gray-700 block mb-1"
@@ -369,6 +375,8 @@
             src="https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&fit=crop&w=500&q=80"
             alt="Contemporary Kitchen"
             class="object-cover w-full h-52 mb-2"
+            loading="lazy"
+            decoding="async"
           />
           <div class="p-4 text-center">
             <span class="font-bold text-gray-700 block mb-1"
@@ -387,6 +395,8 @@
             src="https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?auto=format&fit=crop&w=500&q=80"
             alt="Comfortable Bedroom"
             class="object-cover w-full h-52 mb-2"
+            loading="lazy"
+            decoding="async"
           />
           <div class="p-4 text-center">
             <span class="font-bold text-gray-700 block mb-1"
@@ -405,6 +415,8 @@
             src="https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&w=500&q=80"
             alt="Johannesburg City View"
             class="object-cover w-full h-52 mb-2"
+            loading="lazy"
+            decoding="async"
           />
           <div class="p-4 text-center">
             <span class="font-bold text-gray-700 block mb-1"
@@ -558,11 +570,12 @@
           <!-- Google Maps Embed -->
           <div class="rounded-xl shadow overflow-hidden mb-4">
             <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3580.8234567890123!2d28.1234567!3d-26.1234567!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2s47%20Goldman%20Street%2C%20Florida%2C%20Johannesburg!5e0!3m2!1sen!2sza!4v1234567890123!5m2!1sen!2sza"
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3581.2!2d28.0473!3d-26.1715!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1e950c68f0406a51%3A0x8e1c8b1c8b1c8b1c!2sGoldman%20St%2C%20Florida%2C%20Roodepoort%2C%202093%2C%20South%20Africa!5e0!3m2!1sen!2sza!4v1640995200000!5m2!1sen!2sza"
               class="w-full h-48 border-0"
               allowfullscreen=""
               loading="lazy"
               referrerpolicy="no-referrer-when-downgrade"
+              title="Location Map - 47 Goldman Street, Florida, Johannesburg"
             >
             </iframe>
           </div>
@@ -963,27 +976,37 @@
     <script src="loading-improvements.js"></script>
     <script src="advanced-search.js"></script>
     <script>
-      // Initialize EmailJS
+      // Initialize EmailJS with error handling
       (function () {
-        emailjs.init("33HWU_f44zZmuXLVu"); // Your EmailJS public key
-        console.log("EmailJS initialized successfully");
+        try {
+          if (typeof emailjs !== 'undefined') {
+            emailjs.init("33HWU_f44zZmuXLVu"); // Your EmailJS public key
+            console.log("EmailJS initialized successfully");
+          } else {
+            console.warn("EmailJS not loaded - possibly blocked by ad blocker");
+          }
+        } catch (error) {
+          console.warn("EmailJS initialization failed:", error);
+        }
       })();
 
       // Test if the function is available
       console.log("Testing scrollToBooking function...");
-      if (typeof scrollToBooking === "function") {
-        console.log("scrollToBooking function is available!");
-      } else {
-        console.error("scrollToBooking function is NOT available!");
-      }
+      setTimeout(() => {
+        if (typeof scrollToBooking === "function") {
+          console.log("✅ scrollToBooking function is available!");
+        } else {
+          console.warn("⚠️ scrollToBooking function is NOT available!");
+        }
+      }, 1000);
     </script>
-    
+
     <!-- Enhanced Animations and Styles -->
     <style>
       .animate-fade-in {
         animation: fadeInUp 0.6s ease-out forwards;
       }
-      
+
       @keyframes fadeInUp {
         from {
           opacity: 0;
@@ -994,45 +1017,55 @@
           transform: translateY(0);
         }
       }
-      
+
       .animate-spin {
         animation: spin 1s linear infinite;
       }
-      
+
       @keyframes spin {
-        from { transform: rotate(0deg); }
-        to { transform: rotate(360deg); }
+        from {
+          transform: rotate(0deg);
+        }
+        to {
+          transform: rotate(360deg);
+        }
       }
-      
+
       .animate-pulse {
         animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
       }
-      
+
       @keyframes pulse {
-        0%, 100% {
+        0%,
+        100% {
           opacity: 1;
         }
         50% {
-          opacity: .5;
+          opacity: 0.5;
         }
       }
-      
+
       .animate-ping {
         animation: ping 1s cubic-bezier(0, 0, 0.2, 1) infinite;
       }
-      
+
       @keyframes ping {
-        75%, 100% {
+        75%,
+        100% {
           transform: scale(2);
           opacity: 0;
         }
       }
-      
+
       /* Smooth transitions for all interactive elements */
-      button, a, input, select, textarea {
+      button,
+      a,
+      input,
+      select,
+      textarea {
         transition: all 0.2s ease-in-out;
       }
-      
+
       /* Enhanced hover effects */
       .hover-lift:hover {
         transform: translateY(-2px);

@@ -41,13 +41,22 @@ export default function PaymentModal({
 
   useEffect(() => {
     if (isOpen) {
+      console.log('PaymentModal opened with amount:', amount, 'bookingId:', bookingId);
       setReference(generatePaymentReference());
       setSelectedMethod(null);
       setPaymentResult(null);
       setEftDetails(null);
       setCashDetails(null);
+      
+      // Validate amount
+      if (!amount || isNaN(amount) || amount <= 0) {
+        console.error('Invalid amount provided to PaymentModal:', amount);
+        onError('Invalid payment amount. Please try booking again.');
+        onClose();
+        return;
+      }
     }
-  }, [isOpen]);
+  }, [isOpen, amount, onError, onClose]);
 
   const handleMethodSelect = (method: PaymentMethod) => {
     setSelectedMethod(method);

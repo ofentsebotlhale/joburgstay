@@ -49,12 +49,28 @@ export function generatePaymentReference(): string {
 
 // Calculate total with processing fees
 export function calculatePaymentTotal(amount: number, method: PaymentMethod): number {
+  // Validate inputs
+  if (!amount || isNaN(amount) || amount <= 0) {
+    console.error('Invalid amount provided to calculatePaymentTotal:', amount);
+    return 0;
+  }
+  
+  if (!method || !method.processingFee) {
+    console.error('Invalid payment method provided:', method);
+    return amount;
+  }
+  
   const fee = amount * method.processingFee;
-  return Math.round((amount + fee) * 100) / 100;
+  const total = amount + fee;
+  return Math.round(total * 100) / 100;
 }
 
 // Format currency for South Africa
 export function formatCurrency(amount: number): string {
+  if (!amount || isNaN(amount)) {
+    return 'R0.00';
+  }
+  
   return new Intl.NumberFormat('en-ZA', {
     style: 'currency',
     currency: 'ZAR'

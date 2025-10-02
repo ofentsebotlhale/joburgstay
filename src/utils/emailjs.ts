@@ -16,27 +16,31 @@ export async function sendBookingNotifications(booking: Booking): Promise<void> 
       return;
     }
 
-    await window.emailjs.send("service_2mja4zm", "guest_confirm", {
+    // Send booking confirmation to guest
+    await window.emailjs.send("service_2mja4zm", "booking_confirmation", {
       guest_name: booking.name,
-      guest_email: booking.email,
       confirmation_code: booking.confirmationCode,
-      check_in: booking.checkIn,
-      check_out: booking.checkOut,
-      total: booking.total,
-      property_name: "Blue Haven on 13th Emperor",
+      check_in_date: booking.checkIn,
+      check_out_date: booking.checkOut,
+      nights: booking.nights,
+      guests: booking.guests,
+      total_amount: booking.total,
     });
 
-    await window.emailjs.send("service_2mja4zm", "owner_alert", {
+    // Send notification to owner
+    await window.emailjs.send("service_2mja4zm", "owner_notification", {
+      booking_id: booking.id,
+      confirmation_code: booking.confirmationCode,
       guest_name: booking.name,
       guest_email: booking.email,
       guest_phone: booking.phone,
-      confirmation_code: booking.confirmationCode,
-      check_in: booking.checkIn,
-      check_out: booking.checkOut,
+      check_in_date: booking.checkIn,
+      check_out_date: booking.checkOut,
+      nights: booking.nights,
       guests: booking.guests,
-      total: booking.total,
+      total_amount: booking.total,
+      booking_date: new Date().toLocaleDateString(),
       special_requests: booking.specialRequests || 'None',
-      property_name: "Blue Haven on 13th Emperor",
     });
 
     console.log('Email notifications sent successfully');

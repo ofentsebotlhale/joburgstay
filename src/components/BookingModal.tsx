@@ -67,14 +67,28 @@ export default function BookingModal({ isOpen, onClose, onSuccess, onError, onIn
       return;
     }
 
+    // Validate form data
+    if (!formData.name.trim() || !formData.email.trim() || !formData.phone.trim()) {
+      onError('Please fill in all required fields');
+      return;
+    }
+
     setIsSubmitting(true);
     onInfo('Processing your booking...');
 
     try {
       const booking = await addBooking(formData, selectedCheckIn, selectedCheckOut);
+      
+      // Validate booking was created successfully
+      if (!booking || !booking.id || !booking.total) {
+        throw new Error('Booking creation failed - missing required data');
+      }
+      
+      console.log('Booking created successfully:', booking);
       setCurrentBooking(booking);
       
-      // Open payment modal instead of completing booking immediately
+      // Open payment modal
+      console.log('Opening payment modal...');
       setIsPaymentModalOpen(true);
       
     } catch (error) {
@@ -305,7 +319,7 @@ export default function BookingModal({ isOpen, onClose, onSuccess, onError, onIn
         <PaymentModal
           isOpen={isPaymentModalOpen}
           onClose={() => setIsPaymentModalOpen(false)}
-          amount={total}
+          amount={currentBooking.total || total}
           bookingId={currentBooking.id}
           onSuccess={handlePaymentSuccess}
           onError={handlePaymentError}

@@ -13,7 +13,8 @@ function openBookingModal() {
   console.log("Opening booking modal...");
   if (bookingModal) {
     bookingModal.style.display = "flex";
-    bookingModal.classList.add("items-center", "justify-center");
+    // Prevent body scrolling when modal is open
+    document.body.style.overflow = "hidden";
     // Render calendar in modal
     renderModalCalendar();
     updateModalSummary();
@@ -24,7 +25,8 @@ function closeBookingModal() {
   console.log("Closing booking modal...");
   if (bookingModal) {
     bookingModal.style.display = "none";
-    bookingModal.classList.remove("items-center", "justify-center");
+    // Restore body scrolling when modal is closed
+    document.body.style.overflow = "auto";
   }
 }
 
@@ -39,8 +41,9 @@ async function renderModalCalendar() {
   // Show current month
   const month = new Date(today.getFullYear(), today.getMonth(), 1);
   const cal = document.createElement("div");
-  cal.className = "inline-block bg-white border rounded-lg p-4 shadow";
-  cal.style.width = "300px";
+  cal.className = "inline-block bg-white border rounded-lg p-2 md:p-4 shadow";
+  cal.style.width = "280px";
+  cal.style.maxWidth = "100%";
 
   cal.innerHTML = `
     <div class="mb-3 text-center font-semibold text-gray-800">
@@ -308,8 +311,9 @@ async function renderMonthCalendar(offset = 0) {
   // Header
   const cal = document.createElement("div");
   cal.className =
-    "inline-block align-top bg-white border rounded-lg p-4 shadow m-1";
-  cal.style.width = "285px";
+    "inline-block align-top bg-white border rounded-lg p-2 md:p-4 shadow m-1";
+  cal.style.width = "280px";
+  cal.style.maxWidth = "100%";
   cal.innerHTML = `<div class="mb-2 text-center font-semibold">
     ${month.toLocaleString("default", { month: "long", year: "numeric" })}
   </div>

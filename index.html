@@ -14,10 +14,14 @@
     <nav
       class="bg-white shadow flex flex-col sm:flex-row justify-between items-center px-4 md:px-8 py-3 md:py-4"
     >
-      <a href="index.html" class="text-lg md:text-2xl font-bold text-gray-800 mb-2 sm:mb-0"
+      <a
+        href="index.html"
+        class="text-lg md:text-2xl font-bold text-gray-800 mb-2 sm:mb-0"
         >JoburgStay</a
       >
-      <ul class="flex flex-wrap gap-2 sm:gap-4 md:gap-8 items-center justify-center">
+      <ul
+        class="flex flex-wrap gap-2 sm:gap-4 md:gap-8 items-center justify-center"
+      >
         <li>
           <a
             href="#gallery"
@@ -83,10 +87,14 @@
 
     <!-- Gallery -->
     <section id="gallery" class="py-8 md:py-12 px-4 max-w-6xl mx-auto">
-      <h2 class="text-2xl md:text-3xl font-bold mb-8 md:mb-12 text-gray-800 text-center">
+      <h2
+        class="text-2xl md:text-3xl font-bold mb-8 md:mb-12 text-gray-800 text-center"
+      >
         Modern Living in Johannesburg
       </h2>
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-8">
+      <div
+        class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-8"
+      >
         <!-- Living Room -->
         <div
           class="bg-white rounded-2xl shadow-lg overflow-hidden flex flex-col items-center justify-center"
@@ -236,7 +244,9 @@
           class="flex flex-wrap justify-center gap-2 md:gap-6 mb-6 md:mb-8 overflow-x-auto"
         ></div>
         <div class="bg-gray-50 rounded-2xl shadow p-6 mb-6">
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 md:gap-6 text-sm md:text-lg mb-4 md:mb-6">
+          <div
+            class="grid grid-cols-1 sm:grid-cols-2 gap-3 md:gap-6 text-sm md:text-lg mb-4 md:mb-6"
+          >
             <div>
               Check-in:
               <span id="checkInDisplay" class="font-semibold text-gray-700"
@@ -534,14 +544,16 @@
     <!-- Booking Modal -->
     <div
       id="bookingModal"
-      class="hidden fixed inset-0 bg-black bg-opacity-50 z-50 p-2 md:p-4"
+      class="hidden fixed inset-0 bg-black bg-opacity-50 z-50 flex items-start justify-center p-2 md:p-4 overflow-y-auto"
       style="display: none"
     >
       <div
-        class="bg-white rounded-2xl p-4 md:p-8 max-w-2xl w-full max-h-[95vh] overflow-y-auto"
+        class="bg-white rounded-2xl p-4 md:p-8 max-w-2xl w-full min-h-fit my-4 md:my-8"
       >
         <div class="flex justify-between items-center mb-4 md:mb-6">
-          <h2 class="text-xl md:text-3xl font-bold text-gray-800">Book Your Stay</h2>
+          <h2 class="text-xl md:text-3xl font-bold text-gray-800">
+            Book Your Stay
+          </h2>
           <button
             id="closeBookingModal"
             class="text-gray-500 hover:text-gray-700 text-2xl md:text-3xl font-bold"

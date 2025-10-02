@@ -265,21 +265,25 @@ function resetButton(buttonId, originalText) {
 
 // Safe notification removal function
 function safeRemoveNotification(notificationElement) {
+  if (!notificationElement) return;
+  
+  // Mark as being removed to prevent double removal
+  if (notificationElement.dataset.removing === 'true') return;
+  notificationElement.dataset.removing = 'true';
+  
   try {
-    if (notificationElement && notificationElement.parentNode) {
-      notificationElement.classList.add("translate-x-full");
-      setTimeout(() => {
-        try {
-          if (notificationElement && notificationElement.parentNode) {
-            notificationElement.parentNode.removeChild(notificationElement);
-          }
-        } catch (error) {
-          console.debug("Notification already removed:", error.message);
+    notificationElement.classList.add("translate-x-full");
+    setTimeout(() => {
+      try {
+        if (notificationElement && notificationElement.parentNode && notificationElement.dataset.removing === 'true') {
+          notificationElement.parentNode.removeChild(notificationElement);
         }
-      }, 300);
-    }
+      } catch (error) {
+        // Silently handle - notification already removed
+      }
+    }, 300);
   } catch (error) {
-    console.debug("Error removing notification:", error.message);
+    // Silently handle any errors
   }
 }
 
@@ -351,19 +355,7 @@ function showNotification(message, type = "success", duration = 4000) {
 
   // Auto-remove after duration
   setTimeout(() => {
-    if (notificationDiv && notificationDiv.parentNode) {
-      notificationDiv.classList.add("translate-x-full");
-      setTimeout(() => {
-        try {
-          if (notificationDiv && notificationDiv.parentNode) {
-            notificationDiv.parentNode.removeChild(notificationDiv);
-          }
-        } catch (error) {
-          // Notification already removed, ignore error
-          console.debug("Notification already removed:", error.message);
-        }
-      }, 300);
-    }
+    safeRemoveNotification(notificationDiv);
   }, duration);
 }
 
@@ -696,6 +688,13 @@ if (bookingModalForm) {
     showLoadingSpinner(submitButton.id || "modal-submit-btn");
 
     try {
+      // Calculate total for booking
+      const nights = selectedCheckIn && selectedCheckOut ? daysBetween(selectedCheckIn, selectedCheckOut) : 0;
+      const cleaningFee = nights > 0 ? 150 : 0;
+      const discount = nights >= 7 ? 0.9 : 1;
+      const baseTotal = nights * PRICE_PER_NIGHT * discount;
+      const total = nights > 0 ? baseTotal + cleaningFee : 0;
+      
       // Save booking
       const booking = await addBooking({
         name: name,
@@ -705,7 +704,7 @@ if (bookingModalForm) {
         checkIn: selectedCheckIn,
         checkOut: selectedCheckOut,
         specialRequests: specialRequests,
-        total: document.getElementById("modalSubmitPrice").textContent,
+        total: `R${total.toFixed(2)}`,
       });
 
       // Reset form and close modal

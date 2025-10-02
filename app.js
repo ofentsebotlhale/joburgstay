@@ -158,48 +158,12 @@ function updateModalSummary() {
 const API_BASE_URL = 'https://joburgstay.netlify.app/api';
 
 async function getBookings() {
-  try {
-    const response = await fetch(`${API_BASE_URL}/bookings`);
-    if (response.ok) {
-      return await response.json();
-    }
-  } catch (error) {
-    console.error('Failed to fetch bookings from server:', error);
-  }
-  
-  // Fallback to localStorage
+  // For static hosting (Netlify), use localStorage only
   return JSON.parse(localStorage.getItem("bookings") || "[]");
 }
 
 async function addBooking(booking) {
-  try {
-    // Try to save to backend first
-    const response = await fetch(`${API_BASE_URL}/bookings`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(booking)
-    });
-    
-    if (response.ok) {
-      const enhancedBooking = await response.json();
-      
-      // Send email notifications
-      sendBookingNotifications(enhancedBooking);
-      
-      // Also save to localStorage as backup
-      const bookings = JSON.parse(localStorage.getItem("bookings") || "[]");
-      bookings.push(enhancedBooking);
-      localStorage.setItem("bookings", JSON.stringify(bookings));
-      
-      return enhancedBooking;
-    }
-  } catch (error) {
-    console.error('Failed to save booking to server:', error);
-  }
-  
-  // Fallback to localStorage only
+  // For static hosting (Netlify), use localStorage only
   const bookings = JSON.parse(localStorage.getItem("bookings") || "[]");
   const enhancedBooking = {
     ...booking,
@@ -260,17 +224,7 @@ async function sendBookingNotifications(booking) {
 }
 // Returns a set of all booked-in dates (YYYY-MM-DD)
 async function getBlockedDates() {
-  try {
-    const response = await fetch(`${API_BASE_URL}/availability`);
-    if (response.ok) {
-      const data = await response.json();
-      return new Set(data.blockedDates);
-    }
-  } catch (error) {
-    console.error('Failed to fetch availability from server:', error);
-  }
-  
-  // Fallback to localStorage
+  // For static hosting (Netlify), use localStorage only
   const all = await getBookings();
   const set = new Set();
   for (const b of all) {

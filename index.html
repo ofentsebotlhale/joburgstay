@@ -960,16 +960,50 @@
     </div>
 
     <!-- Developer Panel (Hidden by default) -->
-    <div id="dev-panel" class="fixed bottom-4 left-4 bg-gray-800 text-white p-4 rounded-lg shadow-lg z-40" style="display: none;">
+    <div
+      id="dev-panel"
+      class="fixed bottom-4 left-4 bg-gray-800 text-white p-4 rounded-lg shadow-lg z-40"
+      style="display: none"
+    >
       <h4 class="text-sm font-bold mb-2">🔧 Notification Demo</h4>
       <div class="space-y-2">
-        <button onclick="showSuccessMessage('✅ Success notification test!')" class="block w-full text-xs bg-green-600 hover:bg-green-700 px-3 py-1 rounded">Success</button>
-        <button onclick="showErrorMessage('❌ Error notification test!')" class="block w-full text-xs bg-red-600 hover:bg-red-700 px-3 py-1 rounded">Error</button>
-        <button onclick="showWarningMessage('⚠️ Warning notification test!')" class="block w-full text-xs bg-yellow-600 hover:bg-yellow-700 px-3 py-1 rounded">Warning</button>
-        <button onclick="showInfoMessage('ℹ️ Info notification test!')" class="block w-full text-xs bg-blue-600 hover:bg-blue-700 px-3 py-1 rounded">Info</button>
-        <button onclick="testNotifications()" class="block w-full text-xs bg-purple-600 hover:bg-purple-700 px-3 py-1 rounded">Test All</button>
+        <button
+          onclick="showSuccessMessage('✅ Success notification test!')"
+          class="block w-full text-xs bg-green-600 hover:bg-green-700 px-3 py-1 rounded"
+        >
+          Success
+        </button>
+        <button
+          onclick="showErrorMessage('❌ Error notification test!')"
+          class="block w-full text-xs bg-red-600 hover:bg-red-700 px-3 py-1 rounded"
+        >
+          Error
+        </button>
+        <button
+          onclick="showWarningMessage('⚠️ Warning notification test!')"
+          class="block w-full text-xs bg-yellow-600 hover:bg-yellow-700 px-3 py-1 rounded"
+        >
+          Warning
+        </button>
+        <button
+          onclick="showInfoMessage('ℹ️ Info notification test!')"
+          class="block w-full text-xs bg-blue-600 hover:bg-blue-700 px-3 py-1 rounded"
+        >
+          Info
+        </button>
+        <button
+          onclick="testNotifications()"
+          class="block w-full text-xs bg-purple-600 hover:bg-purple-700 px-3 py-1 rounded"
+        >
+          Test All
+        </button>
       </div>
-      <button onclick="document.getElementById('dev-panel').style.display='none'" class="mt-2 text-xs text-gray-400 hover:text-white">Hide Panel</button>
+      <button
+        onclick="document.getElementById('dev-panel').style.display='none'"
+        class="mt-2 text-xs text-gray-400 hover:text-white"
+      >
+        Hide Panel
+      </button>
     </div>
 
     <!-- Footer -->
@@ -1012,13 +1046,14 @@
           console.warn("⚠️ scrollToBooking function is NOT available!");
         }
       }, 1000);
-      
+
       // Developer panel toggle (Ctrl+Shift+D)
-      document.addEventListener('keydown', function(e) {
-        if (e.ctrlKey && e.shiftKey && e.key === 'D') {
-          const panel = document.getElementById('dev-panel');
-          panel.style.display = panel.style.display === 'none' ? 'block' : 'none';
-          console.log('🔧 Developer panel toggled');
+      document.addEventListener("keydown", function (e) {
+        if (e.ctrlKey && e.shiftKey && e.key === "D") {
+          const panel = document.getElementById("dev-panel");
+          panel.style.display =
+            panel.style.display === "none" ? "block" : "none";
+          console.log("🔧 Developer panel toggled");
         }
       });
     </script>

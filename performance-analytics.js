@@ -152,6 +152,12 @@ class PerformanceAnalytics {
 
   trackErrors() {
     window.addEventListener("error", (e) => {
+      // Filter out notification removal errors (they're handled gracefully)
+      if (e.message && e.message.includes("removeChild") && e.message.includes("not a child")) {
+        console.debug("Notification removal error (handled gracefully):", e.message);
+        return;
+      }
+      
       this.metrics.errors.push({
         message: e.message,
         filename: e.filename,

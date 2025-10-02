@@ -263,49 +263,69 @@ function resetButton(buttonId, originalText) {
   }
 }
 
+// Safe notification removal function
+function safeRemoveNotification(notificationElement) {
+  try {
+    if (notificationElement && notificationElement.parentNode) {
+      notificationElement.classList.add("translate-x-full");
+      setTimeout(() => {
+        try {
+          if (notificationElement && notificationElement.parentNode) {
+            notificationElement.parentNode.removeChild(notificationElement);
+          }
+        } catch (error) {
+          console.debug("Notification already removed:", error.message);
+        }
+      }, 300);
+    }
+  } catch (error) {
+    console.debug("Error removing notification:", error.message);
+  }
+}
+
 // Modern notification system
-function showNotification(message, type = 'success', duration = 4000) {
+function showNotification(message, type = "success", duration = 4000) {
   // Create or get notification container
-  let container = document.getElementById('notification-container');
+  let container = document.getElementById("notification-container");
   if (!container) {
-    container = document.createElement('div');
-    container.id = 'notification-container';
-    container.className = 'fixed top-4 right-4 z-50 space-y-2';
+    container = document.createElement("div");
+    container.id = "notification-container";
+    container.className = "fixed top-4 right-4 z-50 space-y-2";
     document.body.appendChild(container);
   }
-  
+
   const notificationDiv = document.createElement("div");
-  
+
   // Define notification styles based on type
   const styles = {
     success: {
       bg: "bg-green-500",
       icon: `<svg class="w-5 h-5 mr-3" fill="currentColor" viewBox="0 0 20 20">
         <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
-      </svg>`
+      </svg>`,
     },
     error: {
       bg: "bg-red-500",
       icon: `<svg class="w-5 h-5 mr-3" fill="currentColor" viewBox="0 0 20 20">
         <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd"></path>
-      </svg>`
+      </svg>`,
     },
     warning: {
       bg: "bg-yellow-500",
       icon: `<svg class="w-5 h-5 mr-3" fill="currentColor" viewBox="0 0 20 20">
         <path fill-rule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clip-rule="evenodd"></path>
-      </svg>`
+      </svg>`,
     },
     info: {
       bg: "bg-blue-500",
       icon: `<svg class="w-5 h-5 mr-3" fill="currentColor" viewBox="0 0 20 20">
         <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path>
-      </svg>`
-    }
+      </svg>`,
+    },
   };
-  
+
   const style = styles[type] || styles.success;
-  
+
   notificationDiv.className = `${style.bg} text-white px-6 py-4 rounded-xl shadow-2xl transform translate-x-full transition-all duration-300 max-w-md`;
   notificationDiv.innerHTML = `
     <div class="flex items-start">
@@ -313,7 +333,7 @@ function showNotification(message, type = 'success', duration = 4000) {
       <div class="flex-1">
         <div class="text-sm font-medium leading-relaxed">${message}</div>
       </div>
-      <button class="ml-4 text-white hover:text-gray-200 transition-colors" onclick="this.parentElement.parentElement.remove()">
+      <button class="ml-4 text-white hover:text-gray-200 transition-colors" onclick="safeRemoveNotification(this.parentElement.parentElement)">
         <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
           <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path>
         </svg>
@@ -331,38 +351,54 @@ function showNotification(message, type = 'success', duration = 4000) {
 
   // Auto-remove after duration
   setTimeout(() => {
-    notificationDiv.classList.add("translate-x-full");
-    setTimeout(() => {
-      if (notificationDiv.parentNode) {
-        document.body.removeChild(notificationDiv);
-      }
-    }, 300);
+    if (notificationDiv && notificationDiv.parentNode) {
+      notificationDiv.classList.add("translate-x-full");
+      setTimeout(() => {
+        try {
+          if (notificationDiv && notificationDiv.parentNode) {
+            notificationDiv.parentNode.removeChild(notificationDiv);
+          }
+        } catch (error) {
+          // Notification already removed, ignore error
+          console.debug("Notification already removed:", error.message);
+        }
+      }, 300);
+    }
   }, duration);
 }
 
 // Convenience functions for different notification types
 function showSuccessMessage(message, duration = 4000) {
-  showNotification(message, 'success', duration);
+  showNotification(message, "success", duration);
 }
 
 function showErrorMessage(message, duration = 5000) {
-  showNotification(message, 'error', duration);
+  showNotification(message, "error", duration);
 }
 
 function showWarningMessage(message, duration = 4000) {
-  showNotification(message, 'warning', duration);
+  showNotification(message, "warning", duration);
 }
 
 function showInfoMessage(message, duration = 4000) {
-  showNotification(message, 'info', duration);
+  showNotification(message, "info", duration);
 }
 
 // Demo function to test all notification types (for development)
 function testNotifications() {
   showSuccessMessage("✅ Success! Your booking has been confirmed.");
-  setTimeout(() => showErrorMessage("❌ Error! Please check your form details."), 1000);
-  setTimeout(() => showWarningMessage("⚠️ Warning! Please select your dates."), 2000);
-  setTimeout(() => showInfoMessage("ℹ️ Info! Your session will expire in 10 minutes."), 3000);
+  setTimeout(
+    () => showErrorMessage("❌ Error! Please check your form details."),
+    1000
+  );
+  setTimeout(
+    () => showWarningMessage("⚠️ Warning! Please select your dates."),
+    2000
+  );
+  setTimeout(
+    () => showInfoMessage("ℹ️ Info! Your session will expire in 10 minutes."),
+    3000
+  );
 }
 // Returns a set of all booked-in dates (YYYY-MM-DD)
 async function getBlockedDates() {
@@ -560,7 +596,9 @@ if (bookingForm) {
     const guests = document.getElementById("guestCount").value;
 
     if (!name || !email || !phone || !guests) {
-      showErrorMessage("Please fill in all required fields to complete your booking.");
+      showErrorMessage(
+        "Please fill in all required fields to complete your booking."
+      );
       return;
     }
 
@@ -583,7 +621,9 @@ if (bookingForm) {
     bookingForm.reset();
 
     // Show success message
-    showSuccessMessage("🎉 Booking successful! We'll contact you soon to confirm your stay.");
+    showSuccessMessage(
+      "🎉 Booking successful! We'll contact you soon to confirm your stay."
+    );
   };
 }
 // Navbar Book Now Button functionality
@@ -635,12 +675,16 @@ if (bookingModalForm) {
     const terms = document.getElementById("modalTerms").checked;
 
     if (!name || !email || !phone || !guests || !terms) {
-      showErrorMessage("Please fill in all required fields and accept the terms and conditions.");
+      showErrorMessage(
+        "Please fill in all required fields and accept the terms and conditions."
+      );
       return;
     }
 
     if (!selectedCheckIn || !selectedCheckOut) {
-      showWarningMessage("Please select your check-in and check-out dates to continue.");
+      showWarningMessage(
+        "Please select your check-in and check-out dates to continue."
+      );
       return;
     }
 
@@ -685,7 +729,9 @@ if (bookingModalForm) {
       }
     } catch (error) {
       console.error("Booking error:", error);
-      showErrorMessage("❌ Booking failed. Please check your details and try again.");
+      showErrorMessage(
+        "❌ Booking failed. Please check your details and try again."
+      );
     } finally {
       // Reset button
       resetButton(submitButton.id || "modal-submit-btn", originalText);
@@ -719,9 +765,12 @@ window.onload = async () => {
   } else {
     console.error("Booking section Book Now button not found!");
   }
-  
+
   // Show welcome notification after page loads
   setTimeout(() => {
-    showInfoMessage("🏠 Welcome to JoburgStay! Book your perfect Johannesburg getaway.", 6000);
+    showInfoMessage(
+      "🏠 Welcome to JoburgStay! Book your perfect Johannesburg getaway.",
+      6000
+    );
   }, 2000);
 };

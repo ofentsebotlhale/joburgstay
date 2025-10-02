@@ -1,0 +1,237 @@
+<!-- Owner Notification Email Template for JoburgStay -->
+<!-- Copy this HTML into your EmailJS template_owner_notification -->
+
+<div
+  style="
+    font-family: system-ui, sans-serif, Arial;
+    font-size: 14px;
+    color: #333;
+    padding: 14px 8px;
+    background-color: #f5f5f5;
+  "
+>
+  <div style="max-width: 600px; margin: auto; background-color: #fff">
+    <div style="border-top: 6px solid #dc2626; padding: 16px">
+      <span
+        style="
+          font-size: 20px;
+          vertical-align: middle;
+          font-weight: bold;
+          color: #dc2626;
+        "
+      >
+        🚨 New Booking Alert
+      </span>
+      <span
+        style="
+          font-size: 16px;
+          vertical-align: middle;
+          border-left: 1px solid #333;
+          padding-left: 8px;
+          margin-left: 8px;
+        "
+      >
+        <strong>JoburgStay Property Manager</strong>
+      </span>
+    </div>
+    <div style="padding: 0 16px">
+      <p
+        style="
+          font-size: 16px;
+          margin: 16px 0;
+          color: #dc2626;
+          font-weight: bold;
+        "
+      >
+        ⚠️ NEW BOOKING REQUIRES YOUR ATTENTION
+      </p>
+
+      <div
+        style="
+          text-align: left;
+          font-size: 14px;
+          padding-bottom: 4px;
+          border-bottom: 2px solid #333;
+          margin: 20px 0;
+        "
+      >
+        <strong>Booking ID: {{booking_id}}</strong>
+      </div>
+
+      <table style="width: 100%; border-collapse: collapse">
+        <tr style="vertical-align: top">
+          <td
+            style="
+              padding: 24px 8px 0 4px;
+              display: inline-block;
+              width: max-content;
+            "
+          >
+            <div
+              style="
+                background-color: #fef2f2;
+                padding: 20px;
+                border-radius: 8px;
+                text-align: center;
+                width: 80px;
+                height: 64px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+              "
+            >
+              <span style="font-size: 32px">👤</span>
+            </div>
+          </td>
+          <td style="padding: 24px 8px 0 8px; width: 100%">
+            <div style="font-weight: bold; margin-bottom: 8px">
+              Guest: {{guest_name}}
+            </div>
+            <div style="font-size: 14px; color: #888; padding-top: 4px">
+              Email:
+              <a href="mailto:{{guest_email}}" style="color: #dc2626"
+                >{{guest_email}}</a
+              >
+            </div>
+            <div style="font-size: 14px; color: #888; padding-top: 4px">
+              Phone:
+              <a href="tel:{{guest_phone}}" style="color: #dc2626"
+                >{{guest_phone}}</a
+              >
+            </div>
+            <div style="font-size: 14px; color: #888; padding-top: 4px">
+              Guests: {{guests}} guest(s)
+            </div>
+          </td>
+          <td style="padding: 24px 4px 0 0; white-space: nowrap">
+            <strong style="font-size: 18px; color: #dc2626">{{total}}</strong>
+          </td>
+        </tr>
+      </table>
+
+      <div style="padding: 24px 0">
+        <div style="border-top: 2px solid #333"></div>
+      </div>
+
+      <table style="border-collapse: collapse; width: 100%; text-align: right">
+        <tr>
+          <td style="width: 60%"></td>
+          <td>Check-in:</td>
+          <td
+            style="
+              padding: 8px;
+              white-space: nowrap;
+              font-weight: bold;
+              color: #0369a1;
+            "
+          >
+            {{check_in}}
+          </td>
+        </tr>
+        <tr>
+          <td style="width: 60%"></td>
+          <td>Check-out:</td>
+          <td
+            style="
+              padding: 8px;
+              white-space: nowrap;
+              font-weight: bold;
+              color: #0369a1;
+            "
+          >
+            {{check_out}}
+          </td>
+        </tr>
+        <tr>
+          <td style="width: 60%"></td>
+          <td>Confirmation Code:</td>
+          <td
+            style="
+              padding: 8px;
+              white-space: nowrap;
+              font-weight: bold;
+              color: #0369a1;
+            "
+          >
+            {{confirmation_code}}
+          </td>
+        </tr>
+        <tr>
+          <td style="width: 60%"></td>
+          <td style="border-top: 2px solid #333">
+            <strong style="white-space: nowrap">Total Amount</strong>
+          </td>
+          <td
+            style="
+              padding: 16px 8px;
+              border-top: 2px solid #333;
+              white-space: nowrap;
+            "
+          >
+            <strong style="color: #dc2626">{{total}}</strong>
+          </td>
+        </tr>
+      </table>
+
+      <div
+        style="
+          background-color: #f9fafb;
+          border: 1px solid #d1d5db;
+          padding: 16px;
+          border-radius: 8px;
+          margin: 20px 0;
+        "
+      >
+        <h3 style="margin: 0 0 12px 0; color: #374151">Special Requests</h3>
+        <p style="margin: 0; color: #555; font-style: italic">
+          {{special_requests}}
+        </p>
+      </div>
+
+      <div
+        style="
+          background-color: #dc2626;
+          color: white;
+          padding: 16px;
+          border-radius: 8px;
+          margin: 20px 0;
+          text-align: center;
+        "
+      >
+        <div style="font-weight: bold; margin-bottom: 8px">
+          ⚠️ ACTION REQUIRED
+        </div>
+        <div style="font-size: 14px">
+          1. Confirm availability<br />
+          2. Send check-in instructions<br />
+          3. Prepare the apartment<br />
+          4. Contact guest if needed
+        </div>
+      </div>
+
+      <div style="text-align: center; margin: 20px 0">
+        <a
+          href="mailto:{{guest_email}}?subject=Booking Confirmation - {{confirmation_code}}"
+          style="
+            background-color: #dc2626;
+            color: white;
+            padding: 12px 24px;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: bold;
+            display: inline-block;
+          "
+        >
+          📧 Reply to Guest
+        </a>
+      </div>
+    </div>
+  </div>
+  <div style="max-width: 600px; margin: auto">
+    <p style="color: #999">
+      This notification was sent to the property manager<br />
+      Booking ID: {{booking_id}} | Confirmation: {{confirmation_code}}<br />
+      © 2025 JoburgStay Property Management System
+    </p>
+  </div>
+</div>

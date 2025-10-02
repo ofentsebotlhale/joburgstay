@@ -1,0 +1,32 @@
+{
+  "name": "joburgstay-booking-system",
+  "version": "1.0.0",
+  "description": "Modern Johannesburg Apartment Booking System",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "nodemon server.js",
+    "build": "echo 'No build step required for static site'",
+    "deploy": "echo 'Deploy to Netlify'",
+    "preview": "npx http-server -p 8000"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.21.2"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1"
+  },
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "keywords": [
+    "booking",
+    "airbnb",
+    "johannesburg",
+    "apartment",
+    "rental"
+  ],
+  "author": "JoburgStay",
+  "license": "MIT"
+}

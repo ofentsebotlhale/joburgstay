@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Modern Johannesburg Apartment - Book Your Stay</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="src/output.css" />
+  </head>
+  <body
+    class="bg-gradient-to-br from-gray-50 to-gray-100 min-h-screen"
+    style="scroll-behavior: smooth"
+  >
+    <!-- Navbar -->
+    <nav
+      class="bg-white shadow flex justify-between items-center px-6 md:px-8 py-4"
+    >
+      <a href="index.html" class="text-xl md:text-2xl font-bold text-gray-800"
+        >JoburgStay</a
+      >
+      <ul class="flex gap-4 md:gap-8 items-center">
+        <li>
+          <a
+            href="#gallery"
+            class="text-gray-600 font-medium hover:text-gray-800 hover:underline transition"
+            >Gallery</a
+          >
+        </li>
+        <li>
+          <a
+            href="#amenities"
+            class="text-gray-600 font-medium hover:text-gray-800 hover:underline transition"
+            >Amenities</a
+          >
+        </li>
+        <li>
+          <a
+            href="#reviews"
+            class="text-gray-600 font-medium hover:text-gray-800 hover:underline transition"
+            >Reviews</a
+          >
+        </li>
+        <li>
+          <a
+            href="#contact"
+            class="text-gray-600 font-medium hover:text-gray-800 hover:underline transition"
+            >Contact</a
+          >
+        </li>
+        <li>
+          <button
+            id="navbarBookBtn"
+            class="bg-gray-700 text-white px-4 py-2 rounded-lg font-medium hover:bg-gray-800 transition"
+          >
+            Book Now
+          </button>
+        </li>
+      </ul>
+    </nav>
+
+    <!-- Hero Section -->
+    <header
+      class="w-full h-72 md:h-96 relative flex items-center justify-center bg-center bg-cover rounded-b-3xl shadow-xl mb-8"
+      style="
+        background-image: url('https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&w=1200&q=80');
+      "
+    >
+      <div
+        class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent rounded-b-3xl"
+      ></div>
+      <div class="relative z-10 text-center">
+        <h1
+          class="text-white text-4xl md:text-6xl font-bold drop-shadow-lg bg-black/40 px-6 py-3 rounded-2xl mb-4"
+        >
+          Modern Johannesburg Apartment
+        </h1>
+        <p
+          class="text-white text-lg md:text-xl bg-black/40 px-4 py-2 rounded-xl"
+        >
+          Experience the vibrant heart of South Africa's economic capital
+        </p>
+      </div>
+    </header>
+
+    <!-- Gallery -->
+    <section id="gallery" class="py-12 px-4 max-w-6xl mx-auto">
+      <h2 class="text-3xl font-bold mb-12 text-gray-800 text-center">
+        Modern Living in Johannesburg
+      </h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8">
+        <!-- Living Room -->
+        <div
+          class="bg-white rounded-2xl shadow-lg overflow-hidden flex flex-col items-center justify-center"
+        >
+          <img
+            src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&w=500&q=80"
+            alt="Modern Living Room"
+            class="object-cover w-full h-52 mb-2"
+          />
+          <div class="p-4 text-center">
+            <span class="font-bold text-gray-700 block mb-1"
+              >Modern Living Room</span
+            >
+            <span class="text-gray-500 text-sm"
+              >Spacious and stylish living area with city views.</span
+            >
+          </div>
+        </div>
+        <!-- Kitchen -->
+        <div
+          class="bg-white rounded-2xl shadow-lg overflow-hidden flex flex-col items-center justify-center"
+        >
+          <img
+            src="https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&fit=crop&w=500&q=80"
+            alt="Contemporary Kitchen"
+            class="object-cover w-full h-52 mb-2"
+          />
+          <div class="p-4 text-center">
+            <span class="font-bold text-gray-700 block mb-1"
+              >Contemporary Kitchen</span
+            >
+            <span class="text-gray-500 text-sm"
+              >Fully equipped with modern appliances.</span
+            >
+          </div>
+        </div>
+        <!-- Bedroom -->
+        <div
+          class="bg-white rounded-2xl shadow-lg overflow-hidden flex flex-col items-center justify-center"
+        >
+          <img
+            src="https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?auto=format&fit=crop&w=500&q=80"
+            alt="Comfortable Bedroom"
+            class="object-cover w-full h-52 mb-2"
+          />
+          <div class="p-4 text-center">
+            <span class="font-bold text-gray-700 block mb-1"
+              >Comfortable Bedroom</span
+            >
+            <span class="text-gray-500 text-sm"
+              >Queen-size bed with premium linens.</span
+            >
+          </div>
+        </div>
+        <!-- City View -->
+        <div
+          class="bg-white rounded-2xl shadow-lg overflow-hidden flex flex-col items-center justify-center"
+        >
+          <img
+            src="https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&w=500&q=80"
+            alt="Johannesburg City View"
+            class="object-cover w-full h-52 mb-2"
+          />
+          <div class="p-4 text-center">
+            <span class="font-bold text-gray-700 block mb-1"
+              >Johannesburg City View</span
+            >
+            <span class="text-gray-500 text-sm"
+              >Stunning cityscape views from your window.</span
+            >
+          </div>
+        </div>
+      </div>
+      <!-- Additional Features -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mt-14">
+        <div class="bg-white rounded-2xl shadow-lg overflow-hidden">
+          <img
+            src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&w=500&q=80"
+            alt="Balcony View"
+            class="object-cover w-full h-40"
+          />
+          <p class="text-center p-4 text-gray-500 text-sm">
+            Private balcony with city views.
+          </p>
+        </div>
+        <div class="bg-white rounded-2xl shadow-lg overflow-hidden">
+          <img
+            src="https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&fit=crop&w=500&q=80"
+            alt="Modern Bathroom"
+            class="object-cover w-full h-40"
+          />
+          <p class="text-center p-4 text-gray-500 text-sm">
+            Clean, modern bathroom facilities.
+          </p>
+        </div>
+        <div class="bg-white rounded-2xl shadow-lg overflow-hidden">
+          <img
+            src="https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?auto=format&fit=crop&w=500&q=80"
+            alt="Work Space"
+            class="object-cover w-full h-40"
+          />
+          <p class="text-center p-4 text-gray-500 text-sm">
+            Dedicated workspace for business travelers.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Amenities -->
+    <section id="amenities" class="max-w-5xl mx-auto py-8 px-2">
+      <h2 class="text-2xl font-bold mb-6 text-gray-800 text-center">
+        What's Included
+      </h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-lg">
+        <div class="bg-white shadow rounded-2xl p-6 flex flex-col items-center">
+          <span class="text-3xl mb-2">🛏️</span> Queen-size bed
+        </div>
+        <div class="bg-white shadow rounded-2xl p-6 flex flex-col items-center">
+          <span class="text-3xl mb-2">🏙️</span> City Views
+        </div>
+        <div class="bg-white shadow rounded-2xl p-6 flex flex-col items-center">
+          <span class="text-3xl mb-2">❄️</span> Air Conditioning
+        </div>
+        <div class="bg-white shadow rounded-2xl p-6 flex flex-col items-center">
+          <span class="text-3xl mb-2">🍳</span> Fully Equipped Kitchen
+        </div>
+        <div class="bg-white shadow rounded-2xl p-6 flex flex-col items-center">
+          <span class="text-3xl mb-2">🌐</span> High-Speed Wi-Fi
+        </div>
+        <div class="bg-white shadow rounded-2xl p-6 flex flex-col items-center">
+          <span class="text-3xl mb-2">🚗</span> Secure Parking
+        </div>
+      </div>
+    </section>
+
+    <!-- Booking Widget Section -->
+    <section
+      id="booking"
+      class="max-w-5xl mx-auto py-12 px-2 flex flex-col md:flex-row gap-10 items-start"
+    >
+      <div class="flex-1 bg-white/90 shadow-xl rounded-3xl p-8">
+        <h2 class="text-2xl font-bold mb-6 text-gray-800 text-center">
+          Book Your Stay
+        </h2>
+        <div
+          id="calendarContainer"
+          class="flex flex-wrap justify-center gap-6 mb-8"
+        ></div>
+        <div class="bg-gray-50 rounded-2xl shadow p-6 mb-6">
+          <div class="grid grid-cols-2 gap-6 text-lg mb-6">
+            <div>
+              Check-in:
+              <span id="checkInDisplay" class="font-semibold text-gray-700"
+                >-</span
+              >
+            </div>
+            <div>
+              Check-out:
+              <span id="checkOutDisplay" class="font-semibold text-gray-600"
+                >-</span
+              >
+            </div>
+            <div>
+              Nights: <span id="nightsCount" class="font-semibold">0</span>
+            </div>
+            <div>
+              Total:
+              <span id="totalPrice" class="font-semibold text-gray-800"
+                >R0</span
+              >
+            </div>
+          </div>
+          <div class="text-xs text-gray-400 mb-2">
+            Cleaning fee: R150, discounts for stays ≥7 nights!
+          </div>
+          <button
+            id="bookNowBtn"
+            class="w-full mt-4 bg-gray-700 text-white font-medium py-3 rounded-2xl shadow hover:bg-gray-800 transition duration-200"
+          >
+            Book Now
+          </button>
+        </div>
+      </div>
+      <div class="flex-1">
+        <img
+          src="https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&w=600&q=80"
+          class="rounded-3xl shadow-xl object-cover w-full h-80 mb-4 bg-gray-100"
+          alt="Johannesburg City View"
+        />
+        <div class="bg-white rounded-xl shadow p-4 text-gray-700 mb-6">
+          <h3 class="font-bold text-lg mb-2">About this place</h3>
+          <p>
+            Experience modern living in the heart of Johannesburg! This stylish
+            apartment offers comfort and convenience in South Africa's economic
+            hub. Perfect for business travelers, tourists, and locals. Enjoy
+            easy access to Sandton, Rosebank, and the CBD. Close to shopping
+            malls, restaurants, and major attractions.
+          </p>
+        </div>
+        <!-- Map embed -->
+        <div class="rounded-xl shadow overflow-hidden">
+          <iframe
+            src="https://www.openstreetmap.org/export/embed.html?bbox=28.058%2C-25.752%2C28.060%2C-25.751&layer=mapnik"
+            class="w-full h-40 border-0"
+          ></iframe>
+        </div>
+      </div>
+    </section>
+
+    <!-- Reviews -->
+    <section id="reviews" class="max-w-5xl mx-auto py-10 px-2">
+      <h2 class="text-2xl font-bold mb-6 text-gray-800 text-center">
+        Guest Reviews
+      </h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-lg">
+        <div class="bg-white rounded-2xl shadow p-6">
+          <span class="block text-yellow-400 text-2xl mb-2">★★★★★</span>
+          <p>
+            Perfect location for business trips! Clean, modern, and great value.
+            —
+            <span class="font-bold">Thabo</span>
+          </p>
+        </div>
+        <div class="bg-white rounded-2xl shadow p-6">
+          <span class="block text-yellow-400 text-2xl mb-2">★★★★★</span>
+          <p>
+            Excellent apartment with amazing city views. Highly recommended! —
+            <span class="font-bold">Nomsa</span>
+          </p>
+        </div>
+        <div class="bg-white rounded-2xl shadow p-6">
+          <span class="block text-yellow-400 text-2xl mb-2">★★★★★</span>
+          <p>
+            Great stay in Joburg! Close to everything and very comfortable. —
+            <span class="font-bold">Sipho</span>
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact/Info Section -->
+    <section id="contact" class="max-w-5xl mx-auto py-10 px-2">
+      <h2 class="text-2xl font-bold mb-6 text-gray-800 text-center">Contact</h2>
+      <form
+        class="max-w-md mx-auto bg-white p-6 rounded-xl shadow flex flex-col gap-4"
+      >
+        <input
+          class="border border-gray-300 p-3 rounded-xl focus:ring-2"
+          placeholder="Your Name"
+          required
+        />
+        <input
+          class="border border-gray-300 p-3 rounded-xl focus:ring-2"
+          placeholder="Email"
+          type="email"
+          required
+        />
+        <textarea
+          class="border border-gray-300 p-3 rounded-xl focus:ring-2"
+          placeholder="Message"
+          rows="3"
+          required
+        ></textarea>
+        <button
+          class="bg-gray-600 text-white py-3 rounded-lg font-semibold hover:bg-gray-800 transition"
+          type="submit"
+        >
+          Send
+        </button>
+      </form>
+    </section>
+
+    <!-- Booking Modal -->
+    <div
+      id="modalBackdrop"
+      class="hidden fixed inset-0 bg-black bg-opacity-50 z-50 p-4"
+      style="display: none"
+    >
+      <div
+        class="bg-white rounded-2xl p-8 max-w-md w-full max-h-[90vh] overflow-y-auto"
+      >
+        <div class="flex justify-between items-center mb-6">
+          <h2 class="text-2xl font-bold text-gray-800">
+            Complete Your Booking
+          </h2>
+          <button
+            id="closeModalBtn"
+            class="text-gray-500 hover:text-gray-700 text-2xl"
+          >
+            &times;
+          </button>
+        </div>
+
+        <form id="bookingForm" class="space-y-4">
+          <div>
+            <label class="block text-sm font-medium text-gray-700 mb-1"
+              >Full Name</label
+            >
+            <input
+              type="text"
+              id="guestName"
+              required
+              class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+            />
+          </div>
+
+          <div>
+            <label class="block text-sm font-medium text-gray-700 mb-1"
+              >Email Address</label
+            >
+            <input
+              type="email"
+              id="guestEmail"
+              required
+              class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+            />
+          </div>
+
+          <div>
+            <label class="block text-sm font-medium text-gray-700 mb-1"
+              >Phone Number</label
+            >
+            <input
+              type="tel"
+              id="guestPhone"
+              required
+              class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+            />
+          </div>
+
+          <div>
+            <label class="block text-sm font-medium text-gray-700 mb-1"
+              >Number of Guests</label
+            >
+            <select
+              id="guestCount"
+              required
+              class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+            >
+              <option value="">Select guests</option>
+              <option value="1">1 Guest</option>
+              <option value="2">2 Guests</option>
+              <option value="3">3 Guests</option>
+              <option value="4">4 Guests</option>
+              <option value="5">5 Guests</option>
+              <option value="6">6 Guests</option>
+            </select>
+          </div>
+
+          <div class="bg-gray-50 rounded-lg p-4 mt-6">
+            <h3 class="font-semibold text-gray-800 mb-2">Booking Summary</h3>
+            <div class="space-y-1 text-sm">
+              <div class="flex justify-between">
+                <span>Check-in:</span>
+                <span id="modalCheckIn" class="font-medium">-</span>
+              </div>
+              <div class="flex justify-between">
+                <span>Check-out:</span>
+                <span id="modalCheckOut" class="font-medium">-</span>
+              </div>
+              <div class="flex justify-between">
+                <span>Nights:</span>
+                <span id="modalNights" class="font-medium">0</span>
+              </div>
+              <div class="flex justify-between">
+                <span>Total:</span>
+                <span id="modalTotal" class="font-bold text-gray-800">R0</span>
+              </div>
+            </div>
+          </div>
+
+          <button
+            type="submit"
+            class="w-full bg-gray-600 text-white py-3 rounded-lg font-semibold hover:bg-gray-700 transition duration-200 mt-6"
+          >
+            Confirm Booking
+          </button>
+        </form>
+      </div>
+    </div>
+
+    <!-- Booking Modal -->
+    <div
+      id="bookingModal"
+      class="hidden fixed inset-0 bg-black bg-opacity-50 z-50 p-4"
+      style="display: none"
+    >
+      <div
+        class="bg-white rounded-2xl p-8 max-w-2xl w-full max-h-[90vh] overflow-y-auto"
+      >
+        <div class="flex justify-between items-center mb-6">
+          <h2 class="text-3xl font-bold text-gray-800">Book Your Stay</h2>
+          <button
+            id="closeBookingModal"
+            class="text-gray-500 hover:text-gray-700 text-3xl font-bold"
+          >
+            &times;
+          </button>
+        </div>
+
+        <form id="bookingModalForm" class="space-y-6">
+          <!-- Guest Information -->
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-2"
+                >Full Name *</label
+              >
+              <input
+                type="text"
+                id="modalGuestName"
+                required
+                class="w-full border border-gray-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-gray-500 focus:border-gray-500"
+              />
+            </div>
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-2"
+                >Email Address *</label
+              >
+              <input
+                type="email"
+                id="modalGuestEmail"
+                required
+                class="w-full border border-gray-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-gray-500 focus:border-gray-500"
+              />
+            </div>
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-2"
+                >Phone Number *</label
+              >
+              <input
+                type="tel"
+                id="modalGuestPhone"
+                required
+                class="w-full border border-gray-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-gray-500 focus:border-gray-500"
+              />
+            </div>
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-2"
+                >Number of Guests *</label
+              >
+              <select
+                id="modalGuestCount"
+                required
+                class="w-full border border-gray-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-gray-500 focus:border-gray-500"
+              >
+                <option value="">Select guests</option>
+                <option value="1">1 Guest</option>
+                <option value="2">2 Guests</option>
+                <option value="3">3 Guests</option>
+                <option value="4">4 Guests</option>
+                <option value="5">5 Guests</option>
+                <option value="6">6 Guests</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Dates Selection -->
+          <div class="bg-gray-50 rounded-xl p-6">
+            <h3 class="text-lg font-semibold text-gray-800 mb-4">
+              Select Your Dates
+            </h3>
+            <div
+              id="modalCalendarContainer"
+              class="flex flex-wrap justify-center gap-4 mb-4"
+            ></div>
+            <div class="grid grid-cols-2 gap-4 text-sm">
+              <div class="flex justify-between">
+                <span>Check-in:</span>
+                <span id="modalCheckInDate" class="font-medium text-gray-700"
+                  >-</span
+                >
+              </div>
+              <div class="flex justify-between">
+                <span>Check-out:</span>
+                <span id="modalCheckOutDate" class="font-medium text-gray-700"
+                  >-</span
+                >
+              </div>
+              <div class="flex justify-between">
+                <span>Nights:</span>
+                <span id="modalNightsCount" class="font-medium">0</span>
+              </div>
+              <div class="flex justify-between">
+                <span>Total:</span>
+                <span id="modalTotalPrice" class="font-bold text-gray-800"
+                  >R0</span
+                >
+              </div>
+            </div>
+          </div>
+
+          <!-- Special Requests -->
+          <div>
+            <label class="block text-sm font-medium text-gray-700 mb-2"
+              >Special Requests (Optional)</label
+            >
+            <textarea
+              id="modalSpecialRequests"
+              rows="3"
+              class="w-full border border-gray-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-gray-500 focus:border-gray-500"
+              placeholder="Any special requests or additional information..."
+            ></textarea>
+          </div>
+
+          <!-- Terms and Conditions -->
+          <div class="flex items-start space-x-3">
+            <input
+              type="checkbox"
+              id="modalTerms"
+              required
+              class="mt-1 h-4 w-4 text-gray-600 focus:ring-gray-500 border-gray-300 rounded"
+            />
+            <label for="modalTerms" class="text-sm text-gray-600">
+              I agree to the
+              <a href="#" class="text-gray-800 underline"
+                >Terms and Conditions</a
+              >
+              and
+              <a href="#" class="text-gray-800 underline"
+                >Cancellation Policy</a
+              >
+            </label>
+          </div>
+
+          <!-- Submit Button -->
+          <button
+            type="submit"
+            class="w-full bg-gray-700 text-white py-4 rounded-lg font-semibold hover:bg-gray-800 transition duration-200 text-lg"
+          >
+            Complete Booking - <span id="modalSubmitPrice">R0</span>
+          </button>
+        </form>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <footer
+      class="bg-gray-900 text-white py-8 mt-16 text-center rounded-t-3xl shadow-inner"
+    >
+      &copy; 2025 JohannesburgStay · All rights reserved.
+    </footer>
+    <!-- EmailJS SDK -->
+    <script
+      type="text/javascript"
+      src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"
+    ></script>
+    <script src="app.js"></script>
+    <script>
+      // Initialize EmailJS
+      (function () {
+        emailjs.init("33HWU_f44zZmuXLVu"); // Your EmailJS public key
+        console.log("EmailJS initialized successfully");
+      })();
+
+      // Test if the function is available
+      console.log("Testing scrollToBooking function...");
+      if (typeof scrollToBooking === "function") {
+        console.log("scrollToBooking function is available!");
+      } else {
+        console.error("scrollToBooking function is NOT available!");
+      }
+    </script>
+  </body>
+</html>

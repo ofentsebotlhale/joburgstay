@@ -1,9 +1,11 @@
 import { useState, useEffect } from 'react';
-import { X, Calendar as CalendarIcon, User, Mail, Phone, Users, MessageSquare, Sparkles } from 'lucide-react';
+import { X, Calendar as CalendarIcon, User, Mail, Phone, Users, MessageSquare, Sparkles, CreditCard } from 'lucide-react';
 import Calendar from './Calendar';
+import PaymentModal from './PaymentModal';
 import { getBlockedDates, calculateTotal, daysBetween, formatDate, addBooking } from '../utils/booking';
 import { sendBookingNotifications } from '../utils/emailjs';
 import type { BookingFormData } from '../types/booking';
+import type { PaymentResult } from '../types/payment';
 
 interface BookingModalProps {
   isOpen: boolean;
@@ -18,6 +20,8 @@ export default function BookingModal({ isOpen, onClose, onSuccess, onError, onIn
   const [selectedCheckIn, setSelectedCheckIn] = useState<string | null>(null);
   const [selectedCheckOut, setSelectedCheckOut] = useState<string | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isPaymentModalOpen, setIsPaymentModalOpen] = useState(false);
+  const [currentBooking, setCurrentBooking] = useState<any>(null);
 
   const [formData, setFormData] = useState<BookingFormData>({
     name: '',
@@ -68,30 +72,50 @@ export default function BookingModal({ isOpen, onClose, onSuccess, onError, onIn
 
     try {
       const booking = await addBooking(formData, selectedCheckIn, selectedCheckOut);
-      await sendBookingNotifications(booking);
-
-      setTimeout(() => {
-        onSuccess(
-          `Booking confirmed! Your confirmation code is ${booking.confirmationCode}. Check your email for details.`
-        );
-      }, 1000);
-
-      setTimeout(() => {
-        onInfo('Please check your email for booking confirmation and details.');
-      }, 3000);
-
-      setTimeout(() => {
-        onClose();
-        setFormData({ name: '', email: '', phone: '', guests: 1, specialRequests: '' });
-        setSelectedCheckIn(null);
-        setSelectedCheckOut(null);
-      }, 2000);
+      setCurrentBooking(booking);
+      
+      // Open payment modal instead of completing booking immediately
+      setIsPaymentModalOpen(true);
+      
     } catch (error) {
       console.error('Booking error:', error);
       onError('Failed to process booking. Please try again or contact us directly.');
     } finally {
       setIsSubmitting(false);
     }
+  };
+
+  const handlePaymentSuccess = async (paymentResult: PaymentResult) => {
+    if (currentBooking) {
+      try {
+        await sendBookingNotifications(currentBooking);
+        
+        setTimeout(() => {
+          onSuccess(
+            `Booking confirmed! Your confirmation code is ${currentBooking.confirmationCode}. Payment processed successfully. Check your email for details.`
+          );
+        }, 1000);
+
+        setTimeout(() => {
+          onInfo('Please check your email for booking confirmation and details.');
+        }, 3000);
+
+        setTimeout(() => {
+          onClose();
+          setFormData({ name: '', email: '', phone: '', guests: 1, specialRequests: '' });
+          setSelectedCheckIn(null);
+          setSelectedCheckOut(null);
+          setCurrentBooking(null);
+        }, 2000);
+      } catch (error) {
+        console.error('Email notification error:', error);
+        onError('Booking created but email notification failed. Please contact us.');
+      }
+    }
+  };
+
+  const handlePaymentError = (message: string) => {
+    onError(`Payment failed: ${message}`);
   };
 
   if (!isOpen) return null;
@@ -262,18 +286,31 @@ export default function BookingModal({ isOpen, onClose, onSuccess, onError, onIn
                   />
                 </div>
 
-                <button
-                  type="submit"
-                  disabled={isSubmitting || !selectedCheckIn || !selectedCheckOut}
-                  className="w-full bg-gradient-to-r from-blue-500 to-cyan-500 text-white px-6 py-4 rounded-xl font-bold text-lg hover:from-blue-600 hover:to-cyan-600 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-blue-500/50 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
-                >
-                  {isSubmitting ? 'Processing...' : `Confirm Booking - R${total}`}
-                </button>
+                       <button
+                         type="submit"
+                         disabled={isSubmitting || !selectedCheckIn || !selectedCheckOut}
+                         className="w-full bg-gradient-to-r from-blue-500 to-cyan-500 text-white px-6 py-4 rounded-xl font-bold text-lg hover:from-blue-600 hover:to-cyan-600 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-blue-500/50 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none flex items-center justify-center space-x-2"
+                       >
+                         <CreditCard className="w-5 h-5" />
+                         <span>{isSubmitting ? 'Processing...' : `Proceed to Payment - R${total}`}</span>
+                       </button>
               </form>
             </div>
           </div>
         </div>
       </div>
+
+      {/* Payment Modal */}
+      {currentBooking && (
+        <PaymentModal
+          isOpen={isPaymentModalOpen}
+          onClose={() => setIsPaymentModalOpen(false)}
+          amount={total}
+          bookingId={currentBooking.id}
+          onSuccess={handlePaymentSuccess}
+          onError={handlePaymentError}
+        />
+      )}
     </div>
   );
 }

@@ -6,6 +6,7 @@ import Gallery from './components/Gallery';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
 import BookingModal from './components/BookingModal';
+import PaymentHistoryModal from './components/PaymentHistoryModal';
 import Notification from './components/Notification';
 
 interface NotificationState {
@@ -16,6 +17,7 @@ interface NotificationState {
 
 function App() {
   const [isBookingModalOpen, setIsBookingModalOpen] = useState(false);
+  const [isPaymentHistoryModalOpen, setIsPaymentHistoryModalOpen] = useState(false);
   const [notifications, setNotifications] = useState<NotificationState[]>([]);
 
   useEffect(() => {
@@ -62,32 +64,40 @@ function App() {
   };
 
   return (
-    <div className="min-h-screen bg-slate-950">
-      <Navbar onBookNowClick={() => setIsBookingModalOpen(true)} />
-      <Hero onBookNowClick={() => setIsBookingModalOpen(true)} />
-      <Amenities />
-      <Gallery />
-      <Contact />
-      <Footer />
+         <div className="min-h-screen bg-slate-950">
+           <Navbar 
+             onBookNowClick={() => setIsBookingModalOpen(true)} 
+             onPaymentHistoryClick={() => setIsPaymentHistoryModalOpen(true)}
+           />
+           <Hero onBookNowClick={() => setIsBookingModalOpen(true)} />
+           <Amenities />
+           <Gallery />
+           <Contact />
+           <Footer />
 
-      <BookingModal
-        isOpen={isBookingModalOpen}
-        onClose={() => setIsBookingModalOpen(false)}
-        onSuccess={(msg) => showNotification(msg, 'success', 10000)}
-        onError={(msg) => showNotification(msg, 'error', 10000)}
-        onInfo={(msg) => showNotification(msg, 'info', 8000)}
-      />
+           <BookingModal
+             isOpen={isBookingModalOpen}
+             onClose={() => setIsBookingModalOpen(false)}
+             onSuccess={(msg) => showNotification(msg, 'success', 10000)}
+             onError={(msg) => showNotification(msg, 'error', 10000)}
+             onInfo={(msg) => showNotification(msg, 'info', 8000)}
+           />
 
-      {notifications.map((notification) => (
-        <Notification
-          key={notification.id}
-          message={notification.message}
-          type={notification.type}
-          onClose={() => removeNotification(notification.id)}
-          duration={notification.type === 'success' || notification.type === 'error' ? 10000 : 8000}
-        />
-      ))}
-    </div>
+           <PaymentHistoryModal
+             isOpen={isPaymentHistoryModalOpen}
+             onClose={() => setIsPaymentHistoryModalOpen(false)}
+           />
+
+           {notifications.map((notification) => (
+             <Notification
+               key={notification.id}
+               message={notification.message}
+               type={notification.type}
+               onClose={() => removeNotification(notification.id)}
+               duration={notification.type === 'success' || notification.type === 'error' ? 10000 : 8000}
+             />
+           ))}
+         </div>
   );
 }
 

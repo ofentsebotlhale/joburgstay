@@ -7,7 +7,7 @@ POST https://api.emailjs.com/api/v1.0/email/send 422 (Unprocessable Content)
 ```
 
 ## 🔧 **Root Cause:**
-EmailJS requires recipient email addresses to be configured in the **template settings**, not passed as parameters in the code.
+EmailJS requires recipient email addresses to be passed as parameters in the code AND configured in the template settings. The error occurs when the `guest_email` parameter is missing from the JavaScript call.
 
 ## ✅ **Solution Steps:**
 
@@ -75,7 +75,7 @@ Make sure these variables are available in the template:
 ### **1. Recipient Email Setup:**
 - ✅ **Guest Template**: Set "To Email" to `{{guest_email}}`
 - ✅ **Owner Template**: Set "To Email" to your actual email address
-- ❌ **Don't pass recipient emails** in the JavaScript code
+- ✅ **Pass guest_email** in the JavaScript code parameters
 
 ### **2. Template ID Matching:**
 - ✅ **Must match exactly**: `booking_confirmation` and `owner_notification`
@@ -93,6 +93,7 @@ Make sure these variables are available in the template:
    ```json
    {
      "guest_name": "John Doe",
+     "guest_email": "john@example.com",
      "confirmation_code": "TEST123",
      "check_in_date": "2025-01-15",
      "check_out_date": "2025-01-17",
@@ -124,7 +125,7 @@ Make sure these variables are available in the template:
 
 ## 🚨 **Common Mistakes to Avoid:**
 
-1. **❌ Don't pass recipient emails** in JavaScript parameters
+1. **❌ Don't forget to pass guest_email** in JavaScript parameters
 2. **❌ Don't use wrong template IDs** (case sensitive)
 3. **❌ Don't forget to set "To Email"** in template settings
 4. **❌ Don't use HTML in subject lines** (plain text only)

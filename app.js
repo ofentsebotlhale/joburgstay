@@ -407,7 +407,7 @@ if (modalBackdrop) {
 }
 
 if (bookingForm) {
-  bookingForm.onsubmit = function (e) {
+  bookingForm.onsubmit = async function (e) {
     e.preventDefault();
 
     // Validate form
@@ -478,7 +478,7 @@ if (bookingModal) {
 
 // Modal form submission
 if (bookingModalForm) {
-  bookingModalForm.onsubmit = function (e) {
+  bookingModalForm.onsubmit = async function (e) {
     e.preventDefault();
 
     // Validate form

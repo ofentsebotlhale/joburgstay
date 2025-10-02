@@ -242,7 +242,7 @@ async function sendBookingNotifications(booking) {
         check_in: booking.checkIn,
         check_out: booking.checkOut,
         total: booking.total,
-        property_name: "Modern Johannesburg Apartment",
+        property_name: "Blue Haven on 13th Emperor",
       });
 
       console.log("✅ Email notifications sent successfully");
@@ -398,7 +398,7 @@ function testNotifications() {
 // Test function for booking success notification
 function testBookingSuccess() {
   console.log("🧪 Testing booking success notification in 1 second...");
-  
+
   // Show success message after 1 second delay (like real booking)
   setTimeout(() => {
     showSuccessMessage(
@@ -422,11 +422,11 @@ async function getBlockedDates() {
   const set = new Set();
   for (const b of all) {
     if (b.status === "confirmed") {
-    let d = new Date(b.checkIn);
-    const end = new Date(b.checkOut);
-    while (d < end) {
-      set.add(d.toISOString().split("T")[0]);
-      d.setDate(d.getDate() + 1);
+      let d = new Date(b.checkIn);
+      const end = new Date(b.checkOut);
+      while (d < end) {
+        set.add(d.toISOString().split("T")[0]);
+        d.setDate(d.getDate() + 1);
       }
     }
   }
@@ -814,7 +814,7 @@ window.onload = async () => {
   // Show welcome notification after page loads
   setTimeout(() => {
     showInfoMessage(
-      "🏠 Welcome to JoburgStay! Book your perfect Johannesburg getaway.",
+      "🏠 Welcome to Blue Haven on 13th Emperor! Experience luxury living in Johannesburg's most prestigious district.",
       6000
     );
   }, 2000);

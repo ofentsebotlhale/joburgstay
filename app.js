@@ -155,7 +155,7 @@ function updateModalSummary() {
 }
 
 // Enhanced booking system with email notifications (Netlify optimized)
-const API_BASE_URL = 'https://YOUR-NETLIFY-URL.netlify.app/api'; // Update this with your actual Netlify URL
+const API_BASE_URL = 'https://joburgstay.netlify.app/api';
 
 async function getBookings() {
   try {

@@ -167,14 +167,31 @@ export async function processCashPayment(amount: number, reference: string): Pro
   });
 }
 
-// Save payment to localStorage
-export function savePayment(payment: PaymentHistory): void {
+// Save payment to Supabase (with localStorage fallback)
+export async function savePayment(payment: PaymentHistory): Promise<void> {
   try {
-    const payments = getPaymentHistory();
-    payments.push(payment);
-    localStorage.setItem('blueHavenPayments', JSON.stringify(payments));
+    // Try Supabase first
+    const { DatabaseService } = await import('../services/database');
+    await DatabaseService.addPayment(payment.bookingId, {
+      success: payment.status === 'completed',
+      reference: payment.reference,
+      method: payment.method,
+      amount: payment.amount,
+      fee: payment.fee || 0,
+      totalPaid: payment.totalPaid,
+      timestamp: payment.createdAt,
+      message: payment.message
+    });
   } catch (error) {
-    console.error('Error saving payment:', error);
+    console.error('Supabase payment save failed, using localStorage:', error);
+    // Fallback to localStorage
+    try {
+      const payments = getPaymentHistory();
+      payments.push(payment);
+      localStorage.setItem('blueHavenPayments', JSON.stringify(payments));
+    } catch (fallbackError) {
+      console.error('Error saving payment to localStorage:', fallbackError);
+    }
   }
 }
 

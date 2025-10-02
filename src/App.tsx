@@ -7,6 +7,7 @@ import Contact from './components/Contact';
 import Footer from './components/Footer';
 import BookingModal from './components/BookingModal';
 import PaymentHistoryModal from './components/PaymentHistoryModal';
+import BookingManagementModal from './components/BookingManagementModal';
 import Notification from './components/Notification';
 
 interface NotificationState {
@@ -18,6 +19,7 @@ interface NotificationState {
 function App() {
   const [isBookingModalOpen, setIsBookingModalOpen] = useState(false);
   const [isPaymentHistoryModalOpen, setIsPaymentHistoryModalOpen] = useState(false);
+  const [isBookingManagementModalOpen, setIsBookingManagementModalOpen] = useState(false);
   const [notifications, setNotifications] = useState<NotificationState[]>([]);
 
   useEffect(() => {
@@ -65,10 +67,11 @@ function App() {
 
   return (
          <div className="min-h-screen bg-slate-950">
-           <Navbar 
-             onBookNowClick={() => setIsBookingModalOpen(true)} 
-             onPaymentHistoryClick={() => setIsPaymentHistoryModalOpen(true)}
-           />
+            <Navbar
+              onBookNowClick={() => setIsBookingModalOpen(true)}
+              onPaymentHistoryClick={() => setIsPaymentHistoryModalOpen(true)}
+              onBookingManagementClick={() => setIsBookingManagementModalOpen(true)}
+            />
            <Hero onBookNowClick={() => setIsBookingModalOpen(true)} />
            <Amenities />
            <Gallery />
@@ -83,12 +86,17 @@ function App() {
              onInfo={(msg) => showNotification(msg, 'info', 8000)}
            />
 
-           <PaymentHistoryModal
-             isOpen={isPaymentHistoryModalOpen}
-             onClose={() => setIsPaymentHistoryModalOpen(false)}
-           />
+            <PaymentHistoryModal
+              isOpen={isPaymentHistoryModalOpen}
+              onClose={() => setIsPaymentHistoryModalOpen(false)}
+            />
 
-           {notifications.map((notification) => (
+            <BookingManagementModal
+              isOpen={isBookingManagementModalOpen}
+              onClose={() => setIsBookingManagementModalOpen(false)}
+            />
+
+            {notifications.map((notification) => (
              <Notification
                key={notification.id}
                message={notification.message}

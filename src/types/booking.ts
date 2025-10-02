@@ -11,6 +11,9 @@ export interface Booking {
   total: number;
   specialRequests?: string;
   createdAt: string;
+  // New fields for Supabase integration
+  status?: 'pending' | 'confirmed' | 'cancelled' | 'completed';
+  paymentStatus?: 'pending' | 'paid' | 'failed' | 'refunded';
 }
 
 export interface BookingFormData {

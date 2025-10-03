@@ -199,61 +199,6 @@ export default function BookingModal({ isOpen, onClose, onSuccess, onError, onIn
 
             <div>
               <form onSubmit={handleSubmit} className="space-y-6">
-                {/* Sticky Booking Summary */}
-                <div className="sticky top-24 bg-gradient-to-br from-blue-500/10 to-cyan-500/10 border border-blue-500/30 rounded-2xl p-6 mb-6 backdrop-blur-sm z-10">
-                  <h3 className="text-lg font-semibold text-white mb-4 flex items-center space-x-2">
-                    <Sparkles className="w-5 h-5 text-blue-400" />
-                    <span>Booking Summary</span>
-                  </h3>
-                  <div className="space-y-3 text-sm">
-                    <div className="flex justify-between items-center">
-                      <span className="text-slate-400">Check-in:</span>
-                      <span className="text-white font-semibold">
-                        {selectedCheckIn ? formatDate(selectedCheckIn) : '-'}
-                      </span>
-                    </div>
-                    <div className="flex justify-between items-center">
-                      <span className="text-slate-400">Check-out:</span>
-                      <span className="text-white font-semibold">
-                        {selectedCheckOut ? formatDate(selectedCheckOut) : '-'}
-                      </span>
-                    </div>
-                    <div className="flex justify-between items-center">
-                      <span className="text-slate-400">Nights:</span>
-                      <span className="text-white font-semibold">{nights}</span>
-                    </div>
-                    <div className="flex justify-between items-center">
-                      <span className="text-slate-400">Check-in Time:</span>
-                      <span className="text-white font-semibold flex items-center space-x-1">
-                        <Clock className="w-3 h-3" />
-                        <span>
-                          {formData.checkInTime === 'flexible' 
-                            ? 'Flexible' 
-                            : formData.checkInTime 
-                              ? new Date(`2000-01-01T${formData.checkInTime}`).toLocaleTimeString('en-US', { 
-                                  hour: 'numeric', 
-                                  minute: '2-digit',
-                                  hour12: true 
-                                })
-                              : '3:00 PM'
-                          }
-                        </span>
-                      </span>
-                    </div>
-                    {nights >= 7 && (
-                      <div className="flex justify-between items-center text-green-400">
-                        <span>Discount (10%):</span>
-                        <span className="font-semibold">Applied</span>
-                      </div>
-                    )}
-                    <div className="border-t border-slate-700 pt-3 mt-3">
-                      <div className="flex justify-between items-center">
-                        <span className="text-white font-bold">Total:</span>
-                        <span className="text-2xl font-bold text-blue-400">R{total}</span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
 
                 <div>
                   <label className="flex items-center space-x-2 text-sm font-medium text-slate-300 mb-2">
@@ -335,6 +280,62 @@ export default function BookingModal({ isOpen, onClose, onSuccess, onError, onIn
                     className="w-full px-4 py-3 bg-slate-800/50 border border-slate-700 rounded-xl text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all resize-none"
                     placeholder="Any special requests or requirements..."
                   />
+                </div>
+
+                {/* Booking Summary at Bottom */}
+                <div className="bg-gradient-to-br from-blue-500/10 to-cyan-500/10 border border-blue-500/30 rounded-2xl p-6">
+                  <h3 className="text-lg font-semibold text-white mb-4 flex items-center space-x-2">
+                    <Sparkles className="w-5 h-5 text-blue-400" />
+                    <span>Booking Summary</span>
+                  </h3>
+                  <div className="space-y-3 text-sm">
+                    <div className="flex justify-between items-center">
+                      <span className="text-slate-400">Check-in:</span>
+                      <span className="text-white font-semibold">
+                        {selectedCheckIn ? formatDate(selectedCheckIn) : '-'}
+                      </span>
+                    </div>
+                    <div className="flex justify-between items-center">
+                      <span className="text-slate-400">Check-out:</span>
+                      <span className="text-white font-semibold">
+                        {selectedCheckOut ? formatDate(selectedCheckOut) : '-'}
+                      </span>
+                    </div>
+                    <div className="flex justify-between items-center">
+                      <span className="text-slate-400">Nights:</span>
+                      <span className="text-white font-semibold">{nights}</span>
+                    </div>
+                    <div className="flex justify-between items-center">
+                      <span className="text-slate-400">Check-in Time:</span>
+                      <span className="text-white font-semibold flex items-center space-x-1">
+                        <Clock className="w-3 h-3" />
+                        <span>
+                          {formData.checkInTime === 'flexible' 
+                            ? 'Flexible' 
+                            : formData.checkInTime 
+                              ? new Date(`2000-01-01T${formData.checkInTime}`).toLocaleTimeString('en-US', { 
+                                  hour: 'numeric', 
+                                  minute: '2-digit',
+                                  hour12: true 
+                                })
+                              : '3:00 PM'
+                          }
+                        </span>
+                      </span>
+                    </div>
+                    {nights >= 7 && (
+                      <div className="flex justify-between items-center text-green-400">
+                        <span>Discount (10%):</span>
+                        <span className="font-semibold">Applied</span>
+                      </div>
+                    )}
+                    <div className="border-t border-slate-700 pt-3 mt-3">
+                      <div className="flex justify-between items-center">
+                        <span className="text-white font-bold">Total:</span>
+                        <span className="text-2xl font-bold text-blue-400">R{total}</span>
+                      </div>
+                    </div>
+                  </div>
                 </div>
 
                        <button

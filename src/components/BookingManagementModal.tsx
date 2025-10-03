@@ -1,8 +1,9 @@
 import { useState, useEffect } from 'react';
-import { X, Calendar, User, Mail, Phone, CreditCard, Search, Filter, Eye, Edit, Trash2, Clock, Send } from 'lucide-react';
+import { X, Calendar, User, Mail, Phone, CreditCard, Search, Filter, Eye, Edit, Trash2, Clock, Send, Shield } from 'lucide-react';
 import { getBookingsByEmail, updateBookingStatus, formatDate } from '../utils/booking';
 import { formatCurrency } from '../utils/payment';
 import { EmailReminderService } from '../services/emailReminders';
+import { AuthService } from '../services/auth';
 import type { Booking } from '../types/booking';
 
 interface BookingManagementModalProps {
@@ -18,12 +19,27 @@ export default function BookingManagementModal({ isOpen, onClose, guestEmail }: 
   const [filterStatus, setFilterStatus] = useState<string>('all');
   const [selectedBooking, setSelectedBooking] = useState<Booking | null>(null);
   const [sendingReminder, setSendingReminder] = useState<string | null>(null);
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [adminUser, setAdminUser] = useState<any>(null);
 
   useEffect(() => {
-    if (isOpen && guestEmail) {
-      loadBookings(guestEmail);
+    if (isOpen) {
+      // Check authentication
+      const authenticated = AuthService.isAuthenticated();
+      const user = AuthService.getCurrentUser();
+      setIsAuthenticated(authenticated);
+      setAdminUser(user);
+
+      if (!authenticated) {
+        onClose();
+        return;
+      }
+
+      if (guestEmail) {
+        loadBookings(guestEmail);
+      }
     }
-  }, [isOpen, guestEmail]);
+  }, [isOpen, guestEmail, onClose]);
 
   const loadBookings = async (email: string) => {
     if (!email.trim()) return;
@@ -104,7 +120,7 @@ export default function BookingManagementModal({ isOpen, onClose, guestEmail }: 
     }
   };
 
-  if (!isOpen) return null;
+  if (!isOpen || !isAuthenticated) return null;
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 backdrop-blur-sm p-4 animate-fade-in">
@@ -112,8 +128,11 @@ export default function BookingManagementModal({ isOpen, onClose, guestEmail }: 
         {/* Header */}
         <div className="sticky top-0 bg-slate-900/95 backdrop-blur-xl border-b border-slate-700/50 px-6 py-4 flex justify-between items-center z-10">
           <div className="flex items-center space-x-3">
-            <Calendar className="w-6 h-6 text-blue-400" />
-            <h2 className="text-2xl font-bold text-white">Booking Management</h2>
+            <Shield className="w-6 h-6 text-blue-400" />
+            <div>
+              <h2 className="text-2xl font-bold text-white">Admin Panel</h2>
+              <p className="text-sm text-slate-400">Welcome, {adminUser?.name}</p>
+            </div>
           </div>
           <button
             onClick={onClose}

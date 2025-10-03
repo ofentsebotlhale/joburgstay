@@ -8,9 +8,11 @@ import Footer from './components/Footer';
 import BookingModal from './components/BookingModal';
 import PaymentHistoryModal from './components/PaymentHistoryModal';
 import BookingManagementModal from './components/BookingManagementModal';
+import AdminLoginModal from './components/AdminLoginModal';
 import Notification from './components/Notification';
 import { ReminderScheduler } from './services/reminderScheduler';
 import { GoogleAnalytics } from './utils/analytics';
+import { AuthService } from './services/auth';
 
 interface NotificationState {
   message: string;
@@ -22,6 +24,7 @@ function App() {
   const [isBookingModalOpen, setIsBookingModalOpen] = useState(false);
   const [isPaymentHistoryModalOpen, setIsPaymentHistoryModalOpen] = useState(false);
   const [isBookingManagementModalOpen, setIsBookingManagementModalOpen] = useState(false);
+  const [isAdminLoginModalOpen, setIsAdminLoginModalOpen] = useState(false);
   const [notifications, setNotifications] = useState<NotificationState[]>([]);
 
   useEffect(() => {
@@ -79,12 +82,26 @@ function App() {
     setNotifications((prev) => prev.filter((n) => n.id !== id));
   };
 
+  const handleAdminLoginSuccess = (user: any) => {
+    showNotification(`Welcome back, ${user.name}!`, 'success', 3000);
+    setIsBookingManagementModalOpen(true);
+  };
+
+  const handleBookingManagementClick = () => {
+    if (AuthService.isAuthenticated()) {
+      setIsBookingManagementModalOpen(true);
+    } else {
+      setIsAdminLoginModalOpen(true);
+    }
+  };
+
   return (
          <div className="min-h-screen bg-slate-950">
             <Navbar
               onBookNowClick={() => setIsBookingModalOpen(true)}
               onPaymentHistoryClick={() => setIsPaymentHistoryModalOpen(true)}
-              onBookingManagementClick={() => setIsBookingManagementModalOpen(true)}
+              onBookingManagementClick={handleBookingManagementClick}
+              onAdminLoginClick={() => setIsAdminLoginModalOpen(true)}
             />
            <Hero onBookNowClick={() => setIsBookingModalOpen(true)} />
            <Amenities />
@@ -108,6 +125,12 @@ function App() {
             <BookingManagementModal
               isOpen={isBookingManagementModalOpen}
               onClose={() => setIsBookingManagementModalOpen(false)}
+            />
+
+            <AdminLoginModal
+              isOpen={isAdminLoginModalOpen}
+              onClose={() => setIsAdminLoginModalOpen(false)}
+              onLoginSuccess={handleAdminLoginSuccess}
             />
 
             {notifications.map((notification) => (

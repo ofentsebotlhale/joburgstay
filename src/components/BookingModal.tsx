@@ -199,7 +199,8 @@ export default function BookingModal({ isOpen, onClose, onSuccess, onError, onIn
 
             <div>
               <form onSubmit={handleSubmit} className="space-y-6">
-                <div className="bg-gradient-to-br from-blue-500/10 to-cyan-500/10 border border-blue-500/30 rounded-2xl p-6 mb-6">
+                {/* Sticky Booking Summary */}
+                <div className="sticky top-24 bg-gradient-to-br from-blue-500/10 to-cyan-500/10 border border-blue-500/30 rounded-2xl p-6 mb-6 backdrop-blur-sm z-10">
                   <h3 className="text-lg font-semibold text-white mb-4 flex items-center space-x-2">
                     <Sparkles className="w-5 h-5 text-blue-400" />
                     <span>Booking Summary</span>

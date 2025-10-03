@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { X, Calendar as CalendarIcon, User, Mail, Phone, Users, MessageSquare, Sparkles, CreditCard } from 'lucide-react';
-import Calendar from './Calendar';
+import EnhancedCalendar from './EnhancedCalendar';
 import PaymentModal from './PaymentModal';
 import { getBlockedDates, calculateTotal, daysBetween, formatDate, addBooking } from '../utils/booking';
 import { sendBookingNotifications } from '../utils/emailjs';
@@ -156,8 +156,7 @@ export default function BookingModal({ isOpen, onClose, onSuccess, onError, onIn
 
   if (!isOpen) return null;
 
-  const today = new Date();
-  const nextMonth = new Date(today.getFullYear(), today.getMonth() + 1, 1);
+        const today = new Date();
 
   const nights = selectedCheckIn && selectedCheckOut ? daysBetween(selectedCheckIn, selectedCheckOut) : 0;
   const total = nights > 0 ? calculateTotal(nights) : 0;
@@ -182,30 +181,18 @@ export default function BookingModal({ isOpen, onClose, onSuccess, onError, onIn
         </div>
 
         <div className="p-6">
-          <div className="grid md:grid-cols-2 gap-8 mb-8">
+          <div className="grid lg:grid-cols-2 gap-8 mb-8">
             <div>
-              <h3 className="text-lg font-semibold text-white mb-4 flex items-center space-x-2">
+              <h3 className="text-lg font-semibold text-white mb-6 flex items-center space-x-2">
                 <CalendarIcon className="w-5 h-5 text-blue-400" />
                 <span>Select Dates</span>
               </h3>
-              <div className="space-y-4">
-                <Calendar
-                  month={today.getMonth()}
-                  year={today.getFullYear()}
-                  blockedDates={blockedDates}
-                  selectedCheckIn={selectedCheckIn}
-                  selectedCheckOut={selectedCheckOut}
-                  onDateSelect={handleDateSelect}
-                />
-                <Calendar
-                  month={nextMonth.getMonth()}
-                  year={nextMonth.getFullYear()}
-                  blockedDates={blockedDates}
-                  selectedCheckIn={selectedCheckIn}
-                  selectedCheckOut={selectedCheckOut}
-                  onDateSelect={handleDateSelect}
-                />
-              </div>
+              <EnhancedCalendar
+                blockedDates={blockedDates}
+                selectedCheckIn={selectedCheckIn}
+                selectedCheckOut={selectedCheckOut}
+                onDateSelect={handleDateSelect}
+              />
             </div>
 
             <div>

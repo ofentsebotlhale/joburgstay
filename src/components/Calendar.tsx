@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { ChevronLeft, ChevronRight } from 'lucide-react';
 
 interface CalendarProps {
   month: number;
@@ -7,6 +8,8 @@ interface CalendarProps {
   selectedCheckIn: string | null;
   selectedCheckOut: string | null;
   onDateSelect: (date: string) => void;
+  onMonthChange?: (month: number, year: number) => void;
+  showNavigation?: boolean;
 }
 
 export default function Calendar({
@@ -15,7 +18,9 @@ export default function Calendar({
   blockedDates,
   selectedCheckIn,
   selectedCheckOut,
-  onDateSelect
+  onDateSelect,
+  onMonthChange,
+  showNavigation = false
 }: CalendarProps) {
   const [days, setDays] = useState<number[]>([]);
   const [firstDay, setFirstDay] = useState(0);
@@ -32,6 +37,22 @@ export default function Calendar({
   const today = new Date();
   today.setHours(0, 0, 0, 0);
 
+  const handlePreviousMonth = () => {
+    if (onMonthChange) {
+      const newMonth = month === 0 ? 11 : month - 1;
+      const newYear = month === 0 ? year - 1 : year;
+      onMonthChange(newMonth, newYear);
+    }
+  };
+
+  const handleNextMonth = () => {
+    if (onMonthChange) {
+      const newMonth = month === 11 ? 0 : month + 1;
+      const newYear = month === 11 ? year + 1 : year;
+      onMonthChange(newMonth, newYear);
+    }
+  };
+
   const isDateInRange = (dateStr: string) => {
     if (!selectedCheckIn || !selectedCheckOut) return false;
     const date = new Date(dateStr);
@@ -42,8 +63,26 @@ export default function Calendar({
 
   return (
     <div className="bg-slate-800/50 backdrop-blur-xl border border-slate-700/50 rounded-2xl p-6 shadow-xl">
-      <div className="text-center mb-4">
-        <h3 className="text-xl font-bold text-white">{monthName} {year}</h3>
+      <div className="flex items-center justify-between mb-4">
+        {showNavigation && (
+          <button
+            onClick={handlePreviousMonth}
+            className="p-2 text-slate-400 hover:text-white hover:bg-slate-700/50 rounded-lg transition-colors"
+            title="Previous month"
+          >
+            <ChevronLeft className="w-5 h-5" />
+          </button>
+        )}
+        <h3 className="text-xl font-bold text-white flex-1 text-center">{monthName} {year}</h3>
+        {showNavigation && (
+          <button
+            onClick={handleNextMonth}
+            className="p-2 text-slate-400 hover:text-white hover:bg-slate-700/50 rounded-lg transition-colors"
+            title="Next month"
+          >
+            <ChevronRight className="w-5 h-5" />
+          </button>
+        )}
       </div>
 
       <div className="grid grid-cols-7 gap-2 mb-2">

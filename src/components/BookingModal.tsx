@@ -4,6 +4,7 @@ import Calendar from './Calendar';
 import PaymentModal from './PaymentModal';
 import { getBlockedDates, calculateTotal, daysBetween, formatDate, addBooking } from '../utils/booking';
 import { sendBookingNotifications } from '../utils/emailjs';
+import { GoogleAnalytics } from '../utils/analytics';
 import type { BookingFormData } from '../types/booking';
 import type { PaymentResult } from '../types/payment';
 
@@ -34,6 +35,7 @@ export default function BookingModal({ isOpen, onClose, onSuccess, onError, onIn
   useEffect(() => {
     if (isOpen) {
       loadBlockedDates();
+      GoogleAnalytics.trackBookingStarted();
     }
   }, [isOpen]);
 
@@ -103,6 +105,9 @@ export default function BookingModal({ isOpen, onClose, onSuccess, onError, onIn
     if (currentBooking) {
       try {
         await sendBookingNotifications(currentBooking);
+        
+        // Track successful booking completion
+        GoogleAnalytics.trackBookingCompleted(currentBooking.total);
         
         setTimeout(() => {
           onSuccess(

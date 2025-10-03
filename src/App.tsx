@@ -10,6 +10,7 @@ import PaymentHistoryModal from './components/PaymentHistoryModal';
 import BookingManagementModal from './components/BookingManagementModal';
 import Notification from './components/Notification';
 import { ReminderScheduler } from './services/reminderScheduler';
+import { GoogleAnalytics } from './utils/analytics';
 
 interface NotificationState {
   message: string;
@@ -40,6 +41,13 @@ function App() {
 
     // Initialize reminder scheduler
     ReminderScheduler.start();
+
+    // Initialize Google Analytics
+    const gaId = import.meta.env.VITE_GOOGLE_ANALYTICS_ID;
+    if (gaId) {
+      GoogleAnalytics.init(gaId);
+      GoogleAnalytics.trackPageView('/', 'Blue Haven on 13th Emperor - Home');
+    }
 
     const timer = setTimeout(() => {
       showNotification(

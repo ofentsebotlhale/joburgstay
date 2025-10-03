@@ -65,3 +65,77 @@ export async function sendBookingNotifications(booking: Booking): Promise<void> 
     // Don't throw - email failures shouldn't break the booking process
   }
 }
+
+// Send booking reminder (24h before check-in)
+export async function sendBookingReminder(params: {
+  guest_name: string;
+  guest_email: string;
+  confirmation_code: string;
+  check_in_date: string;
+  check_out_date: string;
+  guests: number;
+  total_amount: number;
+  days_until_checkin: number;
+  special_requests?: string;
+}): Promise<void> {
+  try {
+    if (typeof window.emailjs === 'undefined') {
+      console.warn('EmailJS not available - skipping reminder email');
+      return;
+    }
+
+    await window.emailjs.send("service_2mja4zm", "booking_reminder", {
+      guest_name: params.guest_name,
+      guest_email: params.guest_email,
+      confirmation_code: params.confirmation_code,
+      check_in_date: params.check_in_date,
+      check_out_date: params.check_out_date,
+      guests: params.guests,
+      total_amount: params.total_amount,
+      days_until_checkin: params.days_until_checkin,
+      special_requests: params.special_requests || 'None',
+    });
+    
+    console.log('Booking reminder sent successfully');
+  } catch (error) {
+    console.error('Failed to send booking reminder:', error);
+    throw error;
+  }
+}
+
+// Send checkout reminder (24h before check-out)
+export async function sendCheckoutReminder(params: {
+  guest_name: string;
+  guest_email: string;
+  confirmation_code: string;
+  check_in_date: string;
+  check_out_date: string;
+  nights: number;
+  guests: number;
+  total_amount: number;
+  special_requests?: string;
+}): Promise<void> {
+  try {
+    if (typeof window.emailjs === 'undefined') {
+      console.warn('EmailJS not available - skipping checkout reminder');
+      return;
+    }
+
+    await window.emailjs.send("service_2mja4zm", "checkout_reminder", {
+      guest_name: params.guest_name,
+      guest_email: params.guest_email,
+      confirmation_code: params.confirmation_code,
+      check_in_date: params.check_in_date,
+      check_out_date: params.check_out_date,
+      nights: params.nights,
+      guests: params.guests,
+      total_amount: params.total_amount,
+      special_requests: params.special_requests || 'None',
+    });
+    
+    console.log('Checkout reminder sent successfully');
+  } catch (error) {
+    console.error('Failed to send checkout reminder:', error);
+    throw error;
+  }
+}

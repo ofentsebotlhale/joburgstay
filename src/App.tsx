@@ -9,6 +9,7 @@ import BookingModal from './components/BookingModal';
 import PaymentHistoryModal from './components/PaymentHistoryModal';
 import BookingManagementModal from './components/BookingManagementModal';
 import Notification from './components/Notification';
+import { ReminderScheduler } from './services/reminderScheduler';
 
 interface NotificationState {
   message: string;
@@ -37,6 +38,9 @@ function App() {
     };
     document.body.appendChild(script);
 
+    // Initialize reminder scheduler
+    ReminderScheduler.start();
+
     const timer = setTimeout(() => {
       showNotification(
         "Welcome to Blue Haven on 13th Emperor! Experience luxury living in Johannesburg's most prestigious district.",
@@ -50,6 +54,8 @@ function App() {
       if (script.parentNode) {
         document.body.removeChild(script);
       }
+      // Stop reminder scheduler on cleanup
+      ReminderScheduler.stop();
     };
   }, []);
 

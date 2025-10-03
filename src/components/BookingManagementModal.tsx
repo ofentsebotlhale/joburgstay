@@ -1,7 +1,8 @@
 import { useState, useEffect } from 'react';
-import { X, Calendar, User, Mail, Phone, CreditCard, Search, Filter, Eye, Edit, Trash2 } from 'lucide-react';
+import { X, Calendar, User, Mail, Phone, CreditCard, Search, Filter, Eye, Edit, Trash2, Clock, Send } from 'lucide-react';
 import { getBookingsByEmail, updateBookingStatus, formatDate } from '../utils/booking';
 import { formatCurrency } from '../utils/payment';
+import { EmailReminderService } from '../services/emailReminders';
 import type { Booking } from '../types/booking';
 
 interface BookingManagementModalProps {
@@ -16,6 +17,7 @@ export default function BookingManagementModal({ isOpen, onClose, guestEmail }: 
   const [searchEmail, setSearchEmail] = useState(guestEmail || '');
   const [filterStatus, setFilterStatus] = useState<string>('all');
   const [selectedBooking, setSelectedBooking] = useState<Booking | null>(null);
+  const [sendingReminder, setSendingReminder] = useState<string | null>(null);
 
   useEffect(() => {
     if (isOpen && guestEmail) {
@@ -52,6 +54,19 @@ export default function BookingManagementModal({ isOpen, onClose, guestEmail }: 
       }
     } catch (error) {
       console.error('Error updating booking status:', error);
+    }
+  };
+
+  const handleSendReminder = async (bookingId: string, type: 'checkin' | 'checkout') => {
+    try {
+      setSendingReminder(bookingId);
+      await EmailReminderService.sendManualReminder(bookingId, type);
+      alert(`${type === 'checkin' ? 'Check-in' : 'Check-out'} reminder sent successfully!`);
+    } catch (error) {
+      console.error('Error sending reminder:', error);
+      alert('Failed to send reminder. Please try again.');
+    } finally {
+      setSendingReminder(null);
     }
   };
 
@@ -237,6 +252,29 @@ export default function BookingManagementModal({ isOpen, onClose, guestEmail }: 
                       </button>
                     </div>
                     <div className="flex items-center space-x-2">
+                      {/* Reminder Buttons */}
+                      {booking.status === 'confirmed' && (
+                        <>
+                          <button
+                            onClick={() => handleSendReminder(booking.id, 'checkin')}
+                            disabled={sendingReminder === booking.id}
+                            className="bg-yellow-600 hover:bg-yellow-700 disabled:opacity-50 text-white px-3 py-2 rounded-lg text-sm font-semibold transition-colors flex items-center space-x-1"
+                          >
+                            <Clock className="w-3 h-3" />
+                            <span>Check-in Reminder</span>
+                          </button>
+                          <button
+                            onClick={() => handleSendReminder(booking.id, 'checkout')}
+                            disabled={sendingReminder === booking.id}
+                            className="bg-orange-600 hover:bg-orange-700 disabled:opacity-50 text-white px-3 py-2 rounded-lg text-sm font-semibold transition-colors flex items-center space-x-1"
+                          >
+                            <Send className="w-3 h-3" />
+                            <span>Check-out Reminder</span>
+                          </button>
+                        </>
+                      )}
+                      
+                      {/* Status Update Buttons */}
                       {booking.status === 'pending' && (
                         <>
                           <button

@@ -70,6 +70,15 @@ export default function BookingManagementModal({ isOpen, onClose, guestEmail }: 
     }
   };
 
+  const handleClearAllBookings = () => {
+    if (window.confirm('Are you sure you want to delete ALL bookings? This cannot be undone!')) {
+      localStorage.removeItem('blueHavenBookings');
+      localStorage.removeItem('blueHavenPayments');
+      setBookings([]);
+      alert('All bookings and payments have been cleared!');
+    }
+  };
+
   const filteredBookings = bookings.filter(booking => {
     if (filterStatus === 'all') return true;
     return booking.status === filterStatus;
@@ -143,20 +152,31 @@ export default function BookingManagementModal({ isOpen, onClose, guestEmail }: 
               </div>
             </div>
 
-            {/* Filter */}
-            <div className="flex items-center space-x-4">
-              <Filter className="w-4 h-4 text-slate-400" />
-              <select
-                value={filterStatus}
-                onChange={(e) => setFilterStatus(e.target.value)}
-                className="bg-slate-800/50 border border-slate-700 rounded-lg px-3 py-2 text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
+            {/* Filter and Clear Data */}
+            <div className="flex items-center justify-between">
+              <div className="flex items-center space-x-4">
+                <Filter className="w-4 h-4 text-slate-400" />
+                <select
+                  value={filterStatus}
+                  onChange={(e) => setFilterStatus(e.target.value)}
+                  className="bg-slate-800/50 border border-slate-700 rounded-lg px-3 py-2 text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
+                >
+                  <option value="all">All Bookings</option>
+                  <option value="pending">Pending</option>
+                  <option value="confirmed">Confirmed</option>
+                  <option value="cancelled">Cancelled</option>
+                  <option value="completed">Completed</option>
+                </select>
+              </div>
+              
+              {/* Clear All Data Button */}
+              <button
+                onClick={handleClearAllBookings}
+                className="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-lg text-sm font-semibold transition-colors flex items-center space-x-2"
               >
-                <option value="all">All Bookings</option>
-                <option value="pending">Pending</option>
-                <option value="confirmed">Confirmed</option>
-                <option value="cancelled">Cancelled</option>
-                <option value="completed">Completed</option>
-              </select>
+                <Trash2 className="w-4 h-4" />
+                <span>Clear All Data</span>
+              </button>
             </div>
           </div>
 

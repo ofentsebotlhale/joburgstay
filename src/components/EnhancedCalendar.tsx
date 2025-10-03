@@ -54,10 +54,15 @@ export default function EnhancedCalendar({
     const days = Array.from({ length: daysInMonth }, (_, i) => i + 1);
     const monthName = new Date(year, month).toLocaleString('default', { month: 'long' });
 
+    // Adjust button size based on view mode
+    const buttonSize = viewMode === 'single' ? 'w-10 h-10 text-sm' : 
+                      viewMode === 'double' ? 'w-9 h-9 text-sm' : 
+                      'w-8 h-8 text-xs';
+
     return (
-      <div key={`${year}-${month}`} className="bg-slate-800/50 backdrop-blur-xl border border-slate-700/50 rounded-2xl p-4 shadow-xl">
+      <div key={`${year}-${month}`} className="bg-slate-800/50 backdrop-blur-xl border border-slate-700/50 rounded-2xl p-4 shadow-xl min-w-0">
         <div className="text-center mb-4">
-          <h3 className="text-lg font-bold text-white">{monthName} {year}</h3>
+          <h3 className="text-lg font-bold text-white truncate">{monthName} {year}</h3>
         </div>
 
         <div className="grid grid-cols-7 gap-1 mb-2">
@@ -70,7 +75,7 @@ export default function EnhancedCalendar({
 
         <div className="grid grid-cols-7 gap-1">
           {Array.from({ length: firstDayOfMonth }).map((_, i) => (
-            <div key={`empty-${i}`} className="h-8"></div>
+            <div key={`empty-${i}`} className={viewMode === 'single' ? 'h-10' : viewMode === 'double' ? 'h-9' : 'h-8'}></div>
           ))}
 
           {days.map((day) => {
@@ -82,18 +87,18 @@ export default function EnhancedCalendar({
             const isCheckOut = selectedCheckOut === dateStr;
             const isInRange = isDateInRange(dateStr);
 
-            let buttonClass = 'w-8 h-8 text-xs rounded-lg transition-all duration-200 ';
+            let buttonClass = `${buttonSize} rounded-lg transition-all duration-200 flex items-center justify-center `;
 
             if (isPast || isBlocked) {
               buttonClass += 'bg-slate-700/50 text-slate-500 cursor-not-allowed';
             } else if (isCheckIn) {
-              buttonClass += 'bg-blue-500 text-white font-bold shadow-lg scale-110';
+              buttonClass += 'bg-blue-500 text-white font-bold shadow-lg scale-105';
             } else if (isCheckOut) {
-              buttonClass += 'bg-cyan-500 text-white font-bold shadow-lg scale-110';
+              buttonClass += 'bg-cyan-500 text-white font-bold shadow-lg scale-105';
             } else if (isInRange) {
               buttonClass += 'bg-blue-400/30 text-white';
             } else {
-              buttonClass += 'bg-slate-700/30 text-white hover:bg-blue-500 hover:scale-110 cursor-pointer';
+              buttonClass += 'bg-slate-700/30 text-white hover:bg-blue-500 hover:scale-105 cursor-pointer';
             }
 
             return (
@@ -187,9 +192,9 @@ export default function EnhancedCalendar({
 
       {/* Calendar grid */}
       <div className={`grid gap-4 ${
-        viewMode === 'single' ? 'grid-cols-1' : 
-        viewMode === 'double' ? 'grid-cols-1 md:grid-cols-2' : 
-        'grid-cols-1 md:grid-cols-2 lg:grid-cols-3'
+        viewMode === 'single' ? 'grid-cols-1 max-w-sm mx-auto' : 
+        viewMode === 'double' ? 'grid-cols-1 md:grid-cols-2 max-w-4xl mx-auto' : 
+        'grid-cols-1 md:grid-cols-2 xl:grid-cols-3 max-w-6xl mx-auto'
       }`}>
         {getMonthsToShow().map(({ month, year }) => renderCalendar(month, year))}
       </div>

@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
-import { X, Calendar as CalendarIcon, User, Mail, Phone, Users, MessageSquare, Sparkles, CreditCard } from 'lucide-react';
+import { X, Calendar as CalendarIcon, User, Mail, Phone, Users, MessageSquare, Sparkles, CreditCard, Clock } from 'lucide-react';
 import EnhancedCalendar from './EnhancedCalendar';
+import CheckInTimeSelector from './CheckInTimeSelector';
 import PaymentModal from './PaymentModal';
 import { getBlockedDates, calculateTotal, daysBetween, formatDate, addBooking } from '../utils/booking';
 import { sendBookingNotifications } from '../utils/emailjs';
@@ -29,6 +30,7 @@ export default function BookingModal({ isOpen, onClose, onSuccess, onError, onIn
     email: '',
     phone: '',
     guests: 1,
+    checkInTime: '15:00',
     specialRequests: ''
   });
 
@@ -121,7 +123,7 @@ export default function BookingModal({ isOpen, onClose, onSuccess, onError, onIn
 
         setTimeout(() => {
           onClose();
-          setFormData({ name: '', email: '', phone: '', guests: 1, specialRequests: '' });
+                 setFormData({ name: '', email: '', phone: '', guests: 1, checkInTime: '15:00', specialRequests: '' });
           setSelectedCheckIn(null);
           setSelectedCheckOut(null);
           setCurrentBooking(null);
@@ -141,7 +143,7 @@ export default function BookingModal({ isOpen, onClose, onSuccess, onError, onIn
 
         setTimeout(() => {
           onClose();
-          setFormData({ name: '', email: '', phone: '', guests: 1, specialRequests: '' });
+                 setFormData({ name: '', email: '', phone: '', guests: 1, checkInTime: '15:00', specialRequests: '' });
           setSelectedCheckIn(null);
           setSelectedCheckOut(null);
           setCurrentBooking(null);
@@ -219,6 +221,24 @@ export default function BookingModal({ isOpen, onClose, onSuccess, onError, onIn
                       <span className="text-slate-400">Nights:</span>
                       <span className="text-white font-semibold">{nights}</span>
                     </div>
+                    <div className="flex justify-between items-center">
+                      <span className="text-slate-400">Check-in Time:</span>
+                      <span className="text-white font-semibold flex items-center space-x-1">
+                        <Clock className="w-3 h-3" />
+                        <span>
+                          {formData.checkInTime === 'flexible' 
+                            ? 'Flexible' 
+                            : formData.checkInTime 
+                              ? new Date(`2000-01-01T${formData.checkInTime}`).toLocaleTimeString('en-US', { 
+                                  hour: 'numeric', 
+                                  minute: '2-digit',
+                                  hour12: true 
+                                })
+                              : '3:00 PM'
+                          }
+                        </span>
+                      </span>
+                    </div>
                     {nights >= 7 && (
                       <div className="flex justify-between items-center text-green-400">
                         <span>Discount (10%):</span>
@@ -292,6 +312,13 @@ export default function BookingModal({ isOpen, onClose, onSuccess, onError, onIn
                     value={formData.guests}
                     onChange={(e) => setFormData({ ...formData, guests: parseInt(e.target.value) })}
                     className="w-full px-4 py-3 bg-slate-800/50 border border-slate-700 rounded-xl text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all"
+                  />
+                </div>
+
+                <div>
+                  <CheckInTimeSelector
+                    selectedTime={formData.checkInTime || '15:00'}
+                    onTimeChange={(time) => setFormData({ ...formData, checkInTime: time })}
                   />
                 </div>
 

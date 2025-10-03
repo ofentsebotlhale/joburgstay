@@ -229,6 +229,21 @@ export default function BookingManagementModal({ isOpen, onClose, guestEmail }: 
                           <span>{formatDate(booking.checkIn)} - {formatDate(booking.checkOut)}</span>
                         </span>
                         <span className="flex items-center space-x-1">
+                          <Clock className="w-4 h-4" />
+                          <span>
+                            {booking.checkInTime === 'flexible' 
+                              ? 'Flexible' 
+                              : booking.checkInTime 
+                                ? new Date(`2000-01-01T${booking.checkInTime}`).toLocaleTimeString('en-US', { 
+                                    hour: 'numeric', 
+                                    minute: '2-digit',
+                                    hour12: true 
+                                  })
+                                : '3:00 PM'
+                            }
+                          </span>
+                        </span>
+                        <span className="flex items-center space-x-1">
                           <User className="w-4 h-4" />
                           <span>{booking.guests} guest{booking.guests > 1 ? 's' : ''}</span>
                         </span>

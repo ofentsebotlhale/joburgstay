@@ -44,48 +44,88 @@ function convertBookingToRow(booking: Booking): any {
 
 // Database service functions
 export class DatabaseService {
-  // Get all bookings
+  // Check if Supabase is properly configured
+  private static isSupabaseConfigured(): boolean {
+    const url = import.meta.env.VITE_SUPABASE_URL;
+    return url && url !== 'https://your-project.supabase.co' && url.includes('supabase.co');
+  }
+
+  // Get all bookings with fallback to localStorage
   static async getBookings(): Promise<Booking[]> {
-    try {
-      const { data, error } = await supabase
-        .from('bookings')
-        .select('*')
-        .order('created_at', { ascending: false });
+    // Try Supabase first if configured
+    if (this.isSupabaseConfigured()) {
+      try {
+        const { data, error } = await supabase
+          .from('bookings')
+          .select('*')
+          .order('created_at', { ascending: false });
 
-      if (error) {
-        console.error('Error fetching bookings:', error);
-        return [];
+        if (error) {
+          console.error('Error fetching bookings from Supabase:', error);
+          // Fallback to localStorage
+          return this.getBookingsFromLocalStorage();
+        }
+
+        return data.map(convertBookingRow);
+      } catch (error) {
+        console.error('Supabase connection error, falling back to localStorage:', error);
+        return this.getBookingsFromLocalStorage();
       }
+    }
 
-      return data.map(convertBookingRow);
+    // Use localStorage fallback
+    console.log('Supabase not configured, using localStorage');
+    return this.getBookingsFromLocalStorage();
+  }
+
+  // Fallback method to get bookings from localStorage
+  private static getBookingsFromLocalStorage(): Booking[] {
+    try {
+      const bookings = localStorage.getItem('blueHavenBookings');
+      return bookings ? JSON.parse(bookings) : [];
     } catch (error) {
-      console.error('Database error:', error);
+      console.error('Error getting bookings from localStorage:', error);
       return [];
     }
   }
 
-  // Get bookings by email
+  // Get bookings by email with fallback
   static async getBookingsByEmail(email: string): Promise<Booking[]> {
-    try {
-      const { data, error } = await supabase
-        .from('bookings')
-        .select('*')
-        .eq('guest_email', email)
-        .order('created_at', { ascending: false });
+    if (this.isSupabaseConfigured()) {
+      try {
+        const { data, error } = await supabase
+          .from('bookings')
+          .select('*')
+          .eq('guest_email', email)
+          .order('created_at', { ascending: false });
 
-      if (error) {
-        console.error('Error fetching bookings by email:', error);
-        return [];
+        if (error) {
+          console.error('Error fetching bookings by email from Supabase:', error);
+          return this.getBookingsByEmailFromLocalStorage(email);
+        }
+
+        return data.map(convertBookingRow);
+      } catch (error) {
+        console.error('Supabase connection error, falling back to localStorage:', error);
+        return this.getBookingsByEmailFromLocalStorage(email);
       }
+    }
 
-      return data.map(convertBookingRow);
+    return this.getBookingsByEmailFromLocalStorage(email);
+  }
+
+  // Fallback method to get bookings by email from localStorage
+  private static getBookingsByEmailFromLocalStorage(email: string): Booking[] {
+    try {
+      const bookings = this.getBookingsFromLocalStorage();
+      return bookings.filter(booking => booking.email.toLowerCase() === email.toLowerCase());
     } catch (error) {
-      console.error('Database error:', error);
+      console.error('Error getting bookings by email from localStorage:', error);
       return [];
     }
   }
 
-  // Add new booking
+  // Add new booking with fallback
   static async addBooking(
     formData: BookingFormData,
     checkIn: string,
@@ -109,22 +149,63 @@ export class DatabaseService {
       payment_status: 'pending',
     };
 
-    try {
-      const { data, error } = await supabase
-        .from('bookings')
-        .insert(bookingData)
-        .select()
-        .single();
+    // Try Supabase first if configured
+    if (this.isSupabaseConfigured()) {
+      try {
+        const { data, error } = await supabase
+          .from('bookings')
+          .insert(bookingData)
+          .select()
+          .single();
 
-      if (error) {
-        throw new Error(`Database error: ${error.message}`);
+        if (error) {
+          throw new Error(`Database error: ${error.message}`);
+        }
+
+        return convertBookingRow(data);
+      } catch (error) {
+        console.error('Supabase error, falling back to localStorage:', error);
+        return this.addBookingToLocalStorage(formData, checkIn, checkOut, nights, total);
       }
-
-      return convertBookingRow(data);
-    } catch (error) {
-      console.error('Error adding booking:', error);
-      throw error;
     }
+
+    // Use localStorage fallback
+    return this.addBookingToLocalStorage(formData, checkIn, checkOut, nights, total);
+  }
+
+  // Fallback method to add booking to localStorage
+  private static addBookingToLocalStorage(
+    formData: BookingFormData,
+    checkIn: string,
+    checkOut: string,
+    nights: number,
+    total: number
+  ): Booking {
+    const bookings = this.getBookingsFromLocalStorage();
+    
+    const newBooking: Booking = {
+      ...formData,
+      id: this.generateBookingId(),
+      confirmationCode: this.generateConfirmationCode(),
+      checkIn,
+      checkOut,
+      nights,
+      total,
+      specialRequests: formData.specialRequests,
+      createdAt: new Date().toISOString(),
+      status: 'pending',
+      paymentStatus: 'pending',
+    };
+
+    bookings.push(newBooking);
+    localStorage.setItem('blueHavenBookings', JSON.stringify(bookings));
+
+    return newBooking;
+  }
+
+  // Generate booking ID for localStorage
+  private static generateBookingId(): string {
+    return 'BH' + Date.now().toString(36).toUpperCase();
   }
 
   // Update booking status
@@ -153,35 +234,67 @@ export class DatabaseService {
     }
   }
 
-  // Get blocked dates
+  // Get blocked dates with fallback
   static async getBlockedDates(): Promise<string[]> {
-    try {
-      const { data, error } = await supabase
-        .from('bookings')
-        .select('check_in, check_out')
-        .in('status', ['confirmed', 'pending']);
+    if (this.isSupabaseConfigured()) {
+      try {
+        const { data, error } = await supabase
+          .from('bookings')
+          .select('check_in, check_out')
+          .in('status', ['confirmed', 'pending']);
 
-      if (error) {
-        console.error('Error fetching blocked dates:', error);
-        return [];
+        if (error) {
+          console.error('Error fetching blocked dates from Supabase:', error);
+          return this.getBlockedDatesFromLocalStorage();
+        }
+
+        const blocked: string[] = [];
+        data.forEach(booking => {
+          const checkIn = new Date(booking.check_in);
+          const checkOut = new Date(booking.check_out);
+
+          for (let d = new Date(checkIn); d < checkOut; d.setDate(d.getDate() + 1)) {
+            const dateStr = d.toISOString().split('T')[0];
+            if (!blocked.includes(dateStr)) {
+              blocked.push(dateStr);
+            }
+          }
+        });
+
+        return blocked;
+      } catch (error) {
+        console.error('Supabase connection error, falling back to localStorage:', error);
+        return this.getBlockedDatesFromLocalStorage();
       }
+    }
 
+    return this.getBlockedDatesFromLocalStorage();
+  }
+
+  // Fallback method to get blocked dates from localStorage
+  private static getBlockedDatesFromLocalStorage(): string[] {
+    try {
+      const bookings = this.getBookingsFromLocalStorage();
       const blocked: string[] = [];
-      data.forEach(booking => {
-        const checkIn = new Date(booking.check_in);
-        const checkOut = new Date(booking.check_out);
 
-        for (let d = new Date(checkIn); d < checkOut; d.setDate(d.getDate() + 1)) {
-          const dateStr = d.toISOString().split('T')[0];
-          if (!blocked.includes(dateStr)) {
-            blocked.push(dateStr);
+      bookings.forEach(booking => {
+        // Only block confirmed bookings from localStorage
+        if (booking.status === 'confirmed' || !booking.status) {
+          const checkIn = new Date(booking.checkIn);
+          const checkOut = new Date(booking.checkOut);
+
+          for (let d = new Date(checkIn); d < checkOut; d.setDate(d.getDate() + 1)) {
+            const dateStr = d.toISOString().split('T')[0];
+            if (!blocked.includes(dateStr)) {
+              blocked.push(dateStr);
+            }
           }
         }
       });
 
       return blocked;
     } catch (error) {
-      console.error('Database error:', error);
+      console.error('Error getting blocked dates from localStorage:', error);
       return [];
     }
   }

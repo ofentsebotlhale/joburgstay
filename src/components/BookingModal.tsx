@@ -168,22 +168,22 @@ export default function BookingModal({ isOpen, onClose, onSuccess, onError, onIn
       className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 backdrop-blur-sm p-4 animate-fade-in"
       onClick={(e) => e.target === e.currentTarget && onClose()}
     >
-      <div className="bg-slate-900 rounded-3xl shadow-2xl max-w-6xl w-full max-h-[90vh] overflow-y-auto border border-slate-700/50 animate-scale-in">
-        <div className="sticky top-0 bg-slate-900/95 backdrop-blur-xl border-b border-slate-700/50 px-6 py-4 flex justify-between items-center z-10">
-          <div className="flex items-center space-x-3">
-            <CalendarIcon className="w-6 h-6 text-blue-400" />
-            <h2 className="text-2xl font-bold text-white">Book Your Stay</h2>
+      <div className="bg-slate-900 rounded-3xl shadow-2xl max-w-6xl w-full max-h-[95vh] sm:max-h-[90vh] overflow-y-auto border border-slate-700/50 animate-scale-in">
+        <div className="sticky top-0 bg-slate-900/95 backdrop-blur-xl border-b border-slate-700/50 px-4 sm:px-6 py-3 sm:py-4 flex justify-between items-center z-10">
+          <div className="flex items-center space-x-2 sm:space-x-3">
+            <CalendarIcon className="w-5 h-5 sm:w-6 sm:h-6 text-blue-400" />
+            <h2 className="text-lg sm:text-xl lg:text-2xl font-bold text-white">Book Your Stay</h2>
           </div>
           <button
             onClick={onClose}
-            className="text-slate-400 hover:text-white transition-colors p-2 hover:bg-slate-800 rounded-full"
+            className="text-slate-400 hover:text-white transition-colors p-1 sm:p-2 hover:bg-slate-800 rounded-full"
           >
-            <X className="w-6 h-6" />
+            <X className="w-5 h-5 sm:w-6 sm:h-6" />
           </button>
         </div>
 
-        <div className="p-6">
-          <div className="grid lg:grid-cols-2 gap-8 mb-8">
+        <div className="p-4 sm:p-6">
+          <div className="grid lg:grid-cols-2 gap-4 sm:gap-6 lg:gap-8 mb-6 sm:mb-8">
             <div>
               <h3 className="text-lg font-semibold text-white mb-6 flex items-center space-x-2">
                 <CalendarIcon className="w-5 h-5 text-blue-400" />

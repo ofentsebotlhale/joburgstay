@@ -26,6 +26,7 @@ function App() {
   const [isBookingManagementModalOpen, setIsBookingManagementModalOpen] = useState(false);
   const [isAdminLoginModalOpen, setIsAdminLoginModalOpen] = useState(false);
   const [notifications, setNotifications] = useState<NotificationState[]>([]);
+  const [showPaymentNotification, setShowPaymentNotification] = useState(false);
 
   useEffect(() => {
     if (typeof window.emailjs !== 'undefined') {
@@ -99,9 +100,13 @@ function App() {
          <div className="min-h-screen bg-slate-950">
             <Navbar
               onBookNowClick={() => setIsBookingModalOpen(true)}
-              onPaymentHistoryClick={() => setIsPaymentHistoryModalOpen(true)}
+              onPaymentHistoryClick={() => {
+                setIsPaymentHistoryModalOpen(true);
+                setShowPaymentNotification(false);
+              }}
               onBookingManagementClick={handleBookingManagementClick}
               onAdminLoginClick={() => setIsAdminLoginModalOpen(true)}
+              showPaymentNotification={showPaymentNotification}
             />
            <Hero onBookNowClick={() => setIsBookingModalOpen(true)} />
            <Amenities />
@@ -112,7 +117,12 @@ function App() {
            <BookingModal
              isOpen={isBookingModalOpen}
              onClose={() => setIsBookingModalOpen(false)}
-             onSuccess={(msg) => showNotification(msg, 'success', 10000)}
+             onSuccess={(msg) => {
+               showNotification(msg, 'success', 10000);
+               setShowPaymentNotification(true);
+               // Auto-hide notification after 30 seconds
+               setTimeout(() => setShowPaymentNotification(false), 30000);
+             }}
              onError={(msg) => showNotification(msg, 'error', 10000)}
              onInfo={(msg) => showNotification(msg, 'info', 8000)}
            />

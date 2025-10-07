@@ -7,9 +7,10 @@ interface NavbarProps {
   onPaymentHistoryClick: () => void;
   onBookingManagementClick: () => void;
   onAdminLoginClick: () => void;
+  showPaymentNotification?: boolean;
 }
 
-export default function Navbar({ onBookNowClick, onPaymentHistoryClick, onBookingManagementClick, onAdminLoginClick }: NavbarProps) {
+export default function Navbar({ onBookNowClick, onPaymentHistoryClick, onBookingManagementClick, onAdminLoginClick, showPaymentNotification = false }: NavbarProps) {
   const [isAdmin, setIsAdmin] = useState(false);
   const [adminUser, setAdminUser] = useState<any>(null);
 
@@ -65,10 +66,15 @@ export default function Navbar({ onBookNowClick, onPaymentHistoryClick, onBookin
                 <div className="flex items-center space-x-3">
                   <button
                     onClick={onPaymentHistoryClick}
-                    className="text-slate-300 hover:text-white transition-colors duration-200 flex items-center space-x-1 px-3 py-2 rounded-lg hover:bg-slate-800/50"
+                    className="text-slate-300 hover:text-white transition-colors duration-200 flex items-center space-x-1 px-3 py-2 rounded-lg hover:bg-slate-800/50 relative"
                   >
                     <CreditCard className="w-4 h-4" />
                     <span className="hidden sm:inline">Payments</span>
+                    {showPaymentNotification && (
+                      <div className="absolute -top-1 -right-1 w-3 h-3 bg-green-500 rounded-full animate-ping">
+                        <div className="absolute top-0 left-0 w-3 h-3 bg-green-500 rounded-full animate-pulse"></div>
+                      </div>
+                    )}
                   </button>
                   
                   {/* Admin-only management button */}

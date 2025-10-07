@@ -1,4 +1,4 @@
-import { Home, Calendar, MapPin, Phone, CreditCard, Settings, LogOut } from 'lucide-react';
+import { Home, Calendar, MapPin, Phone, CreditCard, Settings, LogOut, User } from 'lucide-react';
 import { AuthService } from '../services/auth';
 import { useState, useEffect } from 'react';
 
@@ -7,10 +7,11 @@ interface NavbarProps {
   onPaymentHistoryClick: () => void;
   onBookingManagementClick: () => void;
   onAdminLoginClick: () => void;
+  onGuestPortalClick: () => void;
   showPaymentNotification?: boolean;
 }
 
-export default function Navbar({ onBookNowClick, onPaymentHistoryClick, onBookingManagementClick, onAdminLoginClick, showPaymentNotification = false }: NavbarProps) {
+export default function Navbar({ onBookNowClick, onPaymentHistoryClick, onBookingManagementClick, onAdminLoginClick, onGuestPortalClick, showPaymentNotification = false }: NavbarProps) {
   const [isAdmin, setIsAdmin] = useState(false);
   const [adminUser, setAdminUser] = useState<any>(null);
 
@@ -64,6 +65,14 @@ export default function Navbar({ onBookNowClick, onPaymentHistoryClick, onBookin
           </div>
 
                 <div className="flex items-center space-x-3">
+                  <button
+                    onClick={onGuestPortalClick}
+                    className="text-slate-300 hover:text-white transition-colors duration-200 flex items-center space-x-1 px-3 py-2 rounded-lg hover:bg-slate-800/50"
+                  >
+                    <User className="w-4 h-4" />
+                    <span className="hidden sm:inline">Guest Portal</span>
+                  </button>
+
                   <button
                     onClick={onPaymentHistoryClick}
                     className="text-slate-300 hover:text-white transition-colors duration-200 flex items-center space-x-1 px-3 py-2 rounded-lg hover:bg-slate-800/50 relative"

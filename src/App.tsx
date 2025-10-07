@@ -9,10 +9,13 @@ import BookingModal from './components/BookingModal';
 import PaymentHistoryModal from './components/PaymentHistoryModal';
 import BookingManagementModal from './components/BookingManagementModal';
 import AdminLoginModal from './components/AdminLoginModal';
+import GuestPortalModal from './components/GuestPortalModal';
 import Notification from './components/Notification';
 import { ReminderScheduler } from './services/reminderScheduler';
 import { GoogleAnalytics } from './utils/analytics';
 import { AuthService } from './services/auth';
+import GuestAuthService from './services/guestAuth';
+import type { Guest } from './types/guest';
 
 interface NotificationState {
   message: string;
@@ -25,8 +28,10 @@ function App() {
   const [isPaymentHistoryModalOpen, setIsPaymentHistoryModalOpen] = useState(false);
   const [isBookingManagementModalOpen, setIsBookingManagementModalOpen] = useState(false);
   const [isAdminLoginModalOpen, setIsAdminLoginModalOpen] = useState(false);
+  const [isGuestPortalModalOpen, setIsGuestPortalModalOpen] = useState(false);
   const [notifications, setNotifications] = useState<NotificationState[]>([]);
   const [showPaymentNotification, setShowPaymentNotification] = useState(false);
+  const [currentGuest, setCurrentGuest] = useState<Guest | null>(null);
 
   useEffect(() => {
     if (typeof window.emailjs !== 'undefined') {
@@ -96,6 +101,11 @@ function App() {
     }
   };
 
+  const handleGuestLoginSuccess = (guest: Guest) => {
+    setCurrentGuest(guest);
+    showNotification(`Welcome to your portal, ${guest.name}!`, 'success', 5000);
+  };
+
   return (
          <div className="min-h-screen bg-slate-950">
             <Navbar
@@ -106,6 +116,7 @@ function App() {
               }}
               onBookingManagementClick={handleBookingManagementClick}
               onAdminLoginClick={() => setIsAdminLoginModalOpen(true)}
+              onGuestPortalClick={() => setIsGuestPortalModalOpen(true)}
               showPaymentNotification={showPaymentNotification}
             />
            <Hero onBookNowClick={() => setIsBookingModalOpen(true)} />
@@ -122,6 +133,11 @@ function App() {
                setShowPaymentNotification(true);
                // Auto-hide notification after 30 seconds
                setTimeout(() => setShowPaymentNotification(false), 30000);
+               
+               // Update guest stats if guest is logged in
+               if (currentGuest) {
+                 GuestAuthService.updateGuestStats(currentGuest.id);
+               }
              }}
              onError={(msg) => showNotification(msg, 'error', 10000)}
              onInfo={(msg) => showNotification(msg, 'info', 8000)}
@@ -141,6 +157,12 @@ function App() {
               isOpen={isAdminLoginModalOpen}
               onClose={() => setIsAdminLoginModalOpen(false)}
               onLoginSuccess={handleAdminLoginSuccess}
+            />
+
+            <GuestPortalModal
+              isOpen={isGuestPortalModalOpen}
+              onClose={() => setIsGuestPortalModalOpen(false)}
+              onLoginSuccess={handleGuestLoginSuccess}
             />
 
             {notifications.map((notification) => (
